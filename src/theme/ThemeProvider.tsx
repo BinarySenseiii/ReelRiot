@@ -1,11 +1,21 @@
 import { MantineProvider } from '@mantine/core';
 import React, { ReactNode } from 'react';
+import { Open_Sans, Roboto_Condensed } from '@next/font/google';
 import { customColors } from './Colors';
 
 type ThemeProviderProps = {
   children: ReactNode;
   colorScheme: 'light' | 'dark';
 };
+
+const roboto = Roboto_Condensed({
+  subsets: ['latin'],
+  weight: ['700', '400', '300'],
+});
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+});
 
 const MantineThemeProvider: React.FC<ThemeProviderProps> = ({ children, colorScheme }) => (
   <MantineProvider
@@ -14,8 +24,8 @@ const MantineThemeProvider: React.FC<ThemeProviderProps> = ({ children, colorSch
       colors: {
         ...customColors,
       },
-      fontFamily: 'Open Sans',
-      headings: { fontFamily: 'Roboto Condensed', fontWeight: 800 },
+      fontFamily: openSans.style.fontFamily,
+      headings: { fontFamily: roboto.style.fontFamily, fontWeight: 700 },
       primaryColor: 'brand',
       primaryShade: 5,
     }}
