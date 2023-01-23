@@ -55,8 +55,8 @@ export const useStyles = createStyles((theme) => ({
     textDecoration: 'none',
     color: theme.colors.gray[1],
     fontSize: theme.fontSizes.md,
-    fontWeight: 700,
-    fontFamily: 'Roboto Condensed',
+    fontWeight: 500,
+    // fontFamily: 'Roboto Condensed',
 
     '&:hover': {
       backgroundColor: theme.colors.brand[5],

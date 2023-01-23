@@ -3,6 +3,8 @@ import React, { ReactNode } from 'react';
 import Footer from '../components/common/Footer';
 import Navigation from '../components/common/Navigation';
 import { links } from '../components/common/Navigation/Navigation.mock';
+import ScrollToTop from '@/components/ScrollToTop';
+import { RouterTransition } from '@/components/RouterTransition';
 
 const LayoutWrapper = styled.div`
   display: flex;
@@ -19,11 +21,15 @@ type MasterLayoutProps = {
 };
 
 const MasterLayout: React.FC<MasterLayoutProps> = ({ children }) => (
-  <LayoutWrapper>
-    <Navigation links={links} />
-    <div id="__root">{children}</div>
-    <Footer />
-  </LayoutWrapper>
+  <>
+    <ScrollToTop />
+    <RouterTransition />
+    <LayoutWrapper>
+      <Navigation links={links} />
+      <div id="__root">{children}</div>
+      <Footer />
+    </LayoutWrapper>
+  </>
 );
 
 export default MasterLayout;
