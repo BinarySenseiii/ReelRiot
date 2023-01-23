@@ -14,6 +14,10 @@ const MantineThemeProvider: React.FC<ThemeProviderProps> = ({ children, colorSch
       colors: {
         ...customColors,
       },
+      fontFamily: 'Open Sans',
+      headings: { fontFamily: 'Roboto Condensed', fontWeight: 800 },
+      primaryColor: 'brand',
+      primaryShade: 5,
     }}
     withGlobalStyles
     withNormalizeCSS

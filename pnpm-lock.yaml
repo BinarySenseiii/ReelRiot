@@ -12,6 +12,7 @@ specifiers:
   '@mantine/next': 5.10.1
   '@mantine/nprogress': ^5.10.1
   '@next/bundle-analyzer': ^13.1.2
+  '@next/font': ^13.1.4
   '@svgr/webpack': ^6.5.1
   '@tabler/icons': ^1.107.0
   '@tanstack/react-query': ^4.22.0
@@ -52,6 +53,7 @@ dependencies:
   '@mantine/next': 5.10.1_6yy5hckxmdojbxxitjpbhgz2re
   '@mantine/nprogress': 5.10.1_ynz4r3bmi75slbqnmaycv7w7wa
   '@next/bundle-analyzer': 13.1.4
+  '@next/font': 13.1.4
   '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query': 4.22.4_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.22.4_nuvt6iw2zzunisurt5cxfst6qu
@@ -1881,6 +1883,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.1.4:
+    resolution: {integrity: sha512-NfqQPAIFJhssdaZEsP0MADZKN+tc040jOkNKVlDZHtVjJWBJSgbe8UHg3w0S6YuQr7PHc0ACbFeVCBQeG4MEvg==}
+    dev: false
 
   /@next/swc-android-arm-eabi/13.1.4:
     resolution: {integrity: sha512-5PAchzFst3In6Ml+9APvBj89H29lcPXcUqEYBVv09fWK/V4IuViKc2qOqM9pyPyw7KsqaZPmuqaG595E6jdZLA==}

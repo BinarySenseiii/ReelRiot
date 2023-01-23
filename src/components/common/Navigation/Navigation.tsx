@@ -24,9 +24,9 @@ const Navigation: React.FC<TNavigationProps> = ({ links }) => {
           <Link href="/" passHref>
             <span className={classes.logo}>
               <Title color="brand">
-                MOVIE
+                REEL
                 <Box component="span" sx={{ color: 'white' }}>
-                  MAX
+                  RIOT
                 </Box>
               </Title>
             </span>

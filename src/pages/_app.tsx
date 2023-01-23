@@ -25,7 +25,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   return (
     <>
       <Head>
-        <title>Employee Managment System</title>
+        <title>The Official Home Of Reel Riot Movies - Torrent Downloads </title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
 

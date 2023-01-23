@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import React, { ReactNode } from 'react';
-import Footer from './Footer';
-import Navigation from './Navigation';
-import { links } from './Navigation/Navigation.mock';
+import Footer from '../components/common/Footer';
+import Navigation from '../components/common/Navigation';
+import { links } from '../components/common/Navigation/Navigation.mock';
 
 const LayoutWrapper = styled.div`
   display: flex;
