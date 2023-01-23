@@ -1,11 +1,9 @@
 import React from 'react';
-import { Welcome } from '@/components/Welcome';
-import { ColorSchemeToggle } from '@/components/ColorSchemeToggle';
+import { Container } from '@/components/ui';
 
 const HomePage: React.FC = () => (
-  <div>
-    <Welcome />
-    <ColorSchemeToggle />
-  </div>
+  <Container size="lg" py="xl">
+    main component goes here later
+  </Container>
 );
 export default HomePage;

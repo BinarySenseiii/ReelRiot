@@ -7,6 +7,7 @@ import NextApp, { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState } from 'react';
 import MantineThemeProvider from '@/theme/ThemeProvider';
+import { MasterLayout } from '@/layout';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -32,7 +33,9 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <MantineThemeProvider colorScheme={colorScheme}>
           <QueryClientProvider client={queryClient}>
             <Hydrate state={pageProps.dehydratedState}>
-              <Component {...pageProps} />
+              <MasterLayout>
+                <Component {...pageProps} />
+              </MasterLayout>
             </Hydrate>
             <ReactQueryDevtools initialIsOpen={false} />
           </QueryClientProvider>
