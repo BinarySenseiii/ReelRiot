@@ -1,4 +1,4 @@
-import MoviesGridView from '@/components/Movies/MoviesGridView';
+import MoviesGridView from '@/components/Movie/MovieGridView';
 import { Container } from '@/components/ui';
 import { MovieFilters } from '@/features';
 
