@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-export const useMovieStyles = createStyles((theme) => ({
+const useMovieStyles = createStyles((theme) => ({
   imageContainer: {
     position: 'relative',
     cursor: 'pointer',
@@ -81,3 +81,5 @@ export const useMovieStyles = createStyles((theme) => ({
     gap: '2rem',
   },
 }));
+
+export default useMovieStyles;

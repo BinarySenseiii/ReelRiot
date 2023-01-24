@@ -1,14 +1,12 @@
-import { Anchor, Box, Button, Group, Rating, Text, Title, Tooltip } from '@mantine/core';
+import { Anchor, Box, Button, Group, Rating, Text, Title } from '@mantine/core';
 import { IconDownload, IconPlayerPlay } from '@tabler/icons';
 import Image from 'next/image';
-import BreadCrumb from '@/components/BreadCrumb';
-import { useMovieStyles } from '@/components/Movie/Movies.style';
 import { Container } from '@/components/ui';
+import BreadCrumb from '@/components/BreadCrumb';
 
 import poster from '@/assets/medium-cover.jpg';
 
-import MovieCast from '@/components/Movie/MovieCast';
-import MovieGallery from '@/components/Movie/MovieGallery';
+import { MovieCast, MovieGallery, MovieTorrents, useMovieStyles } from '@/components/Movie/';
 
 const MovieDetail = () => {
   const { classes } = useMovieStyles();
@@ -49,21 +47,7 @@ const MovieDetail = () => {
             </Text>
           </Group>
 
-          <Group spacing="xs" mt="lg" align="center">
-            <Text size="md" weight={500}>
-              Download In
-            </Text>
-
-            {['4k', '1080p'].map((torrent: any) => (
-              <Tooltip label="1.2gb" color="brand" withArrow arrowSize={6} arrowOffset={20}>
-                <Anchor href={torrent.url} target="_blank">
-                  <Button size="sm" compact variant="outline" sx={{ color: 'white' }}>
-                    {torrent}
-                  </Button>
-                </Anchor>
-              </Tooltip>
-            ))}
-          </Group>
+          <MovieTorrents isTitle />
 
           <Text size="xs" mt={8}>
             WEB: same quality as BluRay
