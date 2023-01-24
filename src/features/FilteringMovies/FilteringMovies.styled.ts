@@ -1,27 +1,20 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
-  wrapper: {
-    width: '80%',
+  flex: {
     display: 'flex',
-    flexDirection: 'column',
-    gap: 10,
-    margin: 'auto',
-   },
-  search: {
-    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  filters: {
-    width: '100%',
+
+  label: {
+    marginBottom: '5px',
+    fontSize: '16px',
   },
-  dropdown: {
-    '&[data-selected]': {
-      '&, &:hover': {
-        color: theme.colors.brand[5],
-      },
-    },
-  },
-  searchbtn: {
-    marginLeft: 'auto',
+
+  filter_btn: {
+    display: 'flex',
+    marginTop: theme.spacing.md,
+    justifyContent: 'flex-end',
   },
 }));
