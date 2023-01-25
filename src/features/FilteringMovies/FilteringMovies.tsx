@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import { Box, Button, Select, SimpleGrid, TextInput } from '@mantine/core';
+import { Box, Button, Group, Select, SimpleGrid, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
 import { Container } from '@/components/ui';
+import { IFilterOption, IFilters } from '@/types/Movie.types';
 import { options } from './FilteringMovies.mock';
 import { useStyles } from './FilteringMovies.styled';
-import { IFilterOption, IFilters } from '@/types/Movie.types';
 
 type FilteringMoviesProps = {};
 
@@ -35,20 +35,14 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
       py="xl"
     >
       <Container size="sm">
-        <Box className={classes.flex}>
-          <TextInput
-            classNames={{
-              label: classes.label,
-            }}
-            placeholder=""
-            label="Search Term:"
-            size="md"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            radius="md"
-            sx={{ flex: 1 }}
-          />
-        </Box>
+        <TextInput
+          classNames={{ label: classes.label }}
+          label="Search Term:"
+          size="md"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          radius="md"
+        />
 
         <SimpleGrid
           cols={4}
@@ -64,9 +58,7 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
             <Select
               key={id}
               label={label}
-              classNames={{
-                label: classes.label,
-              }}
+              classNames={{ label: classes.label }}
               styles={{
                 label: {
                   fontSize: '14px !important',
@@ -80,11 +72,11 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
           ))}
         </SimpleGrid>
 
-        <Box className={classes.filter_btn}>
+        <Group position="right" mt="md">
           <Button size="xs" onClick={onMovieFilter}>
             Search
           </Button>
-        </Box>
+        </Group>
       </Container>
     </Box>
   );
