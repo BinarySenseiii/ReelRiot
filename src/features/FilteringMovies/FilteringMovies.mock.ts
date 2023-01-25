@@ -1,3 +1,5 @@
+import { IFilterOption } from '@/types/Movie.types';
+
 export const movieQuality = [
   { value: 'all', label: 'All' },
   { value: '480p', label: '480p' },
@@ -121,4 +123,11 @@ export const movieOrder = [
   { value: 'seeds', label: 'Torent Seeds' },
   { value: 'year', label: 'Year' },
   { value: 'rating', label: 'IMDb Rating' },
+];
+
+export const options: IFilterOption[] = [
+  { id: 1, filter: movieQuality, label: 'Quality:', value: 'quality' },
+  { id: 2, filter: movieGenres, label: 'Genre:', value: 'genre' },
+  { id: 3, filter: movieRatings, label: 'Rating:', value: 'rating' },
+  { id: 4, filter: movieOrder, label: 'Order By:', value: 'orderBy' },
 ];
