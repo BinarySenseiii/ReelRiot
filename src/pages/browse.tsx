@@ -1,13 +1,10 @@
-import MoviesGridView from '@/components/Movie/MovieGridView';
+import { Movies } from '@/components/Movie';
 import { MovieFilters } from '@/features';
 
 const BrowsePage: React.FC = () => (
   <>
-    <>
-      <MovieFilters />
-      <MoviesGridView />
-      {/* <MovieListView /> */}
-    </>
+    <MovieFilters />
+    <Movies />
   </>
 );
 export default BrowsePage;

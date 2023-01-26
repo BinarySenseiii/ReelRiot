@@ -16,3 +16,5 @@ export interface IFilterOption {
   filter: any;
   value: any;
 }
+
+export type TMovieView = 'list' | 'grid';
