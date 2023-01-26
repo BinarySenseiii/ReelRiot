@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { Box, Button, Group, Select, SimpleGrid, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Container } from '@/components/ui';
 import { IFilterOption, IFilters } from '@/types/Movie.types';
 import { options } from './FilteringMovies.mock';
@@ -18,7 +19,14 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
     orderBy: 'date_added',
   });
 
-  const onMovieFilter = () => console.log('later api call will goes here!!');
+  const url = `https://yts.mx/api/v2/list_movies.json?query_term=${query}&quality=${state.quality}&genre=${state.genre}&minimum_rating=${state.rating}&sort_by=${state.orderBy}`;
+  const onMovieFilter = () => {
+    //api call.
+    axios.get(url)
+    .then((response) => {
+      console.log(response.data);
+    });
+  };
 
   const onFilterChange = (filteredValue: string | null, key: string) => {
     if (filteredValue !== null) {
