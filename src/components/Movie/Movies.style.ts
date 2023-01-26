@@ -11,7 +11,6 @@ const useMovieStyles = createStyles((theme) => ({
     height: 'max-content',
     width: '100%',
     background: 'red',
-    // overflow: 'hidden',
     transition: 'all 0.3s ease-in-out',
 
     '&:hover > div': {
@@ -57,7 +56,7 @@ const useMovieStyles = createStyles((theme) => ({
     display: 'grid',
     gridTemplateColumns: '160px 1fr',
     boxShadow: '3px 4px 10px rgba(0,0,0,0.5)',
-
+    background: theme.colors.dark[8],
     '@media screen and (max-width: 500px)': {
       gridTemplateColumns: '1fr',
     },
