@@ -2,6 +2,8 @@
 import { Box, Button, Group, Select, SimpleGrid, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
 import { Container } from '@/components/ui';
+import { basicFetch } from '@/services/client';
+import { SEARCH_BASE_URL } from '@/services/config';
 import { IFilterOption, IFilters } from '@/types/Movie.types';
 import { options } from './FilteringMovies.mock';
 import { useStyles } from './FilteringMovies.styled';
@@ -18,7 +20,13 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
     orderBy: 'date_added',
   });
 
-  const onMovieFilter = () => console.log('later api call will goes here!!');
+  const onMovieFilter = async () => {
+    const data = await basicFetch(
+      SEARCH_BASE_URL(query, state.quality, state.genre, state.rating, state.orderBy)
+    );
+
+    console.log(data);
+  };
 
   const onFilterChange = (filteredValue: string | null, key: string) => {
     if (filteredValue !== null) {

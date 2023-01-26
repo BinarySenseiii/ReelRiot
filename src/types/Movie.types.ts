@@ -3,6 +3,7 @@ export interface IFilters {
   genre: string;
   rating: string;
   orderBy: string;
+  query?: string;
 }
 
 export interface IFilter {
