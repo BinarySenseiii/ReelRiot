@@ -18,4 +18,16 @@ export interface IFilterOption {
   value: any;
 }
 
+export interface IGridView {
+  id: string | number;
+  name: string;
+  image: string;
+  year: number;
+  category: string[];
+}
+
+export interface IListView extends IGridView {
+  info: string;
+}
+
 export type TMovieView = 'list' | 'grid';
