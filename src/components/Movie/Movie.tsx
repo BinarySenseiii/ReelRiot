@@ -5,15 +5,9 @@ import { useMovieStyles } from '@/components/Movie/';
 import MoviesActionBtns from '@/components/Movie/MovieActionBtns';
 import BatmanImage from '../../assets/medium-cover.jpg';
 
-type MovieProps = {
-  name: string;
-  info: string | null;
-  image: string;
-  year: number;
-  category: string[];
-};
+type MovieProps = {};
 
-export const MovieCard: React.FC<MovieProps> = ({ name, image, year, category }) => {
+export const MovieCard: React.FC<MovieProps> = () => {
   const { classes } = useMovieStyles();
 
   return (
@@ -24,7 +18,6 @@ export const MovieCard: React.FC<MovieProps> = ({ name, image, year, category })
           height={550}
           width={400}
           src={BatmanImage}
-          // src={image}
           alt=" not found"
           placeholder="blur"
         />
@@ -37,25 +30,19 @@ export const MovieCard: React.FC<MovieProps> = ({ name, image, year, category })
       <Stack spacing={0} mt="xs">
         <Group align="center" spacing={4}>
           <Text size={12}> 2023 - </Text>
-          {/* <Text size={12}> {year} </Text> */}
           <Text size={12} lineClamp={1}>
             Action, Adventure
-            {/* {category
-              .map((cat) => `${cat},`)
-              .join('')
-              .slice(0, -1)} */}
           </Text>
         </Group>
         <Title fz="md" weight={700} lineClamp={1} mt={1}>
           Designed For Death
-          {/* {name} */}
         </Title>
       </Stack>
     </div>
   );
 };
 
-export const MovieListCard: React.FC<MovieProps> = ({ name, image, info, year, category }) => {
+export const MovieListCard: React.FC<MovieProps> = () => {
   const { classes } = useMovieStyles();
 
   return (
@@ -75,7 +62,6 @@ export const MovieListCard: React.FC<MovieProps> = ({ name, image, info, year, c
       <Box p="lg" sx={{ position: 'relative' }}>
         <Title order={3} weight={900} lineClamp={1}>
           Designed For Death
-          {/* {name} */}
         </Title>
         <Group spacing={2} mt={6}>
           <Text size="xs"> Action, Adventure</Text>
@@ -85,10 +71,6 @@ export const MovieListCard: React.FC<MovieProps> = ({ name, image, info, year, c
           of cryptic clues. As the evidence begins to lead closer to home and the scale of the
           perpetrators plans become clear, he must forge new relationships, unmask the culprit and
           bring justice to the abuse of power and corruption that has long plagued the metropolis.
-          {/* {category
-              .map((cat) => `${cat},`)
-              .join('')
-              .slice(0, -1)} */}
         </Text>
 
         <Box sx={(theme) => ({ marginTop: theme.spacing.lg })}>
