@@ -53,6 +53,7 @@ export const MovieListCard: React.FC<MovieProps> = () => {
           height={550}
           width={400}
           src={BatmanImage}
+          // src={image}
           alt=" not found"
           placeholder="blur"
         />

@@ -78,5 +78,6 @@ export const useStyles = createStyles((theme) => ({
   logo: {
     display: 'inline-block',
     textDecoration: 'none',
+    fontStyle: 'italic',
   },
 }));

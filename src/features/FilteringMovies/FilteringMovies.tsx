@@ -2,8 +2,7 @@
 import { Box, Button, Group, Select, SimpleGrid, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
 import { Container } from '@/components/ui';
-import { basicFetch } from '@/services/client';
-import { SEARCH_BASE_URL } from '@/services/config';
+import { ACTIONS, useMovieStore } from '@/context/store';
 import { IFilterOption, IFilters } from '@/types/Movie.types';
 import { options } from './FilteringMovies.mock';
 import { useStyles } from './FilteringMovies.styled';
@@ -11,6 +10,11 @@ import { useStyles } from './FilteringMovies.styled';
 type FilteringMoviesProps = {};
 
 const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
+  const {
+    dispatch,
+    searchedResult: { isLoading },
+  } = useMovieStore();
+
   const { classes } = useStyles();
   const [query, setQuery] = useState('');
   const [state, setState] = useState<IFilters>({
@@ -21,11 +25,13 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
   });
 
   const onMovieFilter = async () => {
-    const data = await basicFetch(
-      SEARCH_BASE_URL(query, state.quality, state.genre, state.rating, state.orderBy)
-    );
-
-    console.log(data);
+    dispatch({
+      type: ACTIONS.searchQuery,
+      payload: {
+        ...state,
+        query,
+      },
+    });
   };
 
   const onFilterChange = (filteredValue: string | null, key: string) => {
@@ -81,8 +87,8 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
         </SimpleGrid>
 
         <Group position="right" mt="md">
-          <Button size="xs" onClick={onMovieFilter}>
-            Search
+          <Button size="xs" onClick={onMovieFilter} loading={isLoading}>
+            {isLoading ? 'Searching' : 'Search'}
           </Button>
         </Group>
       </Container>

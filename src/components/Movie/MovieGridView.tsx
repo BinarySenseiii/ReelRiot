@@ -1,10 +1,12 @@
-import { SimpleGrid } from '@mantine/core';
+import { SimpleGrid, Skeleton } from '@mantine/core';
 import React from 'react';
 import { MovieCard } from '@/components/Movie/Movie';
 
-type MovieGridViewProps = {};
+type MovieGridViewProps = {
+  isLoading?: boolean;
+};
 
-const MovieGridView: React.FC<MovieGridViewProps> = () => (
+const MovieGridView: React.FC<MovieGridViewProps> = ({ isLoading }) => (
   <SimpleGrid
     cols={5}
     breakpoints={[
@@ -16,7 +18,9 @@ const MovieGridView: React.FC<MovieGridViewProps> = () => (
     ]}
   >
     {Array.from({ length: 20 }, (_, i) => (
-      <MovieCard key={i} />
+      <Skeleton key={i} visible={isLoading}>
+        <MovieCard />
+      </Skeleton>
     ))}
   </SimpleGrid>
 );
