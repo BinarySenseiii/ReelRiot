@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
 import { Box, Center, Group, Pagination } from '@mantine/core';
+import React, { useState } from 'react';
+import { MovieGridView, MovieListView, MovieViewToggler } from '@/components/Movie/';
 import { Container } from '@/components/ui';
 import { TMovieView } from '@/types/Movie.types';
-import { MovieListView, MovieViewToggler, MovieGridView } from '@/components/Movie/';
 
-type MoviesProps = {};
+type MoviesProps = {
+  isLoading: boolean;
+};
 
-const Movies: React.FC<MoviesProps> = () => {
+const Movies: React.FC<MoviesProps> = ({ isLoading }) => {
   const [view, setView] = useState<TMovieView>('grid');
 
   return (
@@ -20,7 +22,7 @@ const Movies: React.FC<MoviesProps> = () => {
       </Group>
 
       <Box component="main" mt="xl">
-        {view === 'grid' && <MovieGridView />}
+        {view === 'grid' && <MovieGridView isLoading={isLoading} />}
         {view === 'list' && <MovieListView />}
       </Box>
     </Container>
