@@ -8,14 +8,17 @@ const useMovieStyles = createStyles((theme) => ({
 
   innerImage: {
     position: 'relative',
-    height: 'max-content',
     width: '100%',
-    background: 'red',
     transition: 'all 0.3s ease-in-out',
+    // height: 325,
 
     '&:hover > div': {
       opacity: 1,
     },
+  },
+
+  image: {
+    width: '100% !important',
   },
 
   info: {

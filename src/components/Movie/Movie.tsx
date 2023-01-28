@@ -1,8 +1,9 @@
-import { Group, Stack, Text, Title } from '@mantine/core';
-import Image from 'next/legacy/image';
+import { AspectRatio, Group, Stack, Text, Title } from '@mantine/core';
+import Image from 'next/image';
 import React from 'react';
-import MoviesActionBtns from '@/components/Movie/MovieActionBtns';
 import { useMovieStyles } from '@/components/Movie/';
+import MoviesActionBtns from '@/components/Movie/MovieActionBtns';
+import { arrayToString } from '@/helpers';
 import { IMovie } from '@/types/Movie.types';
 
 type MovieProps = {
@@ -15,13 +16,19 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
   return (
     <div className={classes.imageContainer}>
       <div className={classes.innerImage}>
-        <Image
-          layout="responsive"
-          height={550}
-          width={400}
-          src={movie.large_cover_image}
-          alt=" not found"
-        />
+        <AspectRatio ratio={0.7}>
+          <Image
+            src={movie.large_cover_image ?? movie.medium_cover_image}
+            alt=" not found"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+            priority
+            fill
+            sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
+          />
+        </AspectRatio>
 
         <div className={classes.overlay}>
           <MoviesActionBtns direction="column" slug="2" />
@@ -30,9 +37,9 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
 
       <Stack spacing={0} mt="xs">
         <Group align="center" spacing={4}>
-          <Text size={12}> 2023 - </Text>
+          <Text size={12}> {movie.year} - </Text>
           <Text size={12} lineClamp={1}>
-            Action, Adventure
+            {arrayToString(movie.genres)}
           </Text>
         </Group>
         <Title fz="md" weight={700} lineClamp={1} mt={1}>
