@@ -1,31 +1,22 @@
 import { create } from 'zustand';
 import { devtools, redux } from 'zustand/middleware';
-import { IMovieResult } from '../types/Movie.types';
+import { ISearchQuery } from '@/types/Movie.types';
 
 interface IMovieState {
   searchQuery: string;
-  searchedResult: IMovieResult;
 }
 
 export enum ACTIONS {
   searchQuery = 'SEARCH_MOVIES_QUERY',
-  searchedResult = 'MOVIES_SEARCHED_RESULT',
 }
 
 interface IActions {
   type: ACTIONS;
-  payload: any;
+  payload: ISearchQuery;
 }
 
 const initialState: IMovieState = {
-  searchQuery: 'quality=all&genre=all&minimum_rating=0&sort_by=date_added',
-  searchedResult: {
-    limit: 20,
-    movie_count: 0,
-    movies: [],
-    page_number: 0,
-    isLoading: false,
-  },
+  searchQuery: 'quality=all&genre=all&minimum_rating=0&sort_by=date_added&limit=20&page=1',
 };
 
 const reducer = (state: IMovieState, { type, payload }: IActions): IMovieState => {
@@ -33,13 +24,7 @@ const reducer = (state: IMovieState, { type, payload }: IActions): IMovieState =
     case 'SEARCH_MOVIES_QUERY':
       return {
         ...state,
-        searchQuery: `query_term=${payload.query}&quality=${payload.quality}&genre=${payload.genre}&minimum_rating=${payload.rating}&sort_by=${payload.orderBy}`,
-      };
-
-    case 'MOVIES_SEARCHED_RESULT':
-      return {
-        ...state,
-        searchedResult: payload,
+        searchQuery: `query_term=${payload.query}&quality=${payload.quality}&genre=${payload.genre}&minimum_rating=${payload.rating}&sort_by=${payload.orderBy}&page=${payload.pageNumber}`,
       };
     default:
       return state;
