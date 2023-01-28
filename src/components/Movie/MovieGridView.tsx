@@ -3,7 +3,7 @@ import React from 'react';
 import { MovieCard } from '@/components/Movie/Movie';
 
 type MovieGridViewProps = {
-  isLoading: boolean;
+  isLoading?: boolean;
 };
 
 const MovieGridView: React.FC<MovieGridViewProps> = ({ isLoading }) => (

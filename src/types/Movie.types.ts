@@ -77,6 +77,7 @@ export interface IMovieResult {
   movie_count: number;
   movies: IMovie[];
   page_number: number;
+  isLoading?: boolean;
 }
 
 export interface IMovieDetail {

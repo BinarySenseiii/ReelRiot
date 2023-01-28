@@ -3,18 +3,26 @@ import React, { useState } from 'react';
 import { MovieGridView, MovieListView, MovieViewToggler } from '@/components/Movie/';
 import { Container } from '@/components/ui';
 import { TMovieView } from '@/types/Movie.types';
+import { useMovieStore } from '@/context/store';
 
-type MoviesProps = {
-  isLoading: boolean;
-};
+type MoviesProps = {};
 
-const Movies: React.FC<MoviesProps> = ({ isLoading }) => {
+const Movies: React.FC<MoviesProps> = () => {
   const [view, setView] = useState<TMovieView>('grid');
+  const [pageNumber, sePageNumber] = useState<number>(1);
+  const {
+    searchedResult: { isLoading, movie_count, limit },
+  } = useMovieStore();
 
   return (
     <Container pt="xl">
       <Center>
-        <Pagination total={5} size="sm" />
+        <Pagination
+          page={pageNumber}
+          total={Math.ceil(movie_count / limit)}
+          size="sm"
+          onChange={(nextPage) => sePageNumber(nextPage)}
+        />
       </Center>
 
       <Group position="right" mt="xl" display={{ base: 'none', sm: 'flex' }}>

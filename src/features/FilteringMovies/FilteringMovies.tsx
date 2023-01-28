@@ -7,12 +7,13 @@ import { IFilterOption, IFilters } from '@/types/Movie.types';
 import { options } from './FilteringMovies.mock';
 import { useStyles } from './FilteringMovies.styled';
 
-type FilteringMoviesProps = {
-  isLoading: boolean;
-};
+type FilteringMoviesProps = {};
 
-const FilteringMovies: React.FC<FilteringMoviesProps> = ({ isLoading }) => {
-  const { dispatch } = useMovieStore();
+const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
+  const {
+    dispatch,
+    searchedResult: { isLoading },
+  } = useMovieStore();
 
   const { classes } = useStyles();
   const [query, setQuery] = useState('');
