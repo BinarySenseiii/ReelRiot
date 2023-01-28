@@ -31,7 +31,11 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
         </AspectRatio>
 
         <div className={classes.overlay}>
-          <MoviesActionBtns direction="column" slug="2" />
+          <MoviesActionBtns
+            direction="column"
+            slug={movie.slug}
+            youtubeId={movie.yt_trailer_code}
+          />
         </div>
       </div>
 

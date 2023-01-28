@@ -1,3 +1,3 @@
-const arrayToString = (arr: string[]) => arr.slice(0, 3).join(', ');
+const arrayToString = (arr: string[]) => arr !== undefined && arr.slice(0, 2).join(', ');
 
 export default arrayToString;

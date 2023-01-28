@@ -47,7 +47,7 @@ const BrowsePage: React.FC = () => {
 
         <Box component="main" mt="xl">
           {view === 'grid' && <MovieGridView isLoading={isLoading} movies={data?.movies} />}
-          {view === 'list' && <MovieListView />}
+          {view === 'list' && <MovieListView isLoading={isLoading} movies={data?.movies} />}
         </Box>
       </Container>
     </>
