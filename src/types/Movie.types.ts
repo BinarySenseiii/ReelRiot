@@ -5,7 +5,11 @@ export interface IFilters {
   genre: string;
   rating: string;
   orderBy: string;
-  query?: string;
+}
+
+export interface ISearchQuery extends IFilters {
+  query: string;
+  pageNumber: number;
 }
 
 export interface IFilter {

@@ -1,21 +1,25 @@
 /* eslint-disable no-console */
 import { Box, Button, Group, Select, SimpleGrid, TextInput } from '@mantine/core';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Container } from '@/components/ui';
 import { ACTIONS, useMovieStore } from '@/context/store';
 import { IFilterOption, IFilters } from '@/types/Movie.types';
 import { options } from './FilteringMovies.mock';
 import { useStyles } from './FilteringMovies.styled';
 
-type FilteringMoviesProps = {};
+type FilteringMoviesProps = {
+  pageNumber: number;
+  isLoading: boolean;
+  setPageNumber: Dispatch<SetStateAction<number>>;
+};
 
-const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
-  const {
-    dispatch,
-    searchedResult: { isLoading },
-  } = useMovieStore();
-
+const FilteringMovies: React.FC<FilteringMoviesProps> = ({
+  pageNumber,
+  setPageNumber,
+  isLoading,
+}) => {
   const { classes } = useStyles();
+  const { dispatch } = useMovieStore();
   const [query, setQuery] = useState('');
   const [state, setState] = useState<IFilters>({
     quality: 'all',
@@ -24,15 +28,25 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = () => {
     orderBy: 'date_added',
   });
 
-  const onMovieFilter = async () => {
+  const dispatchSearchQuery = () =>
     dispatch({
       type: ACTIONS.searchQuery,
       payload: {
         ...state,
         query,
+        pageNumber,
       },
     });
+
+  const onMovieFilter = async () => {
+    dispatchSearchQuery();
+    setPageNumber(1);
   };
+
+  // only triggers when pagination number changes
+  useEffect(() => {
+    dispatchSearchQuery();
+  }, [pageNumber]);
 
   const onFilterChange = (filteredValue: string | null, key: string) => {
     if (filteredValue !== null) {

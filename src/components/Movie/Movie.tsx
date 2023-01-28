@@ -1,13 +1,15 @@
-import { Box, Group, Stack, Text, Title } from '@mantine/core';
+import { Group, Stack, Text, Title } from '@mantine/core';
 import Image from 'next/legacy/image';
 import React from 'react';
-import { useMovieStyles } from '@/components/Movie/';
 import MoviesActionBtns from '@/components/Movie/MovieActionBtns';
-import BatmanImage from '../../assets/medium-cover.jpg';
+import { useMovieStyles } from '@/components/Movie/';
+import { IMovie } from '@/types/Movie.types';
 
-type MovieProps = {};
+type MovieProps = {
+  movie: IMovie;
+};
 
-export const MovieCard: React.FC<MovieProps> = () => {
+const Movie: React.FC<MovieProps> = ({ movie }) => {
   const { classes } = useMovieStyles();
 
   return (
@@ -17,9 +19,8 @@ export const MovieCard: React.FC<MovieProps> = () => {
           layout="responsive"
           height={550}
           width={400}
-          src={BatmanImage}
+          src={movie.large_cover_image}
           alt=" not found"
-          placeholder="blur"
         />
 
         <div className={classes.overlay}>
@@ -35,48 +36,11 @@ export const MovieCard: React.FC<MovieProps> = () => {
           </Text>
         </Group>
         <Title fz="md" weight={700} lineClamp={1} mt={1}>
-          Designed For Death
+          {movie.title}
         </Title>
       </Stack>
     </div>
   );
 };
 
-export const MovieListCard: React.FC<MovieProps> = () => {
-  const { classes } = useMovieStyles();
-
-  return (
-    <Box className={classes.card}>
-      <div className={classes.listImage}>
-        <Image
-          layout="responsive"
-          height={550}
-          width={400}
-          src={BatmanImage}
-          // src={image}
-          alt=" not found"
-          placeholder="blur"
-        />
-      </div>
-
-      <Box p="lg" sx={{ position: 'relative' }}>
-        <Title order={3} weight={900} lineClamp={1}>
-          Designed For Death
-        </Title>
-        <Group spacing={2} mt={6}>
-          <Text size="xs"> Action, Adventure</Text>
-        </Group>
-        <Text lineClamp={3} fz="md" mt="xs">
-          Batman ventures into Gotham Citys underworld when a sadistic killer leaves behind a trail
-          of cryptic clues. As the evidence begins to lead closer to home and the scale of the
-          perpetrators plans become clear, he must forge new relationships, unmask the culprit and
-          bring justice to the abuse of power and corruption that has long plagued the metropolis.
-        </Text>
-
-        <Box sx={(theme) => ({ marginTop: theme.spacing.lg })}>
-          <MoviesActionBtns slug="2" direction="row" />
-        </Box>
-      </Box>
-    </Box>
-  );
-};
+export default Movie;
