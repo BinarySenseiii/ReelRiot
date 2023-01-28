@@ -5,7 +5,7 @@ import { MovieGridView, MovieListView, MovieViewToggler } from '@/components/Mov
 import { Container } from '@/components/ui';
 import { useMovieStore } from '@/context/store';
 import { MovieFilters } from '@/features';
-import { basicFetch } from '@/services/client';
+import { fetch } from '@/services/client';
 import { IMovieResult, TMovieView } from '@/types/Movie.types';
 
 const BrowsePage: React.FC = () => {
@@ -14,7 +14,7 @@ const BrowsePage: React.FC = () => {
   const { searchQuery } = useMovieStore();
 
   const { data, isLoading } = useQuery<IMovieResult, Error>([searchQuery], async () =>
-    basicFetch(`?${searchQuery}`)
+    fetch(`?${searchQuery}`)
   );
 
   return (
@@ -46,13 +46,7 @@ const BrowsePage: React.FC = () => {
         </Group>
 
         <Box component="main" mt="xl">
-          {view === 'grid' && (
-            <MovieGridView
-              isLoading={isLoading}
-              movies={data?.movies}
-              movieCount={data?.movie_count}
-            />
-          )}
+          {view === 'grid' && <MovieGridView isLoading={isLoading} movies={data?.movies} />}
           {view === 'list' && <MovieListView />}
         </Box>
       </Container>

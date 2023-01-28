@@ -7,10 +7,9 @@ import { IMovie } from '@/types/Movie.types';
 type MovieGridViewProps = {
   isLoading?: boolean;
   movies: IMovie[] | undefined;
-  movieCount: number | undefined;
 };
 
-const MovieGridView: React.FC<MovieGridViewProps> = ({ isLoading, movies, movieCount }) => (
+const MovieGridView: React.FC<MovieGridViewProps> = ({ isLoading, movies }) => (
   <SimpleGrid
     cols={5}
     breakpoints={[
@@ -22,7 +21,7 @@ const MovieGridView: React.FC<MovieGridViewProps> = ({ isLoading, movies, movieC
     ]}
   >
     {isLoading
-      ? Array.from({ length: 20 }, (_, i) => <Skeleton key={i} visible={isLoading} height={300} />)
+      ? Array.from({ length: 10 }, (_, i) => <Skeleton key={i} visible={isLoading} height={300} />)
       : movies?.map((movie) => <Movie key={movie.id} movie={movie} />)}
   </SimpleGrid>
 );
