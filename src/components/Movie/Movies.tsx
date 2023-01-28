@@ -1,4 +1,4 @@
-import { Box, Center, Group, Pagination } from '@mantine/core';
+import { Box, Center, Group, Pagination, Skeleton, Stack, Title } from '@mantine/core';
 import React, { useState } from 'react';
 import { MovieGridView, MovieListView, MovieViewToggler } from '@/components/Movie/';
 import { Container } from '@/components/ui';
@@ -17,12 +17,22 @@ const Movies: React.FC<MoviesProps> = () => {
   return (
     <Container pt="xl">
       <Center>
-        <Pagination
-          page={pageNumber}
-          total={Math.ceil(movie_count / limit)}
-          size="sm"
-          onChange={(nextPage) => sePageNumber(nextPage)}
-        />
+        <Stack>
+          <Skeleton visible={isLoading}>
+            <Title align="center" size="xs">
+              {movie_count} Movies Found
+            </Title>
+          </Skeleton>
+
+          <Skeleton visible={isLoading}>
+            <Pagination
+              page={pageNumber}
+              total={Math.ceil(movie_count / limit)}
+              size="sm"
+              onChange={(nextPage) => sePageNumber(nextPage)}
+            />
+          </Skeleton>
+        </Stack>
       </Center>
 
       <Group position="right" mt="xl" display={{ base: 'none', sm: 'flex' }}>
