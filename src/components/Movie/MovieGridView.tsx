@@ -14,10 +14,8 @@ const MovieGridView: React.FC<MovieGridViewProps> = ({ isLoading, movies }) => (
     cols={5}
     breakpoints={[
       { maxWidth: 1200, cols: 5 },
-      { maxWidth: 992, cols: 4 },
       { maxWidth: 768, cols: 3 },
       { maxWidth: 576, cols: 2 },
-      { maxWidth: 400, cols: 1 },
     ]}
   >
     {isLoading

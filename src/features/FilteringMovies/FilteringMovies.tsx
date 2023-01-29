@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { Box, Button, Group, Select, SimpleGrid, TextInput } from '@mantine/core';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { IconSearch } from '@tabler/icons';
 import { Container } from '@/components/ui';
 import { ACTIONS, useMovieStore } from '@/context/store';
 import { IFilterOption, IFilters } from '@/types/Movie.types';
@@ -100,9 +101,17 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = ({
           ))}
         </SimpleGrid>
 
-        <Group position="right" mt="md">
-          <Button size="xs" onClick={onMovieFilter} loading={isLoading}>
-            {isLoading ? 'Searching' : 'Search'}
+        <Group position="right" mt="sm">
+          <Button
+            size="sm"
+            variant="light"
+            color="gray"
+            onClick={onMovieFilter}
+            loading={isLoading}
+            sx={(theme) => ({ fontFamily: theme.headings.fontFamily })}
+            leftIcon={<IconSearch size={18} />}
+          >
+            Search Movies
           </Button>
         </Group>
       </Container>

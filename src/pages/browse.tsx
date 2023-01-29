@@ -1,7 +1,12 @@
-import { Box, Center, Group, Pagination, Skeleton, Stack, Title } from '@mantine/core';
+import { Box, Center, Group, Skeleton, Stack, Title } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { MovieGridView, MovieListView, MovieViewToggler } from '@/components/Movie';
+import {
+  MovieGridView,
+  MovieListView,
+  MovieViewToggler,
+  MoviePagination as Pagination,
+} from '@/components/Movie';
 import { Container } from '@/components/ui';
 import { useMovieStore } from '@/context/store';
 import { MovieFilters } from '@/features';
@@ -25,19 +30,16 @@ const BrowsePage: React.FC = () => {
         <Center>
           <Stack>
             <Skeleton visible={isLoading}>
-              <Title align="center" size="xs">
+              <Title align="center" fz="lg">
                 {data?.movie_count} Movies Found
               </Title>
             </Skeleton>
 
-            <Skeleton visible={isLoading}>
-              <Pagination
-                page={pageNumber}
-                total={data ? Math.ceil(data.movie_count / data.limit) : 0}
-                size="sm"
-                onChange={(nextPage) => setPageNumber(nextPage)}
-              />
-            </Skeleton>
+            <Pagination
+              pageNumber={pageNumber}
+              total={data ? Math.ceil(data.movie_count / data.limit) : 0}
+              setPageNumber={setPageNumber}
+            />
           </Stack>
         </Center>
 
