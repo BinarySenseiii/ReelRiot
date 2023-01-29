@@ -1,11 +1,13 @@
 import { Anchor, Button, Group, Text, Tooltip } from '@mantine/core';
 import React from 'react';
+import { ITorrent } from '@/types/Movie.types';
 
 type MovieTorrentsProps = {
   isTitle: boolean;
+  torrents: ITorrent[];
 };
 
-const MovieTorrents: React.FC<MovieTorrentsProps> = ({ isTitle }) => (
+const MovieTorrents: React.FC<MovieTorrentsProps> = ({ isTitle, torrents }) => (
   <Group spacing="xs" mt="lg" align="center">
     {isTitle && (
       <Text size="md" weight={500}>
@@ -13,11 +15,18 @@ const MovieTorrents: React.FC<MovieTorrentsProps> = ({ isTitle }) => (
       </Text>
     )}
 
-    {['4k', '1080p'].map((torrent: any) => (
-      <Tooltip label="1.2gb" color="brand" withArrow arrowSize={6} arrowOffset={20}>
+    {torrents?.map((torrent: any) => (
+      <Tooltip
+        label={torrent.size}
+        color="brand"
+        withArrow
+        arrowSize={6}
+        key={torrent.date_uploaded_unix}
+        arrowOffset={20}
+      >
         <Anchor href={torrent.url} target="_blank">
           <Button size="sm" compact variant="outline" sx={{ color: 'white' }}>
-            {torrent}
+            {torrent.quality}
           </Button>
         </Anchor>
       </Tooltip>

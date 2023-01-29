@@ -1,23 +1,31 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import { SimpleGrid, Title } from '@mantine/core';
-import ss01 from '../../assets/ss01.jpg';
-import ss02 from '../../assets/ss02.jpg';
-import ss03 from '../../assets/ss03.jpg';
+import { SimpleGrid, Skeleton, Title } from '@mantine/core';
+import Image from 'next/legacy/image';
 
-type MovieGalleryProps = {};
+type MovieGalleryProps = {
+  galleryImages: string[] | undefined;
+  isLoading: boolean;
+};
 
-const MovieGallery: React.FC<MovieGalleryProps> = () => (
+const MovieGallery: React.FC<MovieGalleryProps> = ({ galleryImages, isLoading }) => (
   <>
     <Title order={3} mt="lg">
       Gallery
     </Title>
 
     <SimpleGrid cols={3} spacing="xs" mt="sm">
-      <img src={ss01.src} width="100%" />
-      <img src={ss02.src} width="100%" />
-      <img src={ss03.src} width="100%" />
+      {isLoading
+        ? Array.from({ length: 3 }, (_, i) => <Skeleton key={i} visible={isLoading} height={100} />)
+        : galleryImages?.map((imageSrc) => (
+            <Image
+              key={imageSrc}
+              src={imageSrc}
+              width={400}
+              height={200}
+              layout="responsive"
+              alt="movie screen shot not found"
+            />
+          ))}
     </SimpleGrid>
   </>
 );

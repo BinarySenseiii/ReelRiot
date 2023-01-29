@@ -44,7 +44,12 @@ const MovieListView: React.FC<MovieListViewProps> = ({ isLoading, movies }) => {
                 </Text>
 
                 <Box sx={(theme) => ({ marginTop: theme.spacing.lg })}>
-                  <MoviesActionBtns slug="2" direction="row" youtubeId={movie.yt_trailer_code} />
+                  <MoviesActionBtns
+                    movieid={movie.id}
+                    slug="2"
+                    direction="row"
+                    youtubeId={movie.yt_trailer_code}
+                  />
                 </Box>
               </Box>
             </Box>

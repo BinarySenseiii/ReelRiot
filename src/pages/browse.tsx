@@ -19,7 +19,7 @@ const BrowsePage: React.FC = () => {
   const { searchQuery } = useMovieStore();
 
   const { data, isLoading } = useQuery<IMovieResult, Error>([searchQuery], async () =>
-    fetch(`?${searchQuery}`)
+    fetch(`/list_movies.json?${searchQuery}`)
   );
 
   return (

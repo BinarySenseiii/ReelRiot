@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 export const client = axios.create({
-  baseURL: 'https://yts.mx/api/v2/list_movies.json',
+  baseURL: 'https://yts.mx/api/v2',
 });
 
 export const fetch = async (endpoint: string) => {
