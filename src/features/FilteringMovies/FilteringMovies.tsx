@@ -111,7 +111,7 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = ({
             sx={(theme) => ({ fontFamily: theme.headings.fontFamily })}
             leftIcon={<IconSearch size={18} />}
           >
-            Search Movies
+            {isLoading ? 'Searching..' : 'Search Movies'}
           </Button>
         </Group>
       </Container>

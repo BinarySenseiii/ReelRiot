@@ -11,7 +11,7 @@ type MovieViewTogglerProps = {
 const MovieViewToggler: React.FC<MovieViewTogglerProps> = ({ view, setView }) => (
   <SegmentedControl
     size="sm"
-    color="brand"
+    color="dark"
     value={view}
     onChange={(t) => setView(t as TMovieView)}
     data={[
