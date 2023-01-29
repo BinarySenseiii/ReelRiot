@@ -77,6 +77,7 @@ export interface IMovie {
   large_screenshot_image3: string;
 }
 export interface IMovieResult {
+  organizer_count: number;
   limit: number;
   movie_count: number;
   movies: IMovie[];

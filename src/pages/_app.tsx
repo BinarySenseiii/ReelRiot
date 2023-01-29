@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import MantineThemeProvider from '@/theme/ThemeProvider';
 import { MasterLayout } from '@/layout';
+import 'node_modules/react-modal-video/css/modal-video.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
