@@ -6,6 +6,18 @@ const useMovieStyles = createStyles((theme) => ({
     cursor: 'pointer',
   },
 
+  cover__image: {
+    position: 'relative',
+    height: 400,
+    width: '100%',
+  },
+
+  main_content: {
+    background: '#1a1b1e',
+    position: 'relative',
+    borderRadius: 8,
+  },
+
   innerImage: {
     position: 'relative',
     width: '100%',
@@ -19,34 +31,6 @@ const useMovieStyles = createStyles((theme) => ({
 
   image: {
     width: '100% !important',
-  },
-
-  info: {
-    position: 'absolute',
-    top: '20px',
-    left: '-45px',
-    height: 100,
-    width: 100,
-    background: theme.colors.brand[5],
-    zIndex: 9,
-    display: 'grid',
-    placeContent: 'center',
-    color: 'white',
-    borderRadius: 2,
-  },
-
-  play: {
-    position: 'absolute',
-    bottom: '30px',
-    right: '-21px',
-    background: theme.colors.brand[5],
-    height: 50,
-    width: 50,
-    display: 'grid',
-    placeContent: 'center',
-    color: 'white',
-    cursor: 'pointer',
-    borderRadius: '50%',
   },
 
   listImage: {
@@ -80,7 +64,11 @@ const useMovieStyles = createStyles((theme) => ({
   detail_grid: {
     display: 'grid',
     gridTemplateColumns: '1fr 2fr',
-    gap: '2rem',
+    gap: '1rem',
+
+    background: '#1a1b1e',
+    position: 'relative',
+    borderRadius: 8,
   },
 }));
 

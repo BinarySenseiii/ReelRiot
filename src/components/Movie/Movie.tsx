@@ -32,6 +32,7 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
 
         <div className={classes.overlay}>
           <MoviesActionBtns
+            movieid={movie.id}
             direction="column"
             slug={movie.slug}
             youtubeId={movie.yt_trailer_code}

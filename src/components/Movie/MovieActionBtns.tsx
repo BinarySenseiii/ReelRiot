@@ -7,9 +7,15 @@ type MoviesActionBtnsProps = {
   slug: string;
   direction: 'column' | 'row';
   youtubeId: string;
+  movieid: number;
 };
 
-const MoviesActionBtns: React.FC<MoviesActionBtnsProps> = ({ slug, direction, youtubeId }) => {
+const MoviesActionBtns: React.FC<MoviesActionBtnsProps> = ({
+  slug,
+  direction,
+  youtubeId,
+  movieid,
+}) => {
   const router = useRouter();
   const [isOpen, setOpen] = useState(false);
 
@@ -37,7 +43,7 @@ const MoviesActionBtns: React.FC<MoviesActionBtnsProps> = ({ slug, direction, yo
           size="xs"
           variant="white"
           color="dark"
-          onClick={() => router.push(`/movie/${slug}`)}
+          onClick={() => router.push(`/movie/${movieid}/${slug}`)}
         >
           Movie Details
         </Button>
