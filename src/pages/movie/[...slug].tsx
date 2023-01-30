@@ -1,18 +1,35 @@
-// @ts-nocheck
-
-import { Anchor, Box, Button, Group, Rating, Stack, Text, Title } from '@mantine/core';
+import {
+  Anchor,
+  Box,
+  Button,
+  Group,
+  Rating,
+  SimpleGrid,
+  Skeleton,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
 import { IconDownload } from '@tabler/icons';
 import Image from 'next/legacy/image';
+import { GetServerSideProps } from 'next';
+import { useQuery } from '@tanstack/react-query';
 import { Container } from '@/components/ui';
 import placeholder from '@/assets/blur.jpg';
 
 import { MovieCast, MovieGallery, MovieTorrents, useMovieStyles } from '@/components/Movie/';
 import { fetch } from '@/services/client';
-import { movieDetailUrl } from '@/services/config';
+import { movieDetailUrl, movieSuggestions } from '@/services/config';
 import { IMovie } from '@/types/Movie.types';
+import Movie from '@/components/Movie/Movie';
 
 const MovieDetail = ({ movie }: { movie: IMovie }) => {
   const { classes } = useMovieStyles();
+
+  const { data, isLoading } = useQuery<any, Error>(
+    [`suggested__movie/${movie.title_english}`],
+    async () => fetch(movieSuggestions(movie.id))
+  );
 
   return (
     <>
@@ -118,6 +135,26 @@ const MovieDetail = ({ movie }: { movie: IMovie }) => {
             />
           </Box>
         </Box>
+
+        <Title order={3} mt="xl">
+          Similar Movies
+        </Title>
+
+        <SimpleGrid
+          mt="lg"
+          cols={4}
+          breakpoints={[
+            { maxWidth: 1150, cols: 4, spacing: 'md' },
+            { maxWidth: 980, cols: 3, spacing: 'md' },
+            { maxWidth: 768, cols: 2, spacing: 'sm' },
+          ]}
+        >
+          {isLoading
+            ? Array.from({ length: 4 }, (_, i) => (
+                <Skeleton key={i} visible={isLoading} height={300} />
+              ))
+            : data.movies.map((suggestion: IMovie) => <Movie key={movie.id} movie={suggestion} />)}
+        </SimpleGrid>
       </Container>
     </>
   );

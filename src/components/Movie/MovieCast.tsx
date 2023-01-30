@@ -9,7 +9,7 @@ type MovieCastProps = {
 
 const MovieCast: React.FC<MovieCastProps> = ({ isTitle, casts }) => (
   <Box>
-    {casts.length > 0 && typeof casts !== 'undefined' && (
+    {typeof casts !== 'undefined' && (
       <>
         {isTitle && (
           <Title order={3} mt="lg">
