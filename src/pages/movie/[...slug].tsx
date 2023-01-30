@@ -18,7 +18,7 @@ import { Container } from '@/components/ui';
 import placeholder from '@/assets/blur.jpg';
 
 import { MovieCast, MovieGallery, MovieTorrents, useMovieStyles } from '@/components/Movie/';
-import { fetch } from '@/services/client';
+import { ytsFetch } from '@/services/client';
 import { movieDetailUrl, movieSuggestions } from '@/services/config';
 import { IMovie } from '@/types/Movie.types';
 import Movie from '@/components/Movie/Movie';
@@ -28,7 +28,7 @@ const MovieDetail = ({ movie }: { movie: IMovie }) => {
 
   const { data, isLoading } = useQuery<any, Error>(
     [`suggested__movie/${movie.title_english}`],
-    async () => fetch(movieSuggestions(movie.id))
+    async () => ytsFetch(movieSuggestions(movie.id))
   );
 
   return (
@@ -164,7 +164,7 @@ export default MovieDetail;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const [movieId] = context.query.slug as string[];
 
-  const { movie } = await fetch(movieDetailUrl(movieId));
+  const { movie } = await ytsFetch(movieDetailUrl(movieId));
 
   return {
     props: { movie },

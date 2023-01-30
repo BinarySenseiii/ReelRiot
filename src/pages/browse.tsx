@@ -10,17 +10,19 @@ import {
 import { Container } from '@/components/ui';
 import { useMovieStore } from '@/context/store';
 import { MovieFilters } from '@/features';
-import { fetch } from '@/services/client';
+import { tmdbFetch, ytsFetch } from '@/services/client';
 import { IMovieResult, TMovieView } from '@/types/Movie.types';
 
-const BrowsePage: React.FC = () => {
+const BrowsePage: React.FC<{ API_TOKEN: any }> = ({ API_TOKEN }) => {
   const [view, setView] = useState<TMovieView>('grid');
   const [pageNumber, setPageNumber] = useState<number>(1);
   const { searchQuery } = useMovieStore();
 
   const { data, isLoading } = useQuery<IMovieResult, Error>([searchQuery], async () =>
-    fetch(`/list_movies.json?${searchQuery}`)
+    ytsFetch(`/list_movies.json?${searchQuery}`)
   );
+
+  console.log(API_TOKEN);
 
   return (
     <>
@@ -56,3 +58,11 @@ const BrowsePage: React.FC = () => {
   );
 };
 export default BrowsePage;
+
+export const getStaticProps = async () => {
+  const API_TOKEN = await tmdbFetch('/movie/popular', {});
+
+  return {
+    props: { API_TOKEN },
+  };
+};
