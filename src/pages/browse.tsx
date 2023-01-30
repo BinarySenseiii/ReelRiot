@@ -1,28 +1,20 @@
-import { Box, Center, Group, Skeleton, Stack, Title } from '@mantine/core';
+import { Box, Center, Skeleton, Stack, Title } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import {
-  MovieGridView,
-  MovieListView,
-  MovieViewToggler,
-  MoviePagination as Pagination,
-} from '@/components/Movie';
+import { MovieGridView, MoviePagination as Pagination } from '@/components/Movie';
 import { Container } from '@/components/ui';
 import { useMovieStore } from '@/context/store';
 import { MovieFilters } from '@/features';
-import { tmdbFetch, ytsFetch } from '@/services/client';
-import { IMovieResult, TMovieView } from '@/types/Movie.types';
+import { ytsFetch } from '@/services/client';
+import { IMovieResult } from '@/types/Movie.types';
 
-const BrowsePage: React.FC<{ API_TOKEN: any }> = ({ API_TOKEN }) => {
-  const [view, setView] = useState<TMovieView>('grid');
+const BrowsePage: React.FC = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const { searchQuery } = useMovieStore();
 
   const { data, isLoading } = useQuery<IMovieResult, Error>([searchQuery], async () =>
     ytsFetch(`/list_movies.json?${searchQuery}`)
   );
-
-  console.log(API_TOKEN);
 
   return (
     <>
@@ -45,24 +37,11 @@ const BrowsePage: React.FC<{ API_TOKEN: any }> = ({ API_TOKEN }) => {
           </Stack>
         </Center>
 
-        <Group position="right" mt="xl" display={{ base: 'none', sm: 'flex' }}>
-          <MovieViewToggler view={view} setView={setView} />
-        </Group>
-
-        <Box component="main" mt="xl">
-          {view === 'grid' && <MovieGridView isLoading={isLoading} movies={data?.movies} />}
-          {view === 'list' && <MovieListView isLoading={isLoading} movies={data?.movies} />}
+        <Box component="main" mt="3rem">
+          <MovieGridView isLoading={isLoading} movies={data?.movies} />
         </Box>
       </Container>
     </>
   );
 };
 export default BrowsePage;
-
-export const getStaticProps = async () => {
-  const API_TOKEN = await tmdbFetch('/movie/popular', {});
-
-  return {
-    props: { API_TOKEN },
-  };
-};
