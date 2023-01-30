@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { Box, Button, Group, Select, SimpleGrid, TextInput } from '@mantine/core';
+import { getHotkeyHandler } from '@mantine/hooks';
+import { Box, Button, Select, SimpleGrid, TextInput } from '@mantine/core';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { IconSearch } from '@tabler/icons';
 import { Container } from '@/components/ui';
 import { ACTIONS, useMovieStore } from '@/context/store';
 import { IFilterOption, IFilters } from '@/types/Movie.types';
@@ -44,10 +44,9 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = ({
     setPageNumber(1);
   };
 
-  // only triggers when pagination number changes
   useEffect(() => {
     dispatchSearchQuery();
-  }, [pageNumber]);
+  }, [pageNumber, state]);
 
   const onFilterChange = (filteredValue: string | null, key: string) => {
     if (filteredValue !== null) {
@@ -65,12 +64,27 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = ({
     >
       <Container size="sm">
         <TextInput
-          classNames={{ label: classes.label }}
+          classNames={{ label: classes.label, rightSection: classes.rightSection }}
           label="Search Term:"
           size="md"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           radius="md"
+          autoComplete="off"
+          onKeyDown={getHotkeyHandler([['Enter', onMovieFilter]])}
+          rightSection={
+            <Button
+              size="sm"
+              uppercase
+              compact
+              onClick={onMovieFilter}
+              loading={isLoading}
+              sx={(theme) => ({ fontFamily: theme.headings.fontFamily })}
+              loaderPosition="center"
+            >
+              Search
+            </Button>
+          }
         />
 
         <SimpleGrid
@@ -100,20 +114,6 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = ({
             />
           ))}
         </SimpleGrid>
-
-        <Group position="right" mt="sm">
-          <Button
-            size="sm"
-            variant="light"
-            color="gray"
-            onClick={onMovieFilter}
-            loading={isLoading}
-            sx={(theme) => ({ fontFamily: theme.headings.fontFamily })}
-            leftIcon={<IconSearch size={18} />}
-          >
-            {isLoading ? 'Searching..' : 'Search Movies'}
-          </Button>
-        </Group>
       </Container>
     </Box>
   );
