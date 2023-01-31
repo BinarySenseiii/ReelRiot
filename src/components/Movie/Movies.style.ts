@@ -7,6 +7,11 @@ const useMovieStyles = createStyles((theme) => ({
     borderRadius: 8,
   },
 
+  imageContainer: {
+    position: 'relative',
+    cursor: 'pointer',
+  },
+
   innerImage: {
     position: 'relative',
     width: '100%',
