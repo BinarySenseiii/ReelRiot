@@ -88,3 +88,80 @@ export interface IMovieResult {
 export interface IMovieDetail {
   movie: IMovie;
 }
+
+export interface ITmdbMovie {
+  vote_average: number;
+  vote_count: number;
+  video: boolean;
+  title: string;
+  release_date: string;
+  poster_path: string;
+  popularity: number;
+  overview: string;
+  original_title: string;
+  original_language: string;
+  media_type: string;
+  id: number;
+  genre_ids: number[];
+  backdrop_path: string;
+  adult: boolean;
+}
+
+export interface ICommon {
+  aspect_ratio: number;
+  file_path: string;
+  height: number;
+  iso_639_1: string;
+  vote_average: number;
+  vote_count: number;
+  width: number;
+}
+
+export interface IImages {
+  backdrops: ICommon[];
+  logos: ICommon[];
+  posters: ICommon[];
+}
+
+export interface IAuthor {
+  avatar_path: string;
+  name: string;
+  rating: number;
+  username: string;
+}
+
+export interface IReview {
+  author_details: IAuthor;
+  author: string;
+  content: string;
+  created_at: string;
+  id: string;
+  updated_at: string;
+  url: string;
+}
+
+export interface IReviewResult {
+  id: number;
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: IReview[];
+}
+
+export interface IVideo {
+  id: string;
+  iso_639_1: string;
+  iso_3166_1: string;
+  key: string;
+  name: string;
+  official: boolean;
+  published_at: string;
+  site: string;
+  size: number;
+  type: string;
+}
+
+export interface IVideoResult {
+  id: number;
+  results: IVideo[];
+}

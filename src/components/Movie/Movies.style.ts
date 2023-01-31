@@ -51,12 +51,6 @@ const useMovieStyles = createStyles((theme) => ({
       paddingInline: '5px',
     },
   },
-
-  bookmarked: {
-    position: 'absolute',
-    right: 10,
-    top: 10,
-  },
 }));
 
 export default useMovieStyles;

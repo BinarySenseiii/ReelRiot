@@ -8,7 +8,7 @@ const nextConfig = {
   swcMinify: true,
 
   images: {
-    domains: ['yts.mx'],
+    domains: ['yts.mx', 'image.tmdb.org'],
   },
 
   // SVGR

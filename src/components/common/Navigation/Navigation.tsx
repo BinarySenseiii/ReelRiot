@@ -20,7 +20,7 @@ const Navigation: React.FC<TNavigationProps> = ({ links }) => {
   return (
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
       <Container>
-        <div className={classes.header}>
+        <Box className={classes.header}>
           <Link href="/" passHref>
             <span className={classes.logo}>
               <Title color="brand">
@@ -43,7 +43,7 @@ const Navigation: React.FC<TNavigationProps> = ({ links }) => {
               </Paper>
             )}
           </Transition>
-        </div>
+        </Box>
       </Container>
     </Header>
   );

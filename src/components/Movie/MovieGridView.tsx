@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SimpleGrid, Skeleton } from '@mantine/core';
 import React from 'react';
 import Movie from '@/components/Movie/Movie';
