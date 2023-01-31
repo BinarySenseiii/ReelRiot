@@ -14,12 +14,11 @@ export const tmdbClient = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
 });
 
-export const tmdbFetch = async (endpoint: string, params: any) => {
+export const tmdbFetch = async (endpoint: string) => {
   const response = await tmdbClient.get(endpoint, {
     headers: {
       Authorization: `bearer ${process.env.TMDB_TOKEN}`,
     },
-    params,
   });
   const data = await response.data;
   return data;
