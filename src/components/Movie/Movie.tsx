@@ -1,11 +1,12 @@
-import { ActionIcon, AspectRatio, Rating, Stack, Text, Title } from '@mantine/core';
-import { IconPlus } from '@tabler/icons';
+import { AspectRatio, Rating, Stack, Text, Title } from '@mantine/core';
+import { IconStar } from '@tabler/icons';
 import Image from 'next/image';
-import React, { useState } from 'react';
 import Link from 'next/link';
+import React, { useState } from 'react';
 import blurUri from '@/assets/blur.jpg';
 import noPoster from '@/assets/no-poster.png';
 import { useMovieStyles } from '@/components/Movie/';
+import { arrayToString } from '@/helpers';
 import { IMovie } from '@/types/Movie.types';
 
 type MovieProps = {
@@ -36,26 +37,20 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
             />
           </AspectRatio>
 
-          <div className={classes.overlay}>
-            <ActionIcon
-              variant="filled"
-              className={classes.bookmarked}
-              bg="white"
-              sx={{ color: 'black', '&:hover': { background: 'white' } }}
-            >
-              <IconPlus />
-            </ActionIcon>
-          </div>
           <span className={classes.overlay_info}>
             <Stack spacing={5} align="center">
               <Title order={5} color="white" lineClamp={1} align="center">
                 {movie.title_english}
               </Title>
-              <Rating size="xs" readOnly defaultValue={movie.rating / 2} fractions={2} />
-              <Text fz="xs" lineClamp={2} align="center" color="white">
-                {movie.description_full ||
-                  "It looks like we don't have a Description for this title yet"}
-                {/* {arrayToString(movie.genres)} */}
+              <Rating
+                size="xs"
+                readOnly
+                defaultValue={movie.rating / 2}
+                fractions={2}
+                emptySymbol={<IconStar size={14} fill="white" stroke={0} />}
+              />
+              <Text size="xs" color="white">
+                {arrayToString(movie.genres)}
               </Text>
             </Stack>
           </span>

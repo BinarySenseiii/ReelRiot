@@ -18,6 +18,7 @@ export const tmdbFetch = async (endpoint: string) => {
   const response = await tmdbClient.get(endpoint, {
     headers: {
       Authorization: `bearer ${process.env.TMDB_TOKEN}`,
+      Accept: 'application/json',
     },
   });
   const data = await response.data;
