@@ -5,16 +5,10 @@ import React from 'react';
 type MoviesActionBtnsProps = {
   slug: string;
   direction: 'column' | 'row';
-  youtubeId: string;
   movieid: number;
 };
 
-const MoviesActionBtns: React.FC<MoviesActionBtnsProps> = ({
-  slug,
-  direction,
-  youtubeId,
-  movieid,
-}) => {
+const MoviesActionBtns: React.FC<MoviesActionBtnsProps> = ({ slug, direction, movieid }) => {
   const router = useRouter();
 
   return (
