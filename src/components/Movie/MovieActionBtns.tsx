@@ -1,43 +1,20 @@
-import { Button, Portal, Stack } from '@mantine/core';
+import { Button, Stack } from '@mantine/core';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import ModalVideo from 'react-modal-video';
+import React from 'react';
 
 type MoviesActionBtnsProps = {
   slug: string;
   direction: 'column' | 'row';
-  youtubeId: string;
   movieid: number;
 };
 
-const MoviesActionBtns: React.FC<MoviesActionBtnsProps> = ({
-  slug,
-  direction,
-  youtubeId,
-  movieid,
-}) => {
+const MoviesActionBtns: React.FC<MoviesActionBtnsProps> = ({ slug, direction, movieid }) => {
   const router = useRouter();
-  const [isOpen, setOpen] = useState(false);
 
   return (
     <>
-      {isOpen && (
-        <Portal>
-          <ModalVideo
-            // @ts-ignore
-            autoPlay
-            channel="youtube"
-            isOpen={isOpen}
-            videoId={youtubeId}
-            onClose={() => setOpen(false)}
-          />
-        </Portal>
-      )}
-
       <Stack sx={{ flexDirection: direction }} spacing={6}>
-        <Button size="xs" onClick={() => setOpen(true)}>
-          Watch Trailer
-        </Button>
+        <Button size="xs">Watch Trailer</Button>
 
         <Button
           size="xs"

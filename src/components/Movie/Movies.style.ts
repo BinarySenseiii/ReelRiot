@@ -51,6 +51,22 @@ const useMovieStyles = createStyles((theme) => ({
       paddingInline: '5px',
     },
   },
+
+  backgroundContainer: {
+    height: '450px',
+    position: 'relative',
+    top: 0,
+  },
+
+  backgroundImage: {
+    objectFit: 'cover',
+    objectPosition: 'left top',
+  },
+
+  mainWrapper: {
+    position: 'relative',
+    zIndex: 999,
+  },
 }));
 
 export default useMovieStyles;

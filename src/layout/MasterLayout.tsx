@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import React, { ReactNode } from 'react';
+import NextNProgress from 'nextjs-progressbar';
 import Footer from '../components/common/Footer';
 import Navigation from '../components/common/Navigation';
 import { links } from '../components/common/Navigation/Navigation.mock';
 import ScrollToTop from '@/components/ScrollToTop';
-import { RouterTransition } from '@/components/RouterTransition';
 
 const LayoutWrapper = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ type MasterLayoutProps = {
 const MasterLayout: React.FC<MasterLayoutProps> = ({ children }) => (
   <>
     <ScrollToTop />
-    <RouterTransition />
+    <NextNProgress color="#dd0913" />
     <LayoutWrapper>
       <Navigation links={links} />
       <div id="__root">{children}</div>
