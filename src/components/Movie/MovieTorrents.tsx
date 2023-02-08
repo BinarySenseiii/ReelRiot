@@ -1,6 +1,7 @@
 import { Anchor, Button, Group, Text, Tooltip } from '@mantine/core';
 import React from 'react';
 import { ITorrent } from '@/types/Movie.types';
+import uniqueVals from '@/helpers/getUnique';
 
 type MovieTorrentsProps = {
   isTitle: boolean;
@@ -15,7 +16,7 @@ const MovieTorrents: React.FC<MovieTorrentsProps> = ({ isTitle, torrents }) => (
       </Text>
     )}
 
-    {torrents?.map((torrent: any) => (
+    {uniqueVals(torrents).map((torrent: any) => (
       <Tooltip
         label={torrent.size}
         color="brand"

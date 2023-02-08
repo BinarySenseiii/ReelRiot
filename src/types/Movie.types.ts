@@ -107,6 +107,10 @@ export interface ITmdbMovie {
   adult: boolean;
 }
 
+export interface ITmdbMovieResult {
+  movie_results: ITmdbMovie[];
+}
+
 export interface ICommon {
   aspect_ratio: number;
   file_path: string;
