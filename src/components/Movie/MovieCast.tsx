@@ -13,10 +13,10 @@ const MovieCast: React.FC<MovieCastProps> = ({ isTitle, casts }) => (
       <>
         {isTitle && (
           <Title order={3} mt="lg">
-            The Cast
+            Movie Cast
           </Title>
         )}
-        <Avatar.Group spacing="sm" mt="xs">
+        <Avatar.Group spacing="xs" mt={4}>
           {casts?.map((cast: ICast) => (
             <Tooltip color="brand" label={cast.name} withArrow arrowSize={10} key={cast.name}>
               <Anchor

@@ -12,7 +12,7 @@ const MovieTorrents: React.FC<MovieTorrentsProps> = ({ isTitle, torrents }) => (
   <Group spacing="xs" mt="lg" align="center">
     {isTitle && (
       <Text size="md" weight={500}>
-        Download In
+        Download Movie In
       </Text>
     )}
 
