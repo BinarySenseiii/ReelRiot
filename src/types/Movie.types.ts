@@ -85,6 +85,18 @@ export interface IMovieResult {
   isLoading?: boolean;
 }
 
+export interface IMoviesResponse {
+  status: string;
+  data: IMovieResult;
+}
+
+export interface IMovieDetailResponse {
+  status: string;
+  data: {
+    movie: IMovie;
+  };
+}
+
 export interface IMovieDetail {
   movie: IMovie;
 }

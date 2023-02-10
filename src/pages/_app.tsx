@@ -1,21 +1,23 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import MantineThemeProvider from '@/theme/ThemeProvider';
+import { ReactElement, ReactNode } from 'react';
+import { NextPage } from 'next/types';
 import { MasterLayout } from '@/layout';
+import { QueryWrapper } from '@/lib';
+import MantineThemeProvider from '@/theme/ThemeProvider';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: false,
-    },
-  },
-});
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
 
-export default function App(props: AppProps) {
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App(props: AppPropsWithLayout) {
   const { Component, pageProps } = props;
+
+  const getLayout = Component.getLayout ?? ((page) => <MasterLayout>{page}</MasterLayout>);
 
   return (
     <>
@@ -24,14 +26,11 @@ export default function App(props: AppProps) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
 
-      <MantineThemeProvider colorScheme="dark">
-        <QueryClientProvider client={queryClient}>
-          <MasterLayout>
-            <Component {...pageProps} />
-          </MasterLayout>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </MantineThemeProvider>
+      <QueryWrapper dehydratedState={pageProps.dehydratedState}>
+        <MantineThemeProvider colorScheme="dark">
+          {getLayout(<Component {...pageProps} />)}
+        </MantineThemeProvider>
+      </QueryWrapper>
     </>
   );
 }

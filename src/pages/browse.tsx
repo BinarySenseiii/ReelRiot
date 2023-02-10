@@ -5,16 +5,19 @@ import { MovieGridView, MoviePagination as Pagination } from '@/components/Movie
 import { Container } from '@/components/ui';
 import { useMovieStore } from '@/context/store';
 import { MovieFilters } from '@/features';
-import { ytsFetch } from '@/services/client';
-import { IMovieResult } from '@/types/Movie.types';
+import { ytsMovie } from '@/services/api/yts';
+import { IMoviesResponse } from '@/types/Movie.types';
 
 const BrowsePage: React.FC = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const { searchQuery } = useMovieStore();
+  const { query } = useMovieStore();
 
-  const { data, isLoading } = useQuery<IMovieResult, Error>([searchQuery], async () =>
-    ytsFetch(`/list_movies.json?${searchQuery}`)
-  );
+  const { data: result, isLoading } = useQuery<IMoviesResponse, Error>({
+    queryKey: [query],
+    queryFn: () => ytsMovie.search(query),
+  });
+
+  const totalPages = result?.data ? Math.ceil(result.data.movie_count / result.data.limit) : 0;
 
   return (
     <>
@@ -25,20 +28,16 @@ const BrowsePage: React.FC = () => {
           <Stack>
             <Skeleton visible={isLoading}>
               <Title align="center" fz="lg">
-                {data?.movie_count} Movies Found
+                {result?.data.movie_count} Movies Found
               </Title>
             </Skeleton>
 
-            <Pagination
-              pageNumber={pageNumber}
-              total={data ? Math.ceil(data.movie_count / data.limit) : 0}
-              setPageNumber={setPageNumber}
-            />
+            <Pagination pageNumber={pageNumber} total={totalPages} setPageNumber={setPageNumber} />
           </Stack>
         </Center>
 
         <Box component="main" mt="3rem">
-          <MovieGridView isLoading={isLoading} movies={data?.movies} />
+          <MovieGridView isLoading={isLoading} movies={result?.data.movies} />
         </Box>
       </Container>
     </>
