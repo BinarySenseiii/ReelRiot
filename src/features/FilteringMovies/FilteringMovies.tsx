@@ -31,7 +31,7 @@ const FilteringMovies: React.FC<FilteringMoviesProps> = ({
 
   const dispatchSearchQuery = () =>
     dispatch({
-      type: ACTIONS.searchQuery,
+      type: ACTIONS.query,
       payload: {
         ...state,
         query,

@@ -1,6 +1,7 @@
 import { MantineProvider } from '@mantine/core';
 import React, { ReactNode } from 'react';
 import { Open_Sans, Roboto_Condensed } from '@next/font/google';
+import { NotificationsProvider } from '@mantine/notifications';
 import { customColors } from './Colors';
 
 type ThemeProviderProps = {
@@ -32,7 +33,7 @@ const MantineThemeProvider: React.FC<ThemeProviderProps> = ({ children, colorSch
     withGlobalStyles
     withNormalizeCSS
   >
-    {children}
+    <NotificationsProvider>{children}</NotificationsProvider>
   </MantineProvider>
 );
 export default MantineThemeProvider;
