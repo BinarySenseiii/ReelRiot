@@ -181,3 +181,46 @@ export interface IVideoResult {
   id: number;
   results: IVideo[];
 }
+
+export interface ICredits {
+  id: number;
+  cast: ImdbCast[];
+  crew: ImdbCast[];
+}
+
+export interface ImdbCast {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: null | string;
+  cast_id?: number;
+  character?: string;
+  credit_id: string;
+  order?: number;
+  department?: string;
+  job?: string;
+}
+
+export interface IVideos {
+  id: number;
+  results: ITmdbVideosResult[];
+}
+
+export interface ITmdbVideosResult {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: Date;
+  id: string;
+}
+
+export type MovieMetaData = ICredits | IVideos;
