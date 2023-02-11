@@ -1,5 +1,3 @@
-const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-
 export const getAllMovies = '/list_movies.json';
 
 export const movieDetailUrl = (id?: string) =>
@@ -7,15 +5,14 @@ export const movieDetailUrl = (id?: string) =>
 
 export const movieSuggestions = (id?: number) => `/movie_suggestions.json?movie_id=${id}`;
 
-export const getTmdbMovieDetail = (imdbCode: string) =>
-  `/find/${imdbCode}?api_key=${API_KEY}&external_source=imdb_id`;
+export const getTmdbMovieDetail = (imdbCode: string) => `/find/${imdbCode}?external_source=imdb_id`;
 
 export const getMovieImages = (movieId: string | number) =>
-  `/movie/${movieId}/images?api_key=${API_KEY}&append_to_response=images`;
+  `/movie/${movieId}/images?&append_to_response=images`;
 
-export const getMovieReviews = (movieId: number) => `/movie/${movieId}/reviews?api_key=${API_KEY}`;
-export const getMovieVideos = (movieId: number) => `/movie/${movieId}/videos?api_key=${API_KEY}`;
-export const getMovieCredit = (movieId: number) => `/movie/${movieId}/credits?api_key=${API_KEY}`;
+export const getMovieReviews = (movieId: number) => `/movie/${movieId}/reviews`;
+export const getMovieVideos = (movieId: number) => `/movie/${movieId}/videos`;
+export const getMovieCredit = (movieId: number) => `/movie/${movieId}/credits`;
 
 export const IMAGE_BASE_URL: string = 'http://image.tmdb.org/t/p/';
 // Sizes: w300, w780, w1280, original

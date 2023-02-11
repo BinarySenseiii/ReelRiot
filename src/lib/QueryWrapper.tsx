@@ -10,6 +10,7 @@ import { AxiosError } from 'axios';
 import { ReactNode, useState } from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ErrorNotification } from '@/components/common/Notification';
+import { defaultQueryFn } from '@/services/client';
 
 const mutationCache = new MutationCache({
   onError: (error) => {
@@ -44,6 +45,7 @@ export default function QueryWrapper({
             refetchOnReconnect: false,
             retry: 1,
             staleTime: 5 * 1000,
+            queryFn: defaultQueryFn,
           },
         },
         mutationCache,
