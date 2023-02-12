@@ -9,29 +9,28 @@ import {
   Button,
   Grid,
   Group,
+  ScrollArea,
   Spoiler,
+  Stack,
   Tabs,
   Text,
   Title,
 } from '@mantine/core';
 
-import {
-  IconArrowLeft,
-  IconDownload,
-  IconMessageCircle,
-  IconPhoto,
-  IconVideo,
-} from '@tabler/icons';
+import { IconArrowLeft, IconDownload, IconMessageCircle, IconPhoto } from '@tabler/icons';
 import { useQueries } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { IMovie, ITmdbMovie } from '@/types/Movie.types';
 import { ytsMovie } from '@/services/api/yts';
 import { tmdbMovie } from '@/services/api/tmdb';
+import noPoster from '@/assets/no-poster.png';
 
 import poster from '@/assets/blur.jpg';
-import { MovieCast, MovieTorrents } from '@/components/Movie';
+import { MovieCast, MovieImages, MovieTorrents } from '@/components/Movie';
 import { Container } from '@/components/ui';
+import { IMAGE_SIZE } from '@/constants';
 import { getPosterImage } from '@/services/config';
 
 interface IMovieDetailProps {
@@ -40,14 +39,17 @@ interface IMovieDetailProps {
 }
 
 const MovieDetail: React.FC<IMovieDetailProps> = ({ movie, tMovie }) => {
+  const [imgSrc, setImgSrc] = useState(
+    tMovie ? getPosterImage(tMovie.poster_path) : movie.large_cover_image
+  );
   const [credits, images, videos, reviews] = useQueries({
     queries: tmdbMovie.queries.map((query) => ({
-      queryKey: [`${tMovie.id}/${query}`],
+      queryKey: [`${tMovie?.id}/${query}`],
       enabled: !!tMovie,
     })),
   }) as any;
 
-  console.log(images, videos, reviews);
+  console.log(videos, reviews);
 
   return (
     <Container mt="xl">
@@ -67,14 +69,13 @@ const MovieDetail: React.FC<IMovieDetailProps> = ({ movie, tMovie }) => {
           <Grid.Col span={4}>
             <AspectRatio ratio={720 / 1080}>
               <Image
-                src={tMovie ? getPosterImage(tMovie.poster_path) : movie.large_cover_image}
+                src={imgSrc}
                 fill
                 alt={`${movie.title_english} poster not found`}
                 placeholder="blur"
                 blurDataURL={poster.blurDataURL}
-                sizes="(max-width: 768px) 100vw,
-                  (max-width: 1200px) 50vw,
-                  33vw"
+                sizes={IMAGE_SIZE}
+                onError={() => setImgSrc(noPoster.src)}
               />
             </AspectRatio>
           </Grid.Col>
@@ -140,39 +141,67 @@ const MovieDetail: React.FC<IMovieDetailProps> = ({ movie, tMovie }) => {
               tmdbMovie={tMovie}
             />
 
-            <Tabs defaultValue="gallery" mt="xl">
-              <Tabs.List>
-                <Tabs.Tab value="gallery" icon={<IconMessageCircle size={14} />}>
-                  Overview
-                </Tabs.Tab>
-                <Tabs.Tab value="messages" icon={<IconPhoto size={14} />}>
-                  Images
-                </Tabs.Tab>
-                <Tabs.Tab value="settings" icon={<IconVideo size={14} />}>
-                  Videos
-                </Tabs.Tab>
-              </Tabs.List>
+            <Stack mt="xl" spacing="xs">
+              <Title order={3}>Overview</Title>
 
-              <Tabs.Panel value="gallery" pt="xs">
-                <Spoiler maxHeight={110} showLabel="Show more" hideLabel="Hide">
-                  <Text color="white" fz="sm">
-                    {movie.description_full.length > 0
-                      ? movie.description_full
-                      : tMovie && tMovie.overview}
-                  </Text>
+              <ScrollArea style={{ height: 97 }}>
+                <Spoiler maxHeight={70} showLabel="Show more" hideLabel="Hide">
+                  <Box>
+                    {movie.description_full !== '' ? (
+                      <Text color="white" fz="sm">
+                        {movie.description_full.length > 0
+                          ? movie.description_full
+                          : tMovie && tMovie.overview}
+                      </Text>
+                    ) : (
+                      <Text color="white" fz="sm">
+                        We apologize, but it appears that a description for this movie is not
+                        currently available. Our team is working hard to gather all of the relevant
+                        information for each movie in our database, and we appreciate your
+                        understanding and patience while we work to complete this task. In the
+                        meantime, you can visit the official website or other reliable sources to
+                        learn more about the movie and its story.
+                      </Text>
+                    )}
+                  </Box>
                 </Spoiler>
-              </Tabs.Panel>
-
-              <Tabs.Panel value="messages" pt="xs">
-                Messages tab content
-              </Tabs.Panel>
-
-              <Tabs.Panel value="settings" pt="xs">
-                Settings tab content
-              </Tabs.Panel>
-            </Tabs>
+              </ScrollArea>
+            </Stack>
           </Grid.Col>
         </Grid>
+
+        <Tabs
+          defaultValue="gallery"
+          mt="sm"
+          styles={{ tabsList: { border: 0, marginBottom: '.5rem' } }}
+        >
+          <Tabs.List>
+            <Tabs.Tab value="gallery" icon={<IconPhoto size={14} />}>
+              Gallery
+            </Tabs.Tab>
+            <Tabs.Tab value="messages" icon={<IconMessageCircle size={14} />}>
+              Trailers
+            </Tabs.Tab>
+          </Tabs.List>
+
+          <Tabs.Panel value="gallery" pt="xs">
+            <MovieImages
+              isLoading={images.isLoading}
+              backdrops={images.data?.backdrops}
+              images={[
+                movie.large_screenshot_image1,
+                movie.large_screenshot_image2,
+                movie.large_screenshot_image3,
+              ]}
+              tmdbMovie={tMovie}
+              MovieName={movie.title_long}
+            />
+          </Tabs.Panel>
+
+          <Tabs.Panel value="messages" pt="xs">
+            Messages tab content
+          </Tabs.Panel>
+        </Tabs>
       </Box>
     </Container>
   );
