@@ -1,10 +1,9 @@
-import { Anchor, Avatar, Flex, ScrollArea, Title, Tooltip } from '@mantine/core';
+import { Anchor, Avatar, Flex, ScrollArea, Tooltip } from '@mantine/core';
 import React, { ReactNode } from 'react';
 import { getPosterImage } from '@/services/config';
 import { ICast, ImdbCast } from '@/types/Movie.types';
 
 type CastProps = {
-  isTitle: boolean;
   casts?: ICast[];
   credits?: ImdbCast[];
 };
@@ -15,13 +14,8 @@ const ScrollWrapper: React.FC<{ children: ReactNode }> = ({ children }) => (
   </ScrollArea>
 );
 
-const Cast: React.FC<CastProps> = ({ isTitle, casts, credits }) => (
+const Cast: React.FC<CastProps> = ({ casts, credits }) => (
   <>
-    {isTitle && (
-      <Title order={3} mt="lg">
-        Movie Cast
-      </Title>
-    )}
     {typeof casts !== 'undefined' ? (
       <ScrollWrapper>
         {casts?.map((cast: ICast) => (

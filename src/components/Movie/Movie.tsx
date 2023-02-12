@@ -8,6 +8,7 @@ import noPoster from '@/assets/no-poster.png';
 import { useMovieStyles } from '@/components/Movie/';
 import { arrayToString } from '@/helpers';
 import { IMovie } from '@/types/Movie.types';
+import { IMAGE_SIZE } from '@/constants';
 
 type MovieProps = {
   movie: IMovie;
@@ -29,9 +30,7 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
               blurDataURL={blurUri.blurDataURL}
               priority
               fill
-              sizes="(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw"
+              sizes={IMAGE_SIZE}
               onError={() => setImgSrc(noPoster.src)}
               style={{ borderRadius: '5px' }}
             />

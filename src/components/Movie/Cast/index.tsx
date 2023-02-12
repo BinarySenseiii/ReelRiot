@@ -1,4 +1,4 @@
-import { Box, Flex, ScrollArea, Skeleton } from '@mantine/core';
+import { Flex, ScrollArea, Skeleton, Title } from '@mantine/core';
 import React from 'react';
 import { ICast, ITmdbMovie, ImdbCast } from '@/types/Movie.types';
 import Cast from './Cast';
@@ -12,7 +12,11 @@ type MovieCastProps = {
 
 const MovieCast: React.FC<MovieCastProps> = ({ isLoading, credits, cast, tmdbMovie }) => (
   <>
-    {isLoading ? (
+    <Title order={3} mt="lg">
+      Movie Cast
+    </Title>
+
+    {tmdbMovie !== null && isLoading ? (
       <ScrollArea mt="xl">
         <Flex gap="20px">
           {Array.from({ length: 10 }, (_, i) => (
@@ -20,18 +24,10 @@ const MovieCast: React.FC<MovieCastProps> = ({ isLoading, credits, cast, tmdbMov
           ))}
         </Flex>
       </ScrollArea>
+    ) : tmdbMovie && credits.length > 0 ? (
+      <Cast credits={credits} />
     ) : (
-      <>
-        {credits.length !== 0 && typeof cast !== 'undefined' && (
-          <Box>
-            {tmdbMovie && credits.length > 0 ? (
-              <Cast isTitle credits={credits} />
-            ) : (
-              <Cast isTitle casts={cast} />
-            )}
-          </Box>
-        )}
-      </>
+      <Cast casts={cast} />
     )}
   </>
 );
