@@ -1,18 +1,20 @@
 /* eslint-disable linebreak-style */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function useResize() {
   const [size, setSize] = useState(window.innerWidth);
 
-  function setWindowSize() {
-    setSize(window.innerWidth);
-  }
+  useEffect(() => {
+    function setWindowSize() {
+      setSize(window.innerWidth);
+    }
 
-  window.addEventListener('resize', setWindowSize);
+    window.addEventListener('resize', setWindowSize);
 
-  () => {
-    window.removeEventListener('resize', setWindowSize);
-  };
+    return () => {
+      window.removeEventListener('resize', setWindowSize);
+    };
+  }, []);
 
   return { size };
 }
