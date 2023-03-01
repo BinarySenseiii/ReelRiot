@@ -23,10 +23,6 @@ const LayoutWrapper = styled.div`
   margin-inline: auto;
   padding-top: 3rem;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 250px auto 200px;
-  }
-
   #__root {
     padding-bottom: 2rem;
   }
@@ -49,10 +45,10 @@ const MasterLayout: React.FC<MasterLayoutProps> = ({ children }) => {
       <LayoutWrapper
         style={
           pathname === '/browse'
-            ? { gridTemplateColumns: '250px auto' }
+            ? { gridTemplateColumns: '200px auto' }
             : size <= 768
-            ? { gridTemplateColumns: '250px auto' }
-            : { gridTemplateColumns: '250px auto 200px' }
+            ? { gridTemplateColumns: '200px auto' }
+            : { gridTemplateColumns: '200px auto 150px' }
         }
       >
         <aside className={classes.aside}>
