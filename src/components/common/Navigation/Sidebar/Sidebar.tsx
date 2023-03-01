@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Title, Box } from '@mantine/core';
 import { useStyles } from '../Navigation.styled';
+import { Menu } from '@/components/common/Navigation/Sidebar/sidebarData';
 
 function Sidebar() {
   const { classes } = useStyles();
@@ -19,6 +20,18 @@ function Sidebar() {
           </Title>
         </span>
       </Link>
+      <div>
+        <ul style={{ padding: '0' }} className={classes.unorderedList}>
+          {Menu.map((data) => (
+            <li key={data.name} className={classes.navlist}>
+              <Link href={`/${data.name}`} className={classes.navLinks}>
+                {data.icon}
+                {data.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
