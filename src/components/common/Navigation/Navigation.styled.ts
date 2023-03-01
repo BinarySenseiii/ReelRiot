@@ -94,7 +94,7 @@ export const useStyles = createStyles((theme) => ({
   unorderedList: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '20px',
+    gap: '14px',
   },
   navLinks: {
     display: 'flex',
