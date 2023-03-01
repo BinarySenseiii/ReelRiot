@@ -1,6 +1,7 @@
+/* eslint-disable linebreak-style */
 import { createStyles } from '@mantine/core';
 
-export const HEADER_HEIGHT = 60;
+export const HEADER_HEIGHT = 70;
 
 export const useStyles = createStyles((theme) => ({
   root: {
@@ -8,7 +9,7 @@ export const useStyles = createStyles((theme) => ({
     zIndex: 1,
     marginBottom: '0 !important',
     borderBottom: 0,
-    background: '#232429',
+    // background: '#232429',
   },
 
   dropdown: {
@@ -29,10 +30,11 @@ export const useStyles = createStyles((theme) => ({
 
   header: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    height: HEADER_HEIGHT,
-    background: '#232429',
+    padding: '1rem',
+    // height: HEADER_HEIGHT,
+    // background: '#232429',
   },
 
   links: {
@@ -79,5 +81,16 @@ export const useStyles = createStyles((theme) => ({
     display: 'inline-block',
     textDecoration: 'none',
     fontStyle: 'italic',
+  },
+
+  flex: {
+    display: 'flex',
+  },
+  aside: {
+    // background: 'red',
+  },
+
+  aside_trending: {
+    // backgroundColor: 'red',
   },
 }));
