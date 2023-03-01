@@ -86,11 +86,28 @@ export const useStyles = createStyles((theme) => ({
   flex: {
     display: 'flex',
   },
-  aside: {
-    // background: 'red',
+
+  navlist: {
+    listStyle: 'none',
   },
 
-  aside_trending: {
-    // backgroundColor: 'red',
+  unorderedList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+  },
+  navLinks: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginRight: 'auto',
+    textDecoration: 'none',
+    fontSize: '18px',
+    gap: '10px',
+    color: 'grey',
+    transition: '.3s ease',
+    '&:hover ': {
+      color: 'white',
+    },
   },
 }));
