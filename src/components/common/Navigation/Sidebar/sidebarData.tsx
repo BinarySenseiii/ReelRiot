@@ -12,21 +12,25 @@ export const Menu: sidebarProp = [
     icon: <AiOutlineHome />,
     name: 'Menu',
     id: 'dkfjakdjfd',
+    path: 'Menu',
   },
   {
     icon: <RiCommunityLine />,
     name: 'Community',
     id: 'sdkfjakje',
+    path: 'Community',
   },
   {
     icon: <AiOutlineCompass />,
     name: 'Discover',
     id: 'euijvkj',
+    path: 'Discover',
   },
   {
     icon: <CiTimer />,
     name: 'Coming soon',
     id: 'euiojjv',
+    path: 'Coming%20soon',
   },
 ];
 
@@ -35,16 +39,14 @@ export const Social: sidebarProp = [
     icon: <TbFriends />,
     name: 'Friends',
     id: 'lokllpk',
+    path: 'Friends',
   },
-  {
-    icon: <TbFriends />,
-    name: 'Friends',
-    id: 'lvorgere',
-  },
+
   {
     icon: <CgMediaPodcast />,
     name: 'Media',
     id: 'jhjkjj94',
+    path: 'Media',
   },
 ];
 
@@ -53,10 +55,12 @@ export const General: sidebarProp = [
     icon: <FiSettings />,
     name: 'Settings',
     id: 'lvjoj4',
+    path: 'Settings',
   },
   {
     icon: <RiLogoutBoxRLine />,
     name: 'Log Out',
     id: 'ejf9jkj',
+    path: 'Log%20out',
   },
 ];

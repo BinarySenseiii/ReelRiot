@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Title, Box } from '@mantine/core';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 import { useStyles } from '../Navigation.styled';
 import { General, Menu, Social } from '@/components/common/Navigation/Sidebar/sidebarData';
 
@@ -28,6 +29,8 @@ const Hidetext2 = styled.span`
 
 function Sidebar() {
   const { classes } = useStyles();
+  const router = useRouter();
+  const { pathname } = router;
 
   return (
     <div
@@ -54,7 +57,15 @@ function Sidebar() {
 
           {Menu.map((data) => (
             <li key={data.id} className={classes.navlist}>
-              <Link href={`/${data.name}`} className={classes.navLinks}>
+              <Link
+                href={`/${data.name}`}
+                className={classes.navLinks}
+                style={
+                  pathname === `/${data.path}`
+                    ? { color: 'crimson', borderRight: '1px solid crimson' }
+                    : { color: 'grey' }
+                }
+              >
                 {data.icon}
                 <Hidetext2>{data.name}</Hidetext2>
               </Link>
@@ -66,7 +77,11 @@ function Sidebar() {
           <Hidetext>Social</Hidetext>
           {Social.map((data) => (
             <li key={data.id} className={classes.navlist}>
-              <Link href={`/${data.name}`} className={classes.navLinks}>
+              <Link
+                href={`/${data.name}`}
+                className={classes.navLinks}
+                style={pathname === `/${data.name}` ? { color: 'crimson' } : { color: 'grey' }}
+              >
                 {data.icon}
                 <Hidetext2>{data.name}</Hidetext2>
               </Link>
@@ -78,7 +93,11 @@ function Sidebar() {
           <Hidetext>General</Hidetext>
           {General.map((data) => (
             <li key={data.id} className={classes.navlist}>
-              <Link href={`/${data.name}`} className={classes.navLinks}>
+              <Link
+                href={`/${data.name}`}
+                className={classes.navLinks}
+                style={pathname === `/${data.name}` ? { color: 'crimson' } : { color: 'grey' }}
+              >
                 {data.icon}
                 <Hidetext2>{data.name}</Hidetext2>
               </Link>
