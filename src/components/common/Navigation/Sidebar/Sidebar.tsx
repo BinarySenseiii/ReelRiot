@@ -58,7 +58,7 @@ function Sidebar() {
           {Menu.map((data) => (
             <li key={data.id} className={classes.navlist}>
               <Link
-                href={`/${data.name}`}
+                href={`/${data.path}`}
                 className={classes.navLinks}
                 style={
                   pathname === `/${data.path}`
