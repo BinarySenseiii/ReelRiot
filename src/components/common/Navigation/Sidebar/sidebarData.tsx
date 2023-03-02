@@ -12,7 +12,7 @@ export const Menu: sidebarProp = [
     icon: <AiOutlineHome />,
     name: 'Menu',
     id: 'dkfjakdjfd',
-    path: 'Menu',
+    path: '',
   },
   {
     icon: <RiCommunityLine />,
