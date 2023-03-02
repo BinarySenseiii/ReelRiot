@@ -102,12 +102,23 @@ export const useStyles = createStyles((theme) => ({
     alignItems: 'center',
     marginRight: 'auto',
     textDecoration: 'none',
-    fontSize: '18px',
+    fontSize: '24px',
     gap: '10px',
+    lineHeight: '0',
     color: 'grey',
     transition: '.3s ease',
     '&:hover ': {
       color: 'white',
     },
+  },
+
+  hidden: {
+    display: 'none',
+  },
+
+  visible: {
+    display: 'block',
+    textAlign: 'center',
+    marginTop: '1rem',
   },
 }));
