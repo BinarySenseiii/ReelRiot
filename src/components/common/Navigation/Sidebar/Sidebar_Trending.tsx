@@ -1,26 +1,25 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import { useRouter } from 'next/router';
-import useResize from '@/Hooks/useResize';
+import styled from '@emotion/styled';
 
 function SidebarTrending() {
-  const { size } = useResize();
   const router = useRouter();
   const { pathname } = router;
 
+  const ShowNav = styled.div`
+    display: block;
+    padding: 1rem;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  `;
+
   return (
-    <div
-      style={
-        pathname === '/browse'
-          ? { display: 'none' }
-          : size <= 768
-          ? { display: 'none' }
-          : { display: 'block', padding: '1rem' }
-      }
-    >
+    <ShowNav style={pathname === '/browse' ? { display: 'none' } : { display: 'block' }}>
       Sidebar_Trending
       <input type="text" style={{ maxWidth: '100%' }} />
-    </div>
+    </ShowNav>
   );
 }
 
