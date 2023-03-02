@@ -108,7 +108,7 @@ export const useStyles = createStyles((theme) => ({
     color: 'grey',
     transition: '.3s ease',
     '&:hover ': {
-      color: 'white',
+      color: 'white !important',
     },
   },
 
