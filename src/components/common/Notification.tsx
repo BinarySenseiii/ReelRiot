@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import { showNotification } from '@mantine/notifications';
 import { IconCheck, IconX } from '@tabler/icons';
 import { capitalizeWords } from '@/helpers';

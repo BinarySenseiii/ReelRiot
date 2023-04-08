@@ -49,6 +49,8 @@ const MovieDetail: React.FC<IMovieDetailProps> = ({ movie, tMovie }) => {
     })),
   }) as any;
 
+  console.log(videos, reviews);
+
   return (
     <Container mt="xl">
       <Link href="/browse">

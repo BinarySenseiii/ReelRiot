@@ -1,7 +1,6 @@
-/* eslint-disable linebreak-style */
 import { createStyles } from '@mantine/core';
 
-export const HEADER_HEIGHT = 70;
+export const HEADER_HEIGHT = 60;
 
 export const useStyles = createStyles((theme) => ({
   root: {
@@ -9,7 +8,7 @@ export const useStyles = createStyles((theme) => ({
     zIndex: 1,
     marginBottom: '0 !important',
     borderBottom: 0,
-    // background: '#232429',
+    background: '#232429',
   },
 
   dropdown: {
@@ -30,11 +29,10 @@ export const useStyles = createStyles((theme) => ({
 
   header: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '1rem',
-    // height: HEADER_HEIGHT,
-    // background: '#232429',
+    height: HEADER_HEIGHT,
+    background: '#232429',
   },
 
   links: {
@@ -81,44 +79,5 @@ export const useStyles = createStyles((theme) => ({
     display: 'inline-block',
     textDecoration: 'none',
     fontStyle: 'italic',
-  },
-
-  flex: {
-    display: 'flex',
-  },
-
-  navlist: {
-    listStyle: 'none',
-  },
-
-  unorderedList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '14px',
-  },
-  navLinks: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginRight: 'auto',
-    textDecoration: 'none',
-    fontSize: '24px',
-    gap: '10px',
-    lineHeight: '0',
-    color: 'grey',
-    transition: '.3s ease',
-    '&:hover ': {
-      color: 'white !important',
-    },
-  },
-
-  hidden: {
-    display: 'none',
-  },
-
-  visible: {
-    display: 'block',
-    textAlign: 'center',
-    marginTop: '1rem',
   },
 }));
