@@ -47,6 +47,7 @@ const Navigation: React.FC = () => {
             onClick={toggle}
             className={classes.burger}
             size="sm"
+            aria-label="toggle menu"
           />
           <Transition
             transition="pop-top-right"

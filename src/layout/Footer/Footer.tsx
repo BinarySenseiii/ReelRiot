@@ -14,7 +14,13 @@ const Footer: React.FC<FooterProps> = () => {
           <Text size="sm" align="center">
             By using this site you agree to and accept our User Agreement, which
             can be read{' '}
-            <Anchor href="https://yts.mx/terms" target="_blank" color="dark.1">
+            <Anchor
+              href="https://yts.mx/terms"
+              target="_blank"
+              color="dark.1"
+              role="link"
+              aria-label="visit terms and conditions"
+            >
               here
             </Anchor>
             .
