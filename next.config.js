@@ -1,34 +1,20 @@
 /** @type {import('next').NextConfig} */
+
+const withPWA = require('next-pwa')({
+   dest: 'public',
+   register: true,
+   skipWaiting: true,
+   disable: process.env.NODE_ENV === 'development',
+});
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+   enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig = {
-  eslint: {
-    dirs: ['src'],
-  },
-
-  reactStrictMode: true,
-  swcMinify: true,
-
-  images: {
-    domains: ['yts.mx', 'image.tmdb.org'],
-  },
-
-  // SVGR
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            typescript: true,
-            icon: true,
-          },
-        },
-      ],
-    });
-
-    return config;
-  },
+   reactStrictMode: true,
+   swcMinify: true,
+   reactStrictMode: false,
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(withPWA(nextConfig));

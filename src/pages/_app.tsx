@@ -1,36 +1,43 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import { ReactElement, ReactNode } from 'react';
-import { NextPage } from 'next/types';
-import { MasterLayout } from '@/layout';
-import { QueryWrapper } from '@/lib';
-import MantineThemeProvider from '@/theme/ThemeProvider';
+import '@/styles/globals.css';
+import { ColorScheme } from '@mantine/core';
+import { getCookie } from 'cookies-next';
+import { NextPage } from 'next';
+import NextApp, { AppContext, AppProps } from 'next/app';
+
+import dynamic from 'next/dynamic';
+import { ReactElement, ReactNode, useState } from 'react';
+
+const MantineThemeProvider = dynamic(() => import('@/lib/Mantine/ThemeProvider'));
+const QueryWrapper = dynamic(() => import('@/lib/ReactQuery/QueryWrapper'));
+const DefaultLayout = dynamic(() => import('@/layout').then((mod) => mod.BaseLayout));
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
+   getLayout?: (page: ReactElement) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+   Component: NextPageWithLayout;
 };
 
-export default function App(props: AppPropsWithLayout) {
-  const { Component, pageProps } = props;
+export default function App(props: AppPropsWithLayout & { colorScheme: ColorScheme }) {
+   const { Component, pageProps } = props;
+   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
 
-  const getLayout = Component.getLayout ?? ((page) => <MasterLayout>{page}</MasterLayout>);
+   const getLayout = Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>);
 
-  return (
-    <>
-      <Head>
-        <title>The Official Home Of Reel Riot Movies - Torrent Downloads </title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      </Head>
-
+   return (
       <QueryWrapper dehydratedState={pageProps.dehydratedState}>
-        <MantineThemeProvider colorScheme="dark">
-          {getLayout(<Component {...pageProps} />)}
-        </MantineThemeProvider>
+         <MantineThemeProvider colorScheme={colorScheme} setColorScheme={setColorScheme}>
+            {getLayout(<Component {...pageProps} />)}
+         </MantineThemeProvider>
       </QueryWrapper>
-    </>
-  );
+   );
 }
+
+App.getInitialProps = async (appContext: AppContext) => {
+   const appProps = await NextApp.getInitialProps(appContext);
+   return {
+      ...appProps,
+      colorScheme: getCookie('mantine-color-scheme', appContext.ctx) || 'dark',
+   };
+};

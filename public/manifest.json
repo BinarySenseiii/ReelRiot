@@ -1,0 +1,38 @@
+{
+   "theme_color": "#000000",
+   "background_color": "#fff",
+   "display": "standalone",
+   "scope": "/",
+   "start_url": "/",
+   "name": "Next PWA",
+   "short_name": "Next PWA Tutorial",
+   "description": "A progressive web app (PWA) is a website that looks and behaves as if it is a mobile app. PWAs are built to take advantage of native mobile device features, without requiring the end user to visit an app store, make a purchase and download software locally.",
+   "icons": [
+      {
+         "src": "/icons/icon-192x192.png",
+         "sizes": "192x192",
+         "type": "image/png"
+      },
+      {
+         "src": "/icons/icon-256x256.png",
+         "sizes": "256x256",
+         "type": "image/png"
+      },
+      {
+         "src": "/icons/icon-384x384.png",
+         "sizes": "384x384",
+         "type": "image/png"
+      },
+      {
+         "src": "/icons/icon-512x512.png",
+         "sizes": "512x512",
+         "type": "image/png"
+      },
+      {
+         "src": "/icons/maskable.png",
+         "type": "image/png",
+         "sizes": "192x192",
+         "purpose": "maskable"
+      }
+   ]
+}

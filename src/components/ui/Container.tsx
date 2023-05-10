@@ -1,15 +1,22 @@
+import { MantineSize, Container as MantineContainer, MantineStyleSystemProps } from '@mantine/core';
 import React, { ReactNode } from 'react';
-import { Container as Wrapper } from '@mantine/core';
 
 type ContainerProps = {
-  children: ReactNode;
   fluid?: boolean;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-} & Record<string, any>;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
+  sizes?: Record<MantineSize, string | number>;
+  children: ReactNode;
+} & MantineStyleSystemProps;
 
-const Container: React.FC<ContainerProps> = ({ fluid = false, size = 'lg', children, ...rest }) => (
-  <Wrapper fluid={fluid} size={size} {...rest}>
+const Container: React.FC<ContainerProps> = ({
+  fluid = false,
+  size = 'xl',
+  sizes,
+  children,
+  ...props
+}) => (
+  <MantineContainer fluid={fluid} size={size} sizes={sizes} px={{ base: 8, md: 16 }} {...props}>
     {children}
-  </Wrapper>
+  </MantineContainer>
 );
 export default Container;

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://mantine-template-one.vercel.app
+
+# Sitemaps
+Sitemap: https://mantine-template-one.vercel.app/sitemap.xml
