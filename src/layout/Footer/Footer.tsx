@@ -21,7 +21,7 @@ const Footer: React.FC<FooterProps> = () => {
               role="link"
               aria-label="visit terms and conditions"
             >
-              here
+              terms and conditions here
             </Anchor>
             .
           </Text>
