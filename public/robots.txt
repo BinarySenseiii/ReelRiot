@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://mantine-template-one.vercel.app
+Host: https://reel-riot.vercel.app
 
 # Sitemaps
-Sitemap: https://mantine-template-one.vercel.app/sitemap.xml
+Sitemap: https://reel-riot.vercel.app/sitemap.xml
