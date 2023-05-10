@@ -1,4 +1,8 @@
-import { MantineSize, Container as MantineContainer, MantineStyleSystemProps } from '@mantine/core';
+import {
+  MantineSize,
+  Container as MantineContainer,
+  MantineStyleSystemProps,
+} from '@mantine/core';
 import React, { ReactNode } from 'react';
 
 type ContainerProps = {
@@ -15,7 +19,13 @@ const Container: React.FC<ContainerProps> = ({
   children,
   ...props
 }) => (
-  <MantineContainer fluid={fluid} size={size} sizes={sizes} px={{ base: 8, md: 16 }} {...props}>
+  <MantineContainer
+    fluid={fluid}
+    size={size}
+    sizes={sizes}
+    px={{ base: 8, md: 16 }}
+    {...props}
+  >
     {children}
   </MantineContainer>
 );

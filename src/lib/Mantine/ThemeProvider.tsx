@@ -1,4 +1,8 @@
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import React, { Dispatch, ReactNode, SetStateAction } from 'react';
 import { setCookie } from 'cookies-next';
@@ -17,14 +21,18 @@ const MantineThemeProvider: React.FC<ThemeProviderProps> = ({
   colorScheme,
 }) => {
   const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+    const nextColorScheme =
+      value || (colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
     setCookie('mantine-color-scheme', nextColorScheme, {
       maxAge: 60 * 60 * 24 * 30,
     });
   };
   return (
-    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
       <MantineProvider
         theme={{
           colorScheme,
