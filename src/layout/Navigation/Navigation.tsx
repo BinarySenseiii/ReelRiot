@@ -15,6 +15,7 @@ import { HEADER_HEIGHT, useStyles } from './Navigation.styled';
 import { Container } from '@/components/ui';
 import NavLink from './NavLink';
 import { menuLinks } from '@/mock';
+import Logo from '../Logo';
 
 const Navigation: React.FC = () => {
   const [opened, { toggle, close }] = useDisclosure(false);
@@ -28,16 +29,7 @@ const Navigation: React.FC = () => {
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
       <Container>
         <Box className={classes.header}>
-          <Link href="/" passHref>
-            <span className={classes.logo}>
-              <Title color="brand">
-                REEL
-                <Box component="span" sx={{ color: 'white' }}>
-                  RIOT
-                </Box>
-              </Title>
-            </span>
-          </Link>
+          <Logo />
 
           <Group spacing={5} className={classes.links}>
             {items}

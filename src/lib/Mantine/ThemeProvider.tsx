@@ -36,6 +36,14 @@ const MantineThemeProvider: React.FC<ThemeProviderProps> = ({
       <MantineProvider
         theme={{
           colorScheme,
+          components: {
+            Text: {
+              defaultProps: (theme) => ({
+                size: 'md',
+                color: 'white',
+              }),
+            },
+          },
           colors: {
             ...customColors,
           },

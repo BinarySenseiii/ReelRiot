@@ -8,7 +8,7 @@ export const useStyles = createStyles((theme) => ({
     zIndex: 1,
     marginBottom: '0 !important',
     borderBottom: 0,
-    background: '#232429',
+    background: theme.colors.dark[8],
   },
 
   dropdown: {
@@ -32,7 +32,6 @@ export const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: HEADER_HEIGHT,
-    background: '#232429',
   },
 
   links: {
@@ -56,7 +55,6 @@ export const useStyles = createStyles((theme) => ({
     color: theme.colors.gray[1],
     fontSize: theme.fontSizes.md,
     fontWeight: 500,
-    // fontFamily: 'Roboto Condensed',
 
     '&:hover': {
       backgroundColor: theme.colors.brand[5],
