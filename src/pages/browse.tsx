@@ -1,8 +1,13 @@
-import { MovieFilters } from '@/components/Movie';
 import Meta from '@/components/Seo';
+
+import dynamic from 'next/dynamic';
 
 import BrowseBanner from './BrowseBanner';
 import { Box } from '@mantine/core';
+
+const MovieFilters = dynamic(() =>
+  import('@/components/Movie').then((mod) => mod.MovieFilters),
+);
 
 const BrowsePage = () => {
   return (
