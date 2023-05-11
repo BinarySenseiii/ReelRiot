@@ -1,16 +1,16 @@
 import { MantineThemeOverride } from '@mantine/core';
-import { Open_Sans, Roboto_Condensed } from 'next/font/google';
+import { Open_Sans, Lato } from 'next/font/google';
 
-const roboto = Roboto_Condensed({
+const lato = Lato({
   subsets: ['latin'],
-  weight: ['700', '400', '300'],
+  weight: ['700', '400', '300', '900'],
 });
 const openSans = Open_Sans({ subsets: ['latin'], weight: ['400', '500'] });
 
 const overRideFonts: MantineThemeOverride = {
   fontFamily: openSans.style.fontFamily,
   headings: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: lato.style.fontFamily,
     fontWeight: 700,
   },
 };

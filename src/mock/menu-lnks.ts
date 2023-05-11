@@ -5,7 +5,7 @@ const menuLinks = [
   },
   {
     link: '/browse',
-    label: 'Browse Movies',
+    label: 'Browse',
   },
 ];
 
