@@ -1,4 +1,4 @@
-import { ActionIcon, Affix, Box, Center, Transition, rem } from '@mantine/core';
+import { Affix, Box, Center, Transition, rem } from '@mantine/core';
 import { useWindowScroll } from '@mantine/hooks';
 import { BiUpArrowAlt } from 'react-icons/bi';
 
