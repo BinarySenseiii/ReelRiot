@@ -31,6 +31,8 @@ const FilteringMovies: React.FC = () => {
     }
   };
 
+  console.log(query);
+
   return (
     <Box
       sx={(theme) => ({
@@ -51,6 +53,7 @@ const FilteringMovies: React.FC = () => {
           size="md"
           radius="md"
           autoComplete="off"
+          placeholder="Search Movie By  Movie Title Or IMDB Code"
           rightSection={
             <Button
               size="sm"
@@ -85,7 +88,9 @@ const FilteringMovies: React.FC = () => {
                 },
               }}
               size="xs"
-              value={query[option.value as keyof IFilters]}
+              value={
+                query.query_term ? '' : query[option.value as keyof IFilters]
+              }
               onChange={(e) => onOptionSelect(option, e ?? '')}
               data={option.filter}
               aria-label={option.ariaLabel}
