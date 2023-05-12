@@ -144,14 +144,14 @@ const filterOptions: IFilterOption[] = [
     id: 3,
     filter: movieRatings,
     label: 'Rating:',
-    value: 'rating',
+    value: 'minimum_rating',
     ariaLabel: 'My select',
   },
   {
     id: 4,
     filter: movieOrder,
-    label: 'Order By:',
-    value: 'orderBy',
+    label: 'Sort By:',
+    value: 'sort_by',
     ariaLabel: 'My select',
   },
 ];

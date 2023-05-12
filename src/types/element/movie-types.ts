@@ -3,8 +3,9 @@ export type TMovieView = 'list' | 'grid';
 export interface IFilters {
   quality: string;
   genre: string;
-  rating: string;
-  orderBy: string;
+  minimum_rating: string;
+  sort_by: string;
+  query_term?: string;
 }
 
 export interface ISearchQuery extends IFilters {

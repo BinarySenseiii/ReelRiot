@@ -23,10 +23,10 @@ const BrowseBanner = () => {
       }}
     >
       <Overlay
-        gradient="linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%)"
+        gradient="linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.2) 100%)"
         opacity={1}
         zIndex={2}
-        blur={5.5}
+        blur={4.5}
       />
       <Image
         src={browseBannerImage}
@@ -40,22 +40,14 @@ const BrowseBanner = () => {
 
       <Box sx={{ position: 'relative', zIndex: 3 }}>
         <Container>
-          <Stack align="center" justify="center" maw={768}>
-            <Title
-              align="center"
-              variant="gradient"
-              gradient={{ from: 'brand.5', to: '#fff', deg: 85 }}
-              ta="center"
-              order={1}
-              fw={900}
-            >
+          <Stack align="center" justify="center" maw={708}>
+            <Title ta="center" fw={900}>
               Browse Movies
             </Title>
 
-            <Text align="center">
-              Welcome to the official YTS.MX website. Here you can browse and
-              download YIFY movies in excellent 720p, 1080p, 2160p 4K and 3D
-              quality, all at the smallest file size. YTS Movies Torrents.
+            <Text ta="center" fz={{ md: 'xl' }}>
+              Here you can browse and download movies in excellent 720p, 1080p,
+              2160p 4K and 3D quality, all at the smallest file size
             </Text>
           </Stack>
         </Container>

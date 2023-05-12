@@ -1,26 +1,33 @@
 import { Container } from '@/components/ui';
+import { filterOptions } from '@/mock';
+import {
+  useMovieQuery,
+  useMovieQueryActions,
+} from '@/store/useMovieQueryStore';
 import { IFilterOption, IFilters } from '@/types/element/movie-types';
 import { Box, Button, Select, SimpleGrid, TextInput } from '@mantine/core';
-import React, { useState } from 'react';
+import { getHotkeyHandler } from '@mantine/hooks';
+import React, { useRef } from 'react';
 import useMovieStyles from './movieSyles';
-import { filterOptions } from '@/mock';
 
 const FilteringMovies: React.FC = () => {
+  const ref = useRef<HTMLInputElement>(null);
+  const { onQueryChange } = useMovieQueryActions();
+  const query = useMovieQuery();
   const { classes } = useMovieStyles();
-  const [query, setQuery] = useState('');
-  const [state, setState] = useState<IFilters>({
-    quality: 'all',
-    genre: 'all',
-    rating: '0',
-    orderBy: 'date_added',
-  });
 
-  const onFilterChange = (filteredValue: string | null, key: string) => {
-    if (filteredValue !== null) {
-      setState((prevState) => ({
-        ...prevState,
-        [key]: filteredValue,
-      }));
+  const onQuerySubmit = () => {
+    if (typeof ref !== 'undefined' && ref.current) {
+      if (!ref.current.value) return;
+      onQueryChange(ref.current.value, 'query_term', true);
+    }
+  };
+
+  const onOptionSelect = (option: IFilterOption, value: string) => {
+    onQueryChange(value, option.value);
+
+    if (ref.current) {
+      ref.current.value = '';
     }
   };
 
@@ -34,14 +41,14 @@ const FilteringMovies: React.FC = () => {
     >
       <Container size="sm">
         <TextInput
+          ref={ref}
+          onKeyDown={getHotkeyHandler([['Enter', onQuerySubmit]])}
           classNames={{
             label: classes.label,
             rightSection: classes.rightSection,
           }}
           label="Search Term:"
           size="md"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
           radius="md"
           autoComplete="off"
           rightSection={
@@ -49,8 +56,8 @@ const FilteringMovies: React.FC = () => {
               size="sm"
               uppercase
               compact
-              sx={(theme) => ({ fontFamily: theme.headings.fontFamily })}
               loaderPosition="center"
+              onClick={onQuerySubmit}
             >
               Search
             </Button>
@@ -78,10 +85,11 @@ const FilteringMovies: React.FC = () => {
                 },
               }}
               size="xs"
-              value={state[option.value as keyof IFilters]}
-              onChange={(e) => onFilterChange(e, option.value)}
+              value={query[option.value as keyof IFilters]}
+              onChange={(e) => onOptionSelect(option, e ?? '')}
               data={option.filter}
               aria-label={option.ariaLabel}
+              placeholder="Choose"
             />
           ))}
         </SimpleGrid>
@@ -89,4 +97,5 @@ const FilteringMovies: React.FC = () => {
     </Box>
   );
 };
+
 export default FilteringMovies;
