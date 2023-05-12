@@ -31,8 +31,6 @@ const FilteringMovies: React.FC = () => {
     }
   };
 
-  console.log(query);
-
   return (
     <Box
       sx={(theme) => ({

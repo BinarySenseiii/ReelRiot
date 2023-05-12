@@ -79,17 +79,10 @@ export interface IMovie {
   large_screenshot_image3: string;
 }
 export interface IMovieResult {
-  organizer_count: number;
   limit: number;
   movie_count: number;
   movies: IMovie[];
   page_number: number;
-  isLoading?: boolean;
-}
-
-export interface IMoviesResponse {
-  status: string;
-  data: IMovieResult;
 }
 
 export interface IMovieDetailResponse {

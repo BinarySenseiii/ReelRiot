@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface IQuery {
+export interface IQuery {
   quality?: string;
   genre?: string;
   minimum_rating?: string;
