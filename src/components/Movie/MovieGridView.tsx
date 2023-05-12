@@ -4,18 +4,21 @@ import Movie from '@/components/Movie/Movie';
 import { IMovie } from '@/types/element/movie-types';
 
 type MovieGridViewProps = {
-  isLoading?: boolean;
+  isLoading: boolean;
   movies: IMovie[] | undefined;
 };
 
 const MovieGridView: React.FC<MovieGridViewProps> = ({ isLoading, movies }) => (
   <SimpleGrid
-    cols={5}
+    mt="xl"
+    cols={6}
     breakpoints={[
       { maxWidth: 1200, cols: 5 },
-      { maxWidth: 768, cols: 3 },
-      { maxWidth: 576, cols: 2 },
+      { maxWidth: 768, cols: 4 },
+      { maxWidth: 576, cols: 3 },
+      { maxWidth: 400, cols: 2 },
     ]}
+    spacing="md"
   >
     {isLoading
       ? Array.from({ length: 10 }, (_, i) => (

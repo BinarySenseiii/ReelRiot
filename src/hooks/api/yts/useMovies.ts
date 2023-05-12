@@ -9,12 +9,12 @@ export interface IMoviesResponse {
   data: IMovieResult;
 }
 
-const useMovies = (query: IQuery = {}) =>
+const useMovies = (query: IQuery = {}, page: number) =>
   useQuery({
-    queryKey: [MOVIES_CACHE_KEY, query],
+    queryKey: [MOVIES_CACHE_KEY, query, page],
     queryFn: () =>
       getYtsData<IMoviesResponse>('/list_movies.json', {
-        params: { ...query },
+        params: { ...query, limit: 18, page },
       }),
     staleTime: 30000,
   });

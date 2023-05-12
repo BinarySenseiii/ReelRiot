@@ -9,7 +9,7 @@ const items = [
   { title: 'Privacy Policy', href: '#' },
   { title: 'Security', href: '#' },
 ].map((item, index) => (
-  <Anchor href={item.href} key={index}>
+  <Anchor href={item.href} key={index} fz="sm">
     {item.title}
   </Anchor>
 ));
@@ -19,9 +19,9 @@ const Footer: React.FC = () => {
   return (
     <div className={classes.root}>
       <Container>
-        <Stack justify="center" align="center" spacing="lg">
+        <Stack justify="center" align="center" spacing="sm">
           <Logo />
-          <Text>Copyright &copy; 2023 Flixena.inc</Text>
+          <Text fz="xs">Copyright &copy; 2023 Flixena.inc</Text>
           <Breadcrumbs separator="|">{items}</Breadcrumbs>
         </Stack>
       </Container>

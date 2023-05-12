@@ -10,7 +10,7 @@ import { getHotkeyHandler } from '@mantine/hooks';
 import React, { useRef } from 'react';
 import useMovieStyles from './movieSyles';
 
-const FilteringMovies: React.FC = () => {
+const FilteringMovies: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
   const ref = useRef<HTMLInputElement>(null);
   const { onQueryChange } = useMovieQueryActions();
   const query = useMovieQuery();
@@ -59,6 +59,7 @@ const FilteringMovies: React.FC = () => {
               compact
               loaderPosition="center"
               onClick={onQuerySubmit}
+              loading={isLoading}
             >
               Search
             </Button>
