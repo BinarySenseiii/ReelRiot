@@ -4,7 +4,7 @@ import {
   Button,
   Grid,
   Group,
-  Popover,
+  HoverCard,
   Rating,
   Stack,
   Text,
@@ -14,7 +14,6 @@ import React from 'react';
 
 import { checkQuality } from '@/helpers';
 import { IMovie } from '@/types/element/movie-types';
-import { useDisclosure } from '@mantine/hooks';
 import { AiFillHeart } from 'react-icons/ai';
 import CustomImage from '../CustomImage';
 import useMovieStyles from './movieSyles';
@@ -25,31 +24,26 @@ type MovieProps = {
 
 const Movie: React.FC<MovieProps> = ({ movie }) => {
   const { classes } = useMovieStyles();
-  const [opened, { close, open }] = useDisclosure(false);
 
   return (
-    <Popover
+    <HoverCard
       width={280}
       arrowSize={15}
       position="right"
       withArrow
       shadow="lg"
       radius="sm"
-      opened={opened}
       withinPortal
+      openDelay={200}
       styles={{
         dropdown: {
           background: 'white',
         },
       }}
+      transitionProps={{ transition: 'pop-top-left' }}
     >
-      <Popover.Target>
-        <Box
-          pos="relative"
-          className={classes.innerImage}
-          onMouseEnter={open}
-          onMouseLeave={close}
-        >
+      <HoverCard.Target>
+        <Box pos="relative" className={classes.innerImage}>
           <CustomImage
             posterSrc={movie.large_cover_image}
             title={movie.title_english}
@@ -69,9 +63,9 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
             {checkQuality(movie.torrents)}
           </Badge>
         </Box>
-      </Popover.Target>
+      </HoverCard.Target>
 
-      <Popover.Dropdown>
+      <HoverCard.Dropdown>
         <Stack spacing="xs">
           <Title color="dark" order={5}>
             {movie.title_long}
@@ -117,14 +111,14 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
               </Button>
             </Grid.Col>
             <Grid.Col span={3}>
-              <Button fullWidth>
-                <AiFillHeart />
+              <Button>
+                <AiFillHeart fontSize={16} />
               </Button>
             </Grid.Col>
           </Grid>
         </Stack>
-      </Popover.Dropdown>
-    </Popover>
+      </HoverCard.Dropdown>
+    </HoverCard>
   );
 };
 
