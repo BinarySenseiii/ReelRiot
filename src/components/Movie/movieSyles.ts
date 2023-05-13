@@ -15,6 +15,12 @@ const useMovieStyles = createStyles((theme) => ({
       outline: `3px solid red`,
     },
   },
+
+  badge: {
+    position: 'absolute',
+    right: 4,
+    top: 4,
+  },
 }));
 
 export default useMovieStyles;

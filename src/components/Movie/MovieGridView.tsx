@@ -21,7 +21,7 @@ const MovieGridView: React.FC<MovieGridViewProps> = ({ isLoading, movies }) => (
     spacing="md"
   >
     {isLoading
-      ? Array.from({ length: 10 }, (_, i) => (
+      ? Array.from({ length: 18 }, (_, i) => (
           <Skeleton key={i} visible={isLoading} height={300} />
         ))
       : movies?.map((movie) => <Movie key={movie.id} movie={movie} />)}
