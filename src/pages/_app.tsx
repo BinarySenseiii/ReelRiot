@@ -4,18 +4,11 @@ import { getCookie } from 'cookies-next';
 import { NextPage } from 'next';
 import NextApp, { AppContext, AppProps } from 'next/app';
 
-import dynamic from 'next/dynamic';
 import { ReactElement, ReactNode, useState } from 'react';
 
-const MantineThemeProvider = dynamic(
-  () => import('@/providers/Mantine/ThemeProvider'),
-);
-const QueryWrapper = dynamic(
-  () => import('@/providers/ReactQuery/QueryWrapper'),
-);
-const DefaultLayout = dynamic(() =>
-  import('@/layout').then((mod) => mod.BaseLayout),
-);
+import { BaseLayout } from '@/layout';
+import MantineThemeProvider from '@/providers/Mantine/ThemeProvider';
+import QueryWrapper from '@/providers/ReactQuery/QueryWrapper';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -34,7 +27,7 @@ export default function App(
   );
 
   const getLayout =
-    Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>);
+    Component.getLayout ?? ((page) => <BaseLayout>{page}</BaseLayout>);
 
   return (
     <QueryWrapper dehydratedState={pageProps.dehydratedState}>
