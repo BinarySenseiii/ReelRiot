@@ -12,7 +12,7 @@ import {
 } from '@mantine/core'
 import React from 'react'
 
-import { checkQuality } from '@/helpers'
+import { checkQuality } from '@/utils'
 import { IMovie } from '@/types/movie-types'
 import { AiFillHeart } from 'react-icons/ai'
 import CustomImage from '../CustomImage'
