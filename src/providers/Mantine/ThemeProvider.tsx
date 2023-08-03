@@ -1,63 +1,39 @@
-import {
-  ColorScheme,
-  ColorSchemeProvider,
-  MantineProvider,
-} from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
-import React, { Dispatch, ReactNode, SetStateAction } from 'react';
-import { setCookie } from 'cookies-next';
-import customColors from './Colors';
-import overRideFonts from './Fonts';
+import { MantineProvider } from '@mantine/core'
+import React, { ReactNode } from 'react'
+import { Toaster } from 'react-hot-toast'
+import customColors from './Colors'
+import overRideFonts from './Fonts'
 
 type ThemeProviderProps = {
-  children: ReactNode;
-  colorScheme: 'light' | 'dark';
-  setColorScheme: Dispatch<SetStateAction<ColorScheme>>;
-};
+	children: ReactNode
+}
 
-const MantineThemeProvider: React.FC<ThemeProviderProps> = ({
-  children,
-  setColorScheme,
-  colorScheme,
-}) => {
-  const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme =
-      value || (colorScheme === 'dark' ? 'light' : 'dark');
-    setColorScheme(nextColorScheme);
-    setCookie('mantine-color-scheme', nextColorScheme, {
-      maxAge: 60 * 60 * 24 * 30,
-    });
-  };
-  return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider
-        theme={{
-          colorScheme,
-          components: {
-            Text: {
-              defaultProps: (theme) => ({
-                size: 'md',
-                color: 'white',
-              }),
-            },
-          },
-          colors: {
-            ...customColors,
-          },
-          primaryColor: 'brand',
-          primaryShade: 5,
-          ...overRideFonts,
-        }}
-        withGlobalStyles
-        withNormalizeCSS
-      >
-        <Notifications />
-        {children}
-      </MantineProvider>
-    </ColorSchemeProvider>
-  );
-};
-export default MantineThemeProvider;
+const MantineThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+	return (
+		<MantineProvider
+			theme={{
+				colorScheme: 'dark',
+				components: {
+					Text: {
+						defaultProps: () => ({
+							size: 'md',
+							color: 'white',
+						}),
+					},
+				},
+				colors: {
+					...customColors,
+				},
+				primaryColor: 'brand',
+				primaryShade: 5,
+				...overRideFonts,
+			}}
+			withGlobalStyles
+			withNormalizeCSS
+		>
+			<Toaster />
+			{children}
+		</MantineProvider>
+	)
+}
+export default MantineThemeProvider

@@ -1,23 +1,23 @@
 interface SelectOption {
-  value: string;
-  label: string;
+	value: string
+	label: string
 }
 
 interface UseSelectDataOptions<T> {
-  valueKey?: keyof T;
-  labelKey?: keyof T;
+	valueKey?: keyof T
+	labelKey?: keyof T
 }
 
 export function useSelectData<T extends Record<string, any>>(
-  data: T[],
-  options: UseSelectDataOptions<T> = {},
+	data: T[],
+	options: UseSelectDataOptions<T> = {},
 ): SelectOption[] {
-  if (!data || !data.length) {
-    return [];
-  }
+	if (!data || !data.length) {
+		return []
+	}
 
-  return data.map((item) => ({
-    value: String(item[options.valueKey ?? '']),
-    label: String(item[options.labelKey ?? '']),
-  }));
+	return data.map(item => ({
+		value: String(item[options.valueKey ?? '']),
+		label: String(item[options.labelKey ?? '']),
+	}))
 }

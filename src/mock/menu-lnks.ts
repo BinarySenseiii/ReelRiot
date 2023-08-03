@@ -1,12 +1,12 @@
 const menuLinks = [
-  {
-    link: '/',
-    label: 'Home',
-  },
-  {
-    link: '/browse',
-    label: 'Browse',
-  },
-];
+	{
+		link: '/',
+		label: 'Home',
+	},
+	{
+		link: '/browse',
+		label: 'Browse',
+	},
+]
 
-export default menuLinks;
+export default menuLinks
