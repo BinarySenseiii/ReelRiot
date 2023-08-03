@@ -2,15 +2,15 @@ import Meta from '@/components/Seo'
 
 import dynamic from 'next/dynamic'
 
-import MovieGridView from '@/components/Movie/MovieGridView'
 import { Container } from '@/components/ui'
 import { useMovies } from '@/api/hooks'
 import { useMovieQuery } from '@/store/useMovieQueryStore'
 import { useState } from 'react'
 import BrowseBanner from '@/components/BrowseBanner'
+import { MovieList } from '@/components/movie'
 
 const MovieFilters = dynamic(() =>
-	import('@/components/Movie').then(mod => mod.MovieFilters),
+	import('@/components/movie').then(mod => mod.MovieFilters),
 )
 
 const BrowsePage = () => {
@@ -24,7 +24,7 @@ const BrowsePage = () => {
 			<BrowseBanner />
 			<MovieFilters isLoading={isLoading} />
 			<Container>
-				<MovieGridView isLoading={isLoading} movies={result?.data.movies} />
+				<MovieList isLoading={isLoading} movies={result?.data.movies} />
 			</Container>
 		</div>
 	)

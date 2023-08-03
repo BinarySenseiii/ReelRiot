@@ -2,7 +2,7 @@ import { IFilterOption } from '@/types/movie-types'
 
 export const movieQuality = [
 	{ value: 'all', label: 'All' },
-	{ value: '480p', label: '480p' },
+	// { value: '480p', label: '480p' },
 	{ value: '720p', label: '720p' },
 	{ value: '1080p', label: '1080p' },
 	{ value: '2160p', label: '2160p' },

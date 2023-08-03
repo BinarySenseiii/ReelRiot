@@ -1,13 +1,13 @@
-import Image from 'next/image'
+import { Title, useMantineTheme } from '@mantine/core'
 import Link from 'next/link'
-import React from 'react'
-
-import logo from '@/assets/images/logo.png'
 
 const Logo = () => {
+	const { colors } = useMantineTheme()
 	return (
-		<Link href="/">
-			<Image src={logo} alt="logo not found" placeholder="blur" width={130} />
+		<Link href="/" className="no-underline">
+			<Title fz={30} fw={800} italic>
+				REEL<span style={{ color: colors['brand'][4] }}>RIOT</span>
+			</Title>
 		</Link>
 	)
 }

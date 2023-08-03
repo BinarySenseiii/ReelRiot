@@ -1,7 +1,7 @@
 import { Box, rem, Overlay, Container, Stack, Title, Text } from '@mantine/core'
 import Image from 'next/image'
 import React from 'react'
-import browseBannerImage from '@/assets/images/browse-banner.jpg'
+import browseBannerImage from '@/assets/images/browse-banner.webp'
 
 const BrowseBanner = () => {
 	return (
@@ -27,7 +27,6 @@ const BrowseBanner = () => {
 				placeholder="blur"
 				fill
 				style={{ objectFit: 'cover' }}
-				sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 			/>
 
 			<Box sx={{ position: 'relative', zIndex: 3 }}>
