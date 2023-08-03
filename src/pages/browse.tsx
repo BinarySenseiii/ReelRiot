@@ -7,7 +7,7 @@ import { useMovies } from '@/api/hooks'
 import { useMovieQuery } from '@/store/useMovieQueryStore'
 import { useState } from 'react'
 import BrowseBanner from '@/components/BrowseBanner'
-import { MovieList } from '@/components/movie'
+import MovieList from '@/components/movie/MovieList'
 
 const MovieFilters = dynamic(() =>
 	import('@/components/movie').then(mod => mod.MovieFilters),
