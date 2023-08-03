@@ -4,13 +4,13 @@ import dynamic from 'next/dynamic'
 
 import { useMovies } from '@/api/hooks'
 import BrowseBanner from '@/components/BrowseBanner'
-import MovieGridView from '@/components/movie/MovieGridView'
+import MovieGridView from '@/components/Movie/MovieGridView'
 import { Container } from '@/components/ui'
 import { useMovieQuery } from '@/store/useMovieQueryStore'
 import { useState } from 'react'
 
 const MovieFilters = dynamic(() =>
-	import('@/components/movie').then(mod => mod.MovieFilters),
+	import('@/components/Movie').then(mod => mod.MovieFilters),
 )
 
 const BrowsePage = () => {
