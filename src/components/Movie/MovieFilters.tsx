@@ -1,7 +1,8 @@
 import { Container } from '@/components/ui'
 import { filterOptions } from '@/mock'
 import { useMovieQuery, useMovieQueryActions } from '@/store/useMovieQueryStore'
-import { IFilterOption, IFilters } from '@/types/movie-types'
+import { QueryKey } from '@/types/context/query-type'
+import { IFilterOption } from '@/types/movie-types'
 import { Box, Button, Select, SimpleGrid, TextInput } from '@mantine/core'
 import { getHotkeyHandler } from '@mantine/hooks'
 import React, { useRef } from 'react'
@@ -16,12 +17,17 @@ const FilteringMovies: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
 	const onQuerySubmit = () => {
 		if (typeof ref !== 'undefined' && ref.current) {
 			if (!ref.current.value) return
-			onQueryChange(ref.current.value, 'query_term', true)
+			onQueryChange({
+				query: ref.current.value,
+				key: 'query_term',
+				isQueryTerm: true,
+				page: 1,
+			})
 		}
 	}
 
-	const onOptionSelect = (option: IFilterOption, value: string) => {
-		onQueryChange(value, option.value)
+	const onOptionSelect = (option: IFilterOption, value: QueryKey) => {
+		onQueryChange({ query: value, key: option.value, page: 1 })
 
 		if (ref.current) {
 			ref.current.value = ''
@@ -84,10 +90,11 @@ const FilteringMovies: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
 								},
 							}}
 							size="xs"
-							value={
-								query.query_term ? '' : query[option.value as keyof IFilters]
-							}
-							onChange={e => onOptionSelect(option, e ?? '')}
+							value={query.query_term ?? query[option.value]}
+							onChange={(selectedValue: QueryKey) => {
+								if (!selectedValue) return
+								onOptionSelect(option, selectedValue)
+							}}
 							data={option.filter}
 							aria-label={option.ariaLabel}
 							placeholder="Choose"

@@ -1,17 +1,6 @@
+import { QueryKey } from './context/query-type'
+
 export type TMovieView = 'list' | 'grid'
-
-export interface IFilters {
-	quality: string
-	genre: string
-	minimum_rating: string
-	sort_by: string
-	query_term?: string
-}
-
-export interface ISearchQuery extends IFilters {
-	query: string
-	pageNumber: number
-}
 
 export interface IFilter {
 	value: string
@@ -22,7 +11,7 @@ export interface IFilterOption {
 	id: number
 	label: string
 	filter: any
-	value: any
+	value: QueryKey
 	ariaLabel: string
 }
 

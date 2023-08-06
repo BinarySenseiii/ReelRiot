@@ -16,7 +16,7 @@ const MovieFilters = dynamic(() =>
 const BrowsePage = () => {
 	const query = useMovieQuery()
 	const [page, setPage] = useState<number>(1)
-	const { data: result, isLoading } = useMovies(query, page)
+	const { data: result, isLoading } = useMovies(query)
 
 	return (
 		<div>

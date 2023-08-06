@@ -1,33 +1,14 @@
+import { iMovieQuery } from '@/types/context/query-type'
 import { create } from 'zustand'
-
-export interface IQuery {
-	quality?: string
-	genre?: string
-	minimum_rating?: string
-	sort_by?: string
-	query_term?: string
-}
-
-interface iMovieQuery {
-	query: IQuery
-
-	actions: {
-		onQueryChange: (
-			queryValue: string,
-			key: string,
-			isQueryTerm?: boolean,
-		) => void
-	}
-}
 
 const useMovieQueryStore = create<iMovieQuery>(set => ({
 	query: {},
 	actions: {
-		onQueryChange: (query, key, isQueryTerm) =>
+		onQueryChange: ({ query, key, isQueryTerm, page = 1 }) =>
 			set(state => {
 				const updatedQuery = isQueryTerm
-					? { [key]: query }
-					: { ...state.query, [key]: query }
+					? { [key]: query, page }
+					: { ...state.query, [key]: query, page }
 
 				if (!isQueryTerm) delete updatedQuery.query_term
 

@@ -1,6 +1,6 @@
 import { IMovie } from '@/types/movie-types'
-import { Drawer, ScrollArea, Stack, Title } from '@mantine/core'
-import CustomImage from '../CustomImage'
+import { AspectRatio, Drawer, ScrollArea, rem } from '@mantine/core'
+import Image from 'next/image'
 
 export default function MovieDrawer({
 	opened,
@@ -15,22 +15,24 @@ export default function MovieDrawer({
 		<Drawer
 			opened={opened}
 			onClose={close}
-			withCloseButton={false}
+			withCloseButton={true}
 			padding={0}
 			scrollAreaComponent={ScrollArea.Autosize}
+			styles={{
+				close: {
+					position: 'absolute',
+					right: rem(10),
+					top: rem(10),
+				},
+			}}
 		>
-			<CustomImage
-				posterSrc={movie.large_cover_image}
-				title={movie.title_english}
-			/>
-
-			<Stack>
-				<Title>{movie.title_long}</Title>
-				<Title>{movie.title_long}</Title>
-				<Title>{movie.title_long}</Title>
-				<Title>{movie.title_long}</Title>
-				<Title>{movie.title_long}</Title>
-			</Stack>
+			<AspectRatio ratio={16 / 6} maw={600}>
+				<Image
+					alt={`${movie.title} not found`}
+					src={movie.background_image_original || movie.background_image}
+					fill
+				/>
+			</AspectRatio>
 		</Drawer>
 	)
 }
