@@ -45,49 +45,34 @@ const FilteringMovies: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
 			<Container size="sm">
 				<TextInput
 					ref={ref}
-					onKeyDown={getHotkeyHandler([['Enter', onQuerySubmit]])}
-					classNames={{
-						label: classes.label,
-						rightSection: classes.rightSection,
-					}}
 					label="Search Term:"
 					size="md"
-					radius="md"
 					autoComplete="off"
 					placeholder="Search Movie By  Movie Title Or IMDB Code"
+					onKeyDown={getHotkeyHandler([['Enter', onQuerySubmit]])}
+					classNames={{
+						label: 'mb-2',
+						rightSection: 'right-6',
+					}}
 					rightSection={
 						<Button
-							size="sm"
-							uppercase
 							compact
 							loaderPosition="center"
 							onClick={onQuerySubmit}
 							loading={isLoading}
 						>
-							Search
+							SEARCH
 						</Button>
 					}
 				/>
 
-				<SimpleGrid
-					cols={4}
-					spacing="sm"
-					mt="xs"
-					breakpoints={[
-						{ maxWidth: 980, cols: 4, spacing: 'md' },
-						{ maxWidth: 768, cols: 3, spacing: 'sm' },
-						{ maxWidth: 600, cols: 2, spacing: 'xs' },
-					]}
-				>
+				<div className="mt-3 grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
 					{filterOptions.map((option: IFilterOption) => (
 						<Select
 							key={option.id}
 							label={option.label}
-							classNames={{ label: classes.label }}
-							styles={{
-								label: {
-									fontSize: '14px !important',
-								},
+							classNames={{
+								label: 'mb-2 !text-xs',
 							}}
 							size="xs"
 							value={query.query_term ?? query[option.value]}
@@ -100,7 +85,7 @@ const FilteringMovies: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
 							placeholder="Choose"
 						/>
 					))}
-				</SimpleGrid>
+				</div>
 			</Container>
 		</Box>
 	)

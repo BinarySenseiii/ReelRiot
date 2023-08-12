@@ -1,30 +1,26 @@
-import { SimpleGrid, Skeleton } from '@mantine/core'
-import React from 'react'
-import Movie from './Movie'
 import { IMovie } from '@/types/movie-types'
+import { Skeleton } from '@mantine/core'
+import React from 'react'
+import { Container } from '../ui'
+import Movie from './Movie'
 
-type MovieListProps = {
+interface MovieListProps {
 	isLoading: boolean
 	movies: IMovie[] | undefined
 }
 
-const MovieList: React.FC<MovieListProps> = ({ isLoading, movies }) => (
-	<SimpleGrid
-		mt="xl"
-		cols={6}
-		breakpoints={[
-			{ maxWidth: 1200, cols: 5 },
-			{ maxWidth: 768, cols: 4 },
-			{ maxWidth: 576, cols: 3 },
-			{ maxWidth: 400, cols: 2 },
-		]}
-		spacing="md"
-	>
-		{isLoading
-			? Array.from({ length: 18 }, (_, i) => (
-					<Skeleton key={i} visible={isLoading} height={300} />
-			  ))
-			: movies?.map(movie => <Movie key={movie.id} movie={movie} />)}
-	</SimpleGrid>
-)
+const MovieList: React.FC<MovieListProps> = ({ isLoading, movies }) => {
+	return (
+		<Container className="w-full">
+			<div className="grid gap-6 grid-cols-1 sm:grid-cols-auto-fit">
+				{isLoading
+					? Array.from({ length: 18 }, (_, i) => (
+							<Skeleton key={i} visible={isLoading} height={300} />
+					  ))
+					: movies?.map(movie => <Movie key={movie.id} movie={movie} />)}
+			</div>
+		</Container>
+	)
+}
+
 export default MovieList

@@ -1,14 +1,6 @@
 import { createStyles } from '@mantine/core'
 
-const useMovieStyles = createStyles(theme => ({
-	label: {
-		marginBottom: theme.spacing.xs,
-	},
-
-	rightSection: {
-		right: '23px',
-	},
-
+const useMovieStyles = createStyles(() => ({
 	innerImage: {
 		borderRadius: '3px',
 		'&:hover': {
@@ -16,10 +8,12 @@ const useMovieStyles = createStyles(theme => ({
 		},
 	},
 
-	badge: {
+	root: {
+		background: 'white',
+		color: 'black',
 		position: 'absolute',
-		right: 4,
-		top: 4,
+		right: '4px',
+		top: '4px',
 	},
 }))
 

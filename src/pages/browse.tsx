@@ -1,13 +1,11 @@
 import Meta from '@/components/Seo'
-
 import dynamic from 'next/dynamic'
-
 import { useMovies } from '@/api/hooks'
 import BrowseBanner from '@/components/BrowseBanner'
-import MovieGridView from '@/components/Movie/MovieGridView'
-import { Container } from '@/components/ui'
+import MovieList from '@/components/Movie/MovieList'
 import { useMovieQuery } from '@/store/useMovieQueryStore'
-import { useState } from 'react'
+import { Group, Skeleton, Title } from '@mantine/core'
+import { Container } from '@/components/ui'
 
 const MovieFilters = dynamic(() =>
 	import('@/components/Movie').then(mod => mod.MovieFilters),
@@ -15,17 +13,14 @@ const MovieFilters = dynamic(() =>
 
 const BrowsePage = () => {
 	const query = useMovieQuery()
-	const [page, setPage] = useState<number>(1)
 	const { data: result, isLoading } = useMovies(query)
 
 	return (
-		<div>
+		<div className="mb-6">
 			<Meta title="The Official Home Of Reel Riot - Browse Movies" />
 			<BrowseBanner />
 			<MovieFilters isLoading={isLoading} />
-			<Container>
-				<MovieGridView isLoading={isLoading} movies={result?.data.movies} />
-			</Container>
+			<MovieList isLoading={isLoading} movies={result?.data.movies} />
 		</div>
 	)
 }

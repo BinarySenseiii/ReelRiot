@@ -2,7 +2,6 @@ import { AspectRatio } from '@mantine/core'
 import Image, { StaticImageData } from 'next/image'
 import React, { useState } from 'react'
 
-import placeholder from '@/assets/images/blur.webp'
 import noPoster from '@/assets/images/no-poster.webp'
 
 type CustomImageProps = {
@@ -11,21 +10,24 @@ type CustomImageProps = {
 	className?: string
 }
 
+const PLACEHOLDER_URL =
+	'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8AgCQAEHwEaXsb4awAAAABJRU5ErkJggg=='
+
 const CustomImage: React.FC<CustomImageProps> = ({ posterSrc, title }) => {
 	const [imgSrc, setImgSrc] = useState<string | StaticImageData>(posterSrc)
 
 	return (
-		<AspectRatio ratio={720 / 1080} pos="relative">
+		<AspectRatio ratio={4 / 5} pos="relative">
 			<Image
+				fill
 				src={imgSrc}
 				alt={`${title} not found`}
-				placeholder="blur"
-				blurDataURL={placeholder.blurDataURL}
-				fill
-				onError={() => setImgSrc(noPoster)}
-				style={{ borderRadius: '5px', objectFit: 'cover' }}
-				sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw"
 				quality={60}
+				placeholder="blur"
+				className="rounded-md object-cover"
+				sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw"
+				blurDataURL={PLACEHOLDER_URL}
+				onError={() => setImgSrc(noPoster)}
 			/>
 		</AspectRatio>
 	)

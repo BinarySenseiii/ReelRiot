@@ -3,33 +3,23 @@ import Image from 'next/image'
 import React from 'react'
 import browseBannerImage from '@/assets/images/browse-banner.webp'
 
+const GRADIENT =
+	'linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.2) 100%)'
+
 const BrowseBanner = () => {
 	return (
-		<Box
-			sx={{
-				position: 'relative',
-				height: rem(400),
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'center',
-			}}
-		>
-			<Overlay
-				gradient="linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.2) 100%)"
-				opacity={1}
-				zIndex={2}
-				blur={4.5}
-			/>
+		<Box className="relative flex items-center justify-center h-60 md:h-96">
+			<Overlay blur={4.3} gradient={GRADIENT} className="opacity-100 z-[1]" />
 			<Image
 				src={browseBannerImage}
+				className="object-cover"
+				placeholder="blur"
 				alt="browse Banner not found"
 				priority
-				placeholder="blur"
 				fill
-				style={{ objectFit: 'cover' }}
 			/>
 
-			<Box sx={{ position: 'relative', zIndex: 3 }}>
+			<Box className="relative z-10">
 				<Container>
 					<Stack align="center" justify="center" maw={708}>
 						<Title ta="center" fw={900}>
