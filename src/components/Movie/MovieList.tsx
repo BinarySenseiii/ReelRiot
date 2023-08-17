@@ -11,7 +11,7 @@ interface MovieListProps {
 
 const MovieList: React.FC<MovieListProps> = ({ isLoading, movies }) => {
 	return (
-		<Container className="w-full">
+		<Container className="w-full" py="xl">
 			<div className="grid gap-6 grid-cols-1 sm:grid-cols-auto-fit">
 				{isLoading
 					? Array.from({ length: 18 }, (_, i) => (
