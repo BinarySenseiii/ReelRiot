@@ -4,6 +4,7 @@ import ms from 'ms'
 import getYtsData from '../client'
 import { MOVIES_CACHE_KEY } from '../query-keys'
 import { QueryType } from '@/types/context/query-type'
+import { MOVIES_LIMIT } from '@/store/useMovieQueryStore'
 
 export interface IMoviesResponse {
 	status: string
@@ -15,7 +16,7 @@ const useMovies = (query: QueryType = { page: 1 }) =>
 		queryKey: [MOVIES_CACHE_KEY, query],
 		queryFn: () =>
 			getYtsData<IMoviesResponse>('/list_movies.json', {
-				params: { ...query, limit: 18 },
+				params: { ...query, limit: MOVIES_LIMIT },
 			}),
 		staleTime: ms('5s'),
 	})

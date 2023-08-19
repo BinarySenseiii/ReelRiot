@@ -1,6 +1,8 @@
 import { iMovieQuery } from '@/types/context/query-type'
 import { create } from 'zustand'
 
+export const MOVIES_LIMIT = 15
+
 const useMovieQueryStore = create<iMovieQuery>(set => ({
 	query: {},
 	actions: {
