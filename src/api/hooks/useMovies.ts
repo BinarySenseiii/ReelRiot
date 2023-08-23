@@ -16,7 +16,7 @@ const useMovies = (query: QueryType = { page: 1 }) =>
 		queryKey: [MOVIES_CACHE_KEY, query],
 		queryFn: () =>
 			getYtsData<IMoviesResponse>('/list_movies.json', {
-				params: { ...query, limit: MOVIES_LIMIT },
+				params: { ...query, limit: MOVIES_LIMIT, with_rt_ratings: false },
 			}),
 		staleTime: ms('5s'),
 	})

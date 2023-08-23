@@ -3,16 +3,16 @@ import { filterOptions } from '@/mock'
 import { useMovieQuery, useMovieQueryActions } from '@/store/useMovieQueryStore'
 import { QueryKey } from '@/types/context/query-type'
 import { IFilterOption } from '@/types/movie-types'
-import { Box, Button, Select, SimpleGrid, TextInput } from '@mantine/core'
+import { Box, Button, Select, TextInput } from '@mantine/core'
 import { getHotkeyHandler } from '@mantine/hooks'
-import React, { useRef } from 'react'
-import useMovieStyles from './movieSyles'
+import React, { Dispatch, SetStateAction, useRef } from 'react'
 
-const FilteringMovies: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
+const FilteringMovies: React.FC<{
+	isLoading: boolean
+}> = ({ isLoading }) => {
 	const ref = useRef<HTMLInputElement>(null)
 	const { onQueryChange } = useMovieQueryActions()
 	const query = useMovieQuery()
-	const { classes } = useMovieStyles()
 
 	const onQuerySubmit = () => {
 		if (typeof ref !== 'undefined' && ref.current) {

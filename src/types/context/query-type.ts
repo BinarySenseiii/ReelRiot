@@ -25,5 +25,6 @@ export interface iMovieQuery {
 	query: QueryType
 	actions: {
 		onQueryChange: (queryAction: QueryActionType) => void
+		onPaginationChange: (pageNumber: number) => void
 	}
 }

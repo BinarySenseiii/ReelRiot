@@ -4,7 +4,9 @@ import { create } from 'zustand'
 export const MOVIES_LIMIT = 15
 
 const useMovieQueryStore = create<iMovieQuery>(set => ({
-	query: {},
+	query: {
+		page: 1,
+	},
 	actions: {
 		onQueryChange: ({ query, key, isQueryTerm, page = 1 }) =>
 			set(state => {
@@ -18,6 +20,11 @@ const useMovieQueryStore = create<iMovieQuery>(set => ({
 					query: updatedQuery,
 				}
 			}),
+
+		onPaginationChange: (pageNumber: number) =>
+			set(state => ({
+				query: { ...state.query, page: pageNumber },
+			})),
 	},
 }))
 
