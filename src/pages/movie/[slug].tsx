@@ -1,33 +1,56 @@
+import { useMovie } from '@/api/hooks'
+import useTmdbMovie from '@/api/hooks/useTmdbMovie'
+import { TMDB_MOVIE_CACHE_KEY, YTS_MOVIE_CACHE_KEY } from '@/api/query-keys'
 import { tmdbRequest, ytsRequest } from '@/api/request'
-import { IMovieResponse } from '@/api/request/tmdb'
-import { IMovie, ITmdbMovie, ITmdbMovieResult } from '@/types/movie-types'
-import { GetServerSideProps } from 'next'
+import { Container } from '@/components/ui'
+import { ICredits } from '@/types/movie-types'
+import { QueryClient, dehydrate, useQueries } from '@tanstack/react-query'
+import { GetServerSideProps, NextPage } from 'next'
+import { useRouter } from 'next/router'
 
-interface IMovieDetailProps {
-	movie: IMovie
-	tMovie: ITmdbMovie
-}
+const MovieDetailPage: NextPage = () => {
+	const router = useRouter()
+	const { id: imdbCode } = router.query
 
-const MovieDetailPage: React.FC<IMovieDetailProps> = ({ movie, tMovie }) => {
-	console.log('tMovie::: ', tMovie)
-	console.log('movie::: ', movie)
-	return <div>MovieDetailPage</div>
+	const { data: ytsMovie } = useMovie(imdbCode as string)
+	const { data: tMovie } = useTmdbMovie(imdbCode as string)
+
+	const isTmdbMovie = !!tMovie && tMovie.length > 0
+
+	const [credits, images, videos, reviews] = useQueries({
+		queries: tmdbRequest.queries.map(query => ({
+			queryKey: [TMDB_MOVIE_CACHE_KEY, { imdbCode, query: query.endpoint }],
+			queryFn: () => query.fetcherFunc(imdbCode as string),
+			enabled: isTmdbMovie,
+		})),
+	})
+
+	const cred = credits.data as ICredits
+
+	return (
+		<Container className="w-full" py="xl">
+			MovieDetailPage
+		</Container>
+	)
 }
 
 export default MovieDetailPage
 
 export const getServerSideProps: GetServerSideProps = async context => {
-	const { id } = context.query
+	const { id: imdbCode } = context.query
+	const queryClient = new QueryClient()
 
-	const { movie_results } = await tmdbRequest.getMovieDetails<ITmdbMovieResult>(
-		id as string,
+	await queryClient.prefetchQuery([YTS_MOVIE_CACHE_KEY, { imdbCode }], () =>
+		ytsRequest.getMovie(imdbCode as string),
 	)
-	const { data } = await ytsRequest.getMovie<IMovieResponse>(id as string)
+
+	await queryClient.prefetchQuery([TMDB_MOVIE_CACHE_KEY, { imdbCode }], () =>
+		tmdbRequest.getMovieDetails(imdbCode as string),
+	)
 
 	return {
 		props: {
-			movie: data.movie,
-			tMovie: movie_results.length > 0 ? movie_results[0] : null,
+			dehydratedState: dehydrate(queryClient),
 		},
 	}
 }

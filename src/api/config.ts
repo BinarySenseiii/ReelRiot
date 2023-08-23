@@ -2,16 +2,14 @@ export const LIST_MOVIES = '/list_movies.json'
 export const ytsMovieDetails = '/movie_details.json'
 
 export const TmdbMovieDetails = (imdbCode: string) => `/find/${imdbCode}`
-
-export const movieSuggestions = (id?: number) =>
-	`/movie_suggestions.json?movie_id=${id}`
+export const movieMetaDataEndpoint = (movieId: string, ENDPOINT: string) =>
+	`/movie/${movieId}/${ENDPOINT}`
 
 export const getMovieImages = (movieId: string | number) =>
 	`/movie/${movieId}/images?&append_to_response=images`
 
-export const getMovieReviews = (movieId: number) => `/movie/${movieId}/reviews`
-export const getMovieVideos = (movieId: number) => `/movie/${movieId}/videos`
-export const getMovieCredit = (movieId: number) => `/movie/${movieId}/credits`
+export const movieSuggestions = (id?: number) =>
+	`/movie_suggestions.json?movie_id=${id}`
 
 export const IMAGE_BASE_URL: string = 'http://image.tmdb.org/t/p/'
 // Sizes: w300, w780, w1280, original

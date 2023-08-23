@@ -1,4 +1,3 @@
-import toast from 'react-hot-toast'
 import {
 	DehydratedState,
 	Hydrate,
@@ -9,7 +8,8 @@ import {
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AxiosError } from 'axios'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useRef } from 'react'
+import toast from 'react-hot-toast'
 
 const mutationCache = new MutationCache({
 	onError: error => {
@@ -34,24 +34,23 @@ export default function QueryWrapper({
 	dehydratedState: DehydratedState
 	children: ReactNode
 }) {
-	const [queryClient] = useState(
-		() =>
-			new QueryClient({
-				defaultOptions: {
-					queries: {
-						refetchOnWindowFocus: false,
-						retry: 3,
-						staleTime: 30000,
-						refetchInterval: false,
-					},
+	const queryClient = useRef(
+		new QueryClient({
+			defaultOptions: {
+				queries: {
+					refetchOnWindowFocus: false,
+					retry: 3,
+					staleTime: 30000,
+					refetchInterval: false,
 				},
-				mutationCache,
-				queryCache,
-			}),
+			},
+			mutationCache,
+			queryCache,
+		}),
 	)
 
 	return (
-		<QueryClientProvider client={queryClient}>
+		<QueryClientProvider client={queryClient.current}>
 			<Hydrate state={dehydratedState}>{children}</Hydrate>
 			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
