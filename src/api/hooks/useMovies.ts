@@ -1,10 +1,9 @@
+import { QueryType } from '@/types/context/query-type'
 import { IMovieResult } from '@/types/movie-types'
 import { useQuery } from '@tanstack/react-query'
 import ms from 'ms'
-import getYtsData from '../client'
 import { MOVIES_CACHE_KEY } from '../query-keys'
-import { QueryType } from '@/types/context/query-type'
-import { MOVIES_LIMIT } from '@/store/useMovieQueryStore'
+import { ytsRequest } from '../request'
 
 export interface IMoviesResponse {
 	status: string
@@ -14,10 +13,7 @@ export interface IMoviesResponse {
 const useMovies = (query: QueryType = { page: 1 }) =>
 	useQuery({
 		queryKey: [MOVIES_CACHE_KEY, query],
-		queryFn: () =>
-			getYtsData<IMoviesResponse>('/list_movies.json', {
-				params: { ...query, limit: MOVIES_LIMIT, with_rt_ratings: false },
-			}),
+		queryFn: () => ytsRequest.getMovies<IMoviesResponse>(query),
 		staleTime: ms('5s'),
 	})
 

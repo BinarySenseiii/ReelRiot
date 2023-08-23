@@ -74,13 +74,6 @@ export interface IMovieResult {
 	page_number: number
 }
 
-export interface IMovieDetailResponse {
-	status: string
-	data: {
-		movie: IMovie
-	}
-}
-
 export interface IMovieDetail {
 	movie: IMovie
 }

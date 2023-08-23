@@ -1,20 +1,12 @@
-import {
-	Badge,
-	Box,
-	Button,
-	Group,
-	Rating,
-	Stack,
-	Text,
-	Title,
-} from '@mantine/core'
+import { Badge, Button, Group, Rating, Stack, Text, Title } from '@mantine/core'
 import React from 'react'
 
 import { IMovie } from '@/types/movie-types'
 import { checkQuality } from '@/utils'
+import Link from 'next/link'
+import { BiHeart } from 'react-icons/bi'
 import CustomImage from '../CustomImage'
 import useMovieStyles from './movieSyles'
-import { BiHeart } from 'react-icons/bi'
 
 type MovieProps = {
 	movie: IMovie
@@ -61,15 +53,20 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
 						: "We're currently in the process of preparing a comprehensive description for this movie Stay Tuned"}
 				</Text>
 				<div className="flex gap-2">
-					<Button
-						className="flex-1"
-						variant="white"
-						compact
-						color="dark"
-						fullWidth
+					<Link
+						href={`/movie/${movie.slug}?id=${movie.imdb_code}`}
+						className="w-full"
 					>
-						View Details
-					</Button>
+						<Button
+							className="flex-1"
+							variant="white"
+							compact
+							color="dark"
+							fullWidth
+						>
+							View Details
+						</Button>
+					</Link>
 					<Button compact w="max-content">
 						<BiHeart size="20px" />
 					</Button>

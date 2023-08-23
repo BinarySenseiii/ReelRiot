@@ -31,7 +31,7 @@ const MoviePagination: React.FC<MoviePaginationProps> = ({
 					<Skeleton visible height={40} width={300} mx={'auto'} />
 				</Box>
 			) : (
-				<Stack align="center" mt={withCount ? 'xl' : 0}>
+				<Stack align="center" mt={withCount ? 'xl' : 'xs'}>
 					{withCount &&
 						(movieCount !== undefined && movieCount > 0 ? (
 							<Title align="center" fz="lg">

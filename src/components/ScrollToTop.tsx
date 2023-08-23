@@ -6,20 +6,15 @@ export default function ScrollToTop() {
 	const [scroll, scrollTo] = useWindowScroll()
 
 	return (
-		<Affix
-			position={{ bottom: 20, right: 20 }}
-			sx={{
-				mixBlendMode: 'difference',
-			}}
-		>
+		<Affix position={{ bottom: 20, right: 20 }}>
 			<Transition transition="scale" mounted={scroll.y > 0}>
 				{transitionStyles => (
 					<Box
 						style={transitionStyles}
 						onClick={() => scrollTo({ y: 0 })}
 						sx={{
-							height: rem(40),
-							width: rem(40),
+							height: rem(30),
+							width: rem(30),
 							borderRadius: '50%',
 							mixBlendMode: 'difference',
 							background: 'white',
@@ -27,10 +22,7 @@ export default function ScrollToTop() {
 						}}
 					>
 						<Center h="100%">
-							<BiUpArrowAlt
-								fontSize={rem(25)}
-								style={{ mixBlendMode: 'difference' }}
-							/>
+							<BiUpArrowAlt fontSize={rem(20)} color="black" />
 						</Center>
 					</Box>
 				)}
