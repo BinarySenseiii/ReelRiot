@@ -22,32 +22,17 @@ const tabData = [
 	},
 ]
 
-const MovieTabs: React.FC<MovieTabsProps> = ({
-	images,
-	ytsMovieTitle,
-	videos,
-	ytsImages,
-}) => {
+const MovieTabs: React.FC<MovieTabsProps> = ({ images, ytsMovieTitle, videos, ytsImages }) => {
 	const tabPanels = useMemo(() => {
 		return tabData.map(tab => {
 			let component
 
 			if (tab.value === 'backdrops') {
-				component = (
-					<MovieBackdropImages
-						ytsImages={ytsImages}
-						backdrops={images?.backdrops}
-						title={ytsMovieTitle}
-					/>
-				)
+				component = <MovieBackdropImages ytsImages={ytsImages} backdrops={images?.backdrops} title={ytsMovieTitle} />
 			} else if (tab.value === 'posters') {
-				component = (
-					<MoviePosters posters={images?.posters} title={ytsMovieTitle} />
-				)
+				component = <MoviePosters posters={images?.posters} title={ytsMovieTitle} />
 			} else if (tab.value === 'videos') {
-				component = (
-					<MovieVideos title={ytsMovieTitle} videos={videos?.results} />
-				)
+				component = <MovieVideos title={ytsMovieTitle} videos={videos?.results} />
 			}
 
 			return { value: tab.value, component }
@@ -55,11 +40,7 @@ const MovieTabs: React.FC<MovieTabsProps> = ({
 	}, [images, ytsMovieTitle, videos, ytsImages])
 
 	return (
-		<Tabs
-			defaultValue="backdrops"
-			mt="sm"
-			styles={{ tabsList: { border: 0, marginBottom: '.5rem' } }}
-		>
+		<Tabs defaultValue="backdrops" mt="sm" styles={{ tabsList: { border: 0, marginBottom: '.5rem' } }}>
 			<Tabs.List>
 				{tabData.map((tab, index) => (
 					<Tabs.Tab key={index} value={tab.value} icon={tab.icon}>

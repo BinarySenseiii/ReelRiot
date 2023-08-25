@@ -1,15 +1,8 @@
 import { ITorrent } from '@/types/movie-types'
-import {
-	Anchor,
-	Button,
-	Group,
-	Stack,
-	Text,
-	Title,
-	Tooltip,
-} from '@mantine/core'
+import { Anchor, Button, Group, Stack, Text, Title } from '@mantine/core'
 import React from 'react'
 import { BiDownload } from 'react-icons/bi'
+import { CustomTooltip } from '../ui'
 
 type MovieTorrentsProps = {
 	isTitle: boolean
@@ -27,14 +20,7 @@ const MovieTorrents: React.FC<MovieTorrentsProps> = ({
 
 		<Group>
 			{torrents.map(torrent => (
-				<Tooltip
-					label={torrent.size}
-					color="brand"
-					withArrow
-					arrowSize={6}
-					key={torrent.date_uploaded_unix}
-					arrowOffset={20}
-				>
+				<CustomTooltip label={torrent.size} key={torrent.date_uploaded_unix}>
 					<Anchor href={torrent.url}>
 						<Button size="sm" compact variant="white" color="dark" fw={500}>
 							{torrent.quality}.
@@ -49,7 +35,7 @@ const MovieTorrents: React.FC<MovieTorrentsProps> = ({
 							)}
 						</Button>
 					</Anchor>
-				</Tooltip>
+				</CustomTooltip>
 			))}
 		</Group>
 

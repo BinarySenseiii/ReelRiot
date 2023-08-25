@@ -12,7 +12,7 @@ type CustomImageProps = {
 	aspect?: number
 }
 
-const PLACEHOLDER_URL =
+export const PLACEHOLDER_URL =
 	'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8AgCQAEHwEaXsb4awAAAABJRU5ErkJggg=='
 
 const CustomImage: React.FC<CustomImageProps> = ({
@@ -34,9 +34,9 @@ const CustomImage: React.FC<CustomImageProps> = ({
 				alt={`${title} not found`}
 				quality={60}
 				placeholder="blur"
+				blurDataURL={PLACEHOLDER_URL}
 				className="rounded-md object-cover"
 				sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw"
-				blurDataURL={PLACEHOLDER_URL}
 				onError={() => setImgSrc(noPoster)}
 			/>
 		</AspectRatio>

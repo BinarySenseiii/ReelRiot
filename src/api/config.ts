@@ -1,5 +1,6 @@
 export const LIST_MOVIES = '/list_movies.json'
 export const ytsMovieDetails = '/movie_details.json'
+export const ytsMovieSuggestions = '/movie_suggestions.json'
 
 export const TmdbMovieDetails = (imdbCode: string) => `/find/${imdbCode}`
 export const movieMetaDataEndpoint = (movieId: string, ENDPOINT: string) =>
@@ -30,3 +31,11 @@ export const getLogoImage = (path: string) =>
 
 export const getCastImage = (path: string = '') =>
 	`${IMAGE_BASE_URL}${CAST_IMAGE_SIZE}/${path}`
+
+export const NOT_FOUND_TEXT = `We apologize, but it appears that a description for this movie
+  is not currently available. Our team is working hard to gather
+  all of the relevant information for each movie in our
+  database, and we appreciate your understanding and patience
+  while we work to complete this task. In the meantime, you can
+  visit the official website or other reliable sources to learn
+  more about the movie and its story.`

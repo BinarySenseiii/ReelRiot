@@ -13,7 +13,7 @@ export const MovieBackdropImages = ({
 	title: string
 }) => {
 	return (
-		<div className="grid grid-cols-auto-fit gap-4">
+		<div className="grid grid-cols-backdrop gap-4">
 			{backdrops &&
 				backdrops.length > 0 &&
 				backdrops.map((backdrop, i) => (

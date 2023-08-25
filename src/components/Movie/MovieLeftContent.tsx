@@ -1,4 +1,4 @@
-import { Anchor, Button, Grid } from '@mantine/core'
+import { Anchor, Button, Grid, Stack } from '@mantine/core'
 import React from 'react'
 import { BsFillBookmarkFill } from 'react-icons/bs'
 import CustomImage from '../CustomImage'
@@ -15,10 +15,10 @@ const MovieLeftContent: React.FC<MovieLeftContentProps> = ({
 	imdb_code,
 }) => {
 	return (
-		<Grid.Col span={4} pos="sticky" top={15}>
+		<Grid.Col span={3} pos="sticky" top={15}>
 			<CustomImage posterSrc={posterSrc} title={title} />
-			<div className="flex mt-3 gap-2">
-				<Button fullWidth leftIcon={<BsFillBookmarkFill />} size="xs">
+			<Stack mt="md">
+				<Button fullWidth leftIcon={<BsFillBookmarkFill />}>
 					Bookmark
 				</Button>
 
@@ -27,11 +27,11 @@ const MovieLeftContent: React.FC<MovieLeftContentProps> = ({
 					target="_blank"
 					className="w-full hover:no-underline"
 				>
-					<Button size="xs" fullWidth variant="white" color="dark">
+					<Button fullWidth variant="white" color="dark">
 						View Details On IMDB
 					</Button>
 				</Anchor>
-			</div>
+			</Stack>
 		</Grid.Col>
 	)
 }
