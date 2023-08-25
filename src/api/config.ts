@@ -16,8 +16,17 @@ export const IMAGE_BASE_URL: string = 'http://image.tmdb.org/t/p/'
 export const BACKDROP_SIZE: string = 'w1280'
 // w92, w154, w185, w342, w500, w780, original
 export const POSTER_SIZE: string = 'w780'
+export const LOGO_SIZE: string = 'w300'
+export const CAST_IMAGE_SIZE: string = 'w185'
 
 export const getBackdropImage = (path: string) =>
 	`${IMAGE_BASE_URL}${BACKDROP_SIZE}/${path}`
+
 export const getPosterImage = (path: string) =>
 	`${IMAGE_BASE_URL}${POSTER_SIZE}/${path}`
+
+export const getLogoImage = (path: string) =>
+	`${IMAGE_BASE_URL}${LOGO_SIZE}/${path}`
+
+export const getCastImage = (path: string = '') =>
+	`${IMAGE_BASE_URL}${CAST_IMAGE_SIZE}/${path}`

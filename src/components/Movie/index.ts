@@ -1,2 +1,7 @@
 export { default as MovieFilters } from './MovieFilters'
 export { default as MoviePagination } from './MoviePagination'
+export { default as MovieLeftContent } from './MovieLeftContent'
+export { default as MovieRightContent } from './MovieRightContent'
+export { default as MovieTorents } from './MovieTorrents'
+export { default as MovieVideos } from './MovieVideos'
+export { default as MovieTabs } from './MovieTabs'

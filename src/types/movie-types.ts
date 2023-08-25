@@ -26,6 +26,9 @@ export interface ITorrent {
 	hash: string
 	date_uploaded_unix: number
 	date_uploaded: string
+	video_codec: string
+	is_repack: string
+	bit_depth: string
 }
 
 export interface ICast {

@@ -10,6 +10,11 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'yts.mx',
 			},
+
+			{
+				protocol: 'http',
+				hostname: 'image.tmdb.org',
+			},
 		],
 	},
 }

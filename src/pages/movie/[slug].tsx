@@ -1,9 +1,12 @@
+import { getPosterImage } from '@/api/config'
 import { useMovie } from '@/api/hooks'
 import useTmdbMovie from '@/api/hooks/useTmdbMovie'
 import { TMDB_MOVIE_CACHE_KEY, YTS_MOVIE_CACHE_KEY } from '@/api/query-keys'
 import { tmdbRequest, ytsRequest } from '@/api/request'
+import { MovieLeftContent, MovieRightContent } from '@/components/Movie'
 import { Container } from '@/components/ui'
-import { ICredits } from '@/types/movie-types'
+import { IImages } from '@/types/movie-types'
+import { Grid } from '@mantine/core'
 import { QueryClient, dehydrate, useQueries } from '@tanstack/react-query'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -25,11 +28,28 @@ const MovieDetailPage: NextPage = () => {
 		})),
 	})
 
-	const cred = credits.data as ICredits
-
 	return (
 		<Container className="w-full" py="xl">
-			MovieDetailPage
+			<Grid className="items-start">
+				<MovieLeftContent
+					imdb_code={ytsMovie?.imdb_code}
+					title={ytsMovie?.title_english ?? ''}
+					posterSrc={
+						isTmdbMovie
+							? getPosterImage(tMovie.at(0)?.poster_path ?? '')
+							: ytsMovie?.large_cover_image ?? ''
+					}
+				/>
+
+				<MovieRightContent
+					isTmdbMovie={isTmdbMovie}
+					ytsMovie={ytsMovie}
+					tMovie={tMovie}
+					images={images.data as IImages}
+					videos={videos.data as any}
+					credits={credits.data as any}
+				/>
+			</Grid>
 		</Container>
 	)
 }

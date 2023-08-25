@@ -1,8 +1,8 @@
-import { IMovie, ITmdbMovieResult } from '@/types/movie-types'
+import { ITmdbMovieResult } from '@/types/movie-types'
 import { useQuery } from '@tanstack/react-query'
 import ms from 'ms'
 import { TMDB_MOVIE_CACHE_KEY } from '../query-keys'
-import { tmdbRequest, ytsRequest } from '../request'
+import { tmdbRequest } from '../request'
 
 const useTmdbMovie = (imdbCode: string) =>
 	useQuery({

@@ -8,16 +8,26 @@ type CustomImageProps = {
 	posterSrc: string
 	title: string
 	className?: string
+	isThumbnail?: boolean
+	aspect?: number
 }
 
 const PLACEHOLDER_URL =
 	'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8AgCQAEHwEaXsb4awAAAABJRU5ErkJggg=='
 
-const CustomImage: React.FC<CustomImageProps> = ({ posterSrc, title }) => {
+const CustomImage: React.FC<CustomImageProps> = ({
+	posterSrc,
+	title,
+	isThumbnail = false,
+	aspect,
+}) => {
 	const [imgSrc, setImgSrc] = useState<string | StaticImageData>(posterSrc)
 
 	return (
-		<AspectRatio ratio={4 / 5} pos="relative">
+		<AspectRatio
+			ratio={aspect ? aspect : isThumbnail ? 16 / 9 : 4 / 5}
+			pos="relative"
+		>
 			<Image
 				fill
 				src={imgSrc}
