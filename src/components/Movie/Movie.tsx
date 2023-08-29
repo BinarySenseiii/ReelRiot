@@ -1,4 +1,4 @@
-import { Badge, Button, Group, Rating, Stack, Text, Title } from '@mantine/core'
+import { Badge, Button, Group, Rating, Stack, Text, Title, rem } from '@mantine/core'
 import React, { Fragment, ReactNode } from 'react'
 
 import { IMovie } from '@/types/movie-types'
@@ -9,6 +9,7 @@ import CustomImage from '../CustomImage'
 import useMovieStyles from './movieSyles'
 import { useRouter } from 'next/router'
 import { CustomTooltip } from '../ui'
+import { useMediaQuery } from '@mantine/hooks'
 
 type MovieProps = {
 	movie: IMovie
@@ -31,22 +32,27 @@ const Movie: React.FC<MovieProps> = ({ movie, isSuggestionList, withContent = tr
 		classes: { root },
 	} = useMovieStyles()
 	const router = useRouter()
+	const matches = useMediaQuery(`(min-width: ${rem('640px')})`)
 
 	const REDIRECT_URL = `/movie/${movie.slug}?id=${movie.imdb_code}`
 
 	return (
 		<ContentWrapper withContent={withContent} label={movie.title_long}>
-			<Stack className={'cursor-pointer'} onClick={() => !withContent && router.push(REDIRECT_URL)}>
+			<Stack className={'cursor-pointer relative'} onClick={() => !withContent && router.push(REDIRECT_URL)}>
 				<CustomImage
 					posterSrc={isSuggestionList ? movie.medium_cover_image : movie.large_cover_image}
 					title={movie.title_english}
 				/>
+
+				<Badge ml="auto" classNames={{ root }} className="block sm:hidden absolute">
+					{checkQuality(movie.torrents)}
+				</Badge>
 				{withContent && (
-					<Stack spacing="xs">
-						<Title color="dimmed" lineClamp={1} order={5}>
+					<Stack className="gap-2 sm:gap-3">
+						<Title lineClamp={1} className="text-sm sm:text-base">
 							{movie.title}
 						</Title>
-						<Group>
+						<Group className="hidden sm:flex">
 							<Group spacing={1}>
 								<Rating defaultValue={2} count={1} />
 								<Text color="dimmed" fw={600} fz="xs">
@@ -66,19 +72,19 @@ const Movie: React.FC<MovieProps> = ({ movie, isSuggestionList, withContent = tr
 								{checkQuality(movie.torrents)}
 							</Badge>
 						</Group>
-						<Text lineClamp={2} fz="xs">
+						<Text lineClamp={2} fz="xs" color="dimmed">
 							{movie.description_full.length > 10
 								? movie.description_full
 								: "We're currently in the process of preparing a comprehensive description for this movie Stay Tuned"}
 						</Text>
 						<div className="flex gap-2">
 							<Link href={REDIRECT_URL} as={REDIRECT_URL} className="w-full">
-								<Button className="flex-1" variant="white" compact color="dark" fullWidth>
-									View Details
+								<Button className="flex-1" variant="white" size={matches ? 'sm' : 'xs'} compact color="dark" fullWidth>
+									View More
 								</Button>
 							</Link>
-							<Button compact w="max-content">
-								<BiHeart size="20px" />
+							<Button compact w="max-content" size={matches ? 'sm' : 'xs'}>
+								<BiHeart className="text-lg sm:text-xl" />
 							</Button>
 						</div>
 					</Stack>

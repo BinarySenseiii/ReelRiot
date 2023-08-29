@@ -12,11 +12,9 @@ interface MovieListProps {
 const MovieList: React.FC<MovieListProps> = ({ isLoading, movies }) => {
 	return (
 		<Container className="w-full" py="xl">
-			<div className="grid gap-6 grid-cols-1 sm:grid-cols-auto-fit">
+			<div className="grid gap-3 sm:gap-6 grid-cols-2 sm:grid-cols-auto-fit">
 				{isLoading
-					? Array.from({ length: 18 }, (_, i) => (
-							<Skeleton key={i} visible={isLoading} height={300} />
-					  ))
+					? Array.from({ length: 18 }, (_, i) => <Skeleton key={i} visible={isLoading} height={300} />)
 					: movies?.map(movie => <Movie key={movie.id} movie={movie} />)}
 			</div>
 		</Container>
