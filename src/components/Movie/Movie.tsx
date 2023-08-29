@@ -44,9 +44,11 @@ const Movie: React.FC<MovieProps> = ({ movie, isSuggestionList, withContent = tr
 					title={movie.title_english}
 				/>
 
-				<Badge ml="auto" classNames={{ root }} className="block sm:hidden absolute">
-					{checkQuality(movie.torrents)}
-				</Badge>
+				{withContent && (
+					<Badge ml="auto" classNames={{ root }} className="block sm:hidden absolute">
+						{checkQuality(movie.torrents)}
+					</Badge>
+				)}
 				{withContent && (
 					<Stack className="gap-2 sm:gap-3">
 						<Title lineClamp={1} className="text-sm sm:text-base">
