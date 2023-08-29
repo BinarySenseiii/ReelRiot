@@ -7,7 +7,7 @@ import { tmdbRequest } from '../request'
 const useTmdbMovie = (imdbCode: string) =>
 	useQuery({
 		queryKey: [TMDB_MOVIE_CACHE_KEY, { imdbCode }],
-		queryFn: () => tmdbRequest.getMovieDetails<ITmdbMovieResult>(imdbCode),
+		queryFn: () => tmdbRequest.getMovieDetails(imdbCode),
 		staleTime: ms('5s'),
 		select: data => data.movie_results,
 	})
