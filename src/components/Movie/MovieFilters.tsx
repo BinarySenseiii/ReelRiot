@@ -48,19 +48,14 @@ const FilteringMovies: React.FC<{
 					label="Search Term:"
 					size="md"
 					autoComplete="off"
-					placeholder="Search Movie By  Movie Title Or IMDB Code"
+					placeholder="Search Movie"
 					onKeyDown={getHotkeyHandler([['Enter', onQuerySubmit]])}
 					classNames={{
 						label: 'mb-2',
 						rightSection: 'right-6',
 					}}
 					rightSection={
-						<Button
-							compact
-							loaderPosition="center"
-							onClick={onQuerySubmit}
-							loading={isLoading}
-						>
+						<Button compact loaderPosition="center" onClick={onQuerySubmit} loading={isLoading}>
 							SEARCH
 						</Button>
 					}

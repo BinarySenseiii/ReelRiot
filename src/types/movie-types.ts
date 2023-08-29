@@ -214,3 +214,8 @@ export interface IGalleryBackdrops {
 	vote_count: number
 	width: number
 }
+
+export type queryArgs = {
+	imdbCode: string
+	isTmdbMovie: boolean
+}

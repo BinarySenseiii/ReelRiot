@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import { PLACEHOLDER_URL } from '../CustomImage'
 import { CustomTooltip } from '../ui'
 
-const NOT_FOUND_URL = 'https://otoa-website.s3.us-east-2.amazonaws.com/profiles/no-image.png'
+export const NOT_FOUND_URL = 'https://otoa-website.s3.us-east-2.amazonaws.com/profiles/no-image.png'
 
 interface CastProps {
 	name: string
@@ -42,7 +42,7 @@ const Cast: React.FC<CastProps> = ({ name, imageUrl }) => {
 interface MovieCastProps {
 	isTmdbMovie: boolean
 	ytsCast: ICast[]
-	tmdbCast: ImdbCast[]
+	tmdbCast: ImdbCast[] | void
 	isLoading: boolean
 }
 

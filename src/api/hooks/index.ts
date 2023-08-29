@@ -1,3 +1,7 @@
 export { default as useMovies } from './useMovies'
 export { default as useMovie } from './useMovie'
 export { default as useMovieSuggestions } from './useMovieSuggestions'
+export { default as useImages } from './useImages'
+export { default as useCredits } from './useCredits'
+export { default as useVideos } from './useVideos'
+export { default as useReviews } from './useReviews'

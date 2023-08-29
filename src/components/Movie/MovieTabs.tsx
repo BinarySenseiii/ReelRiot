@@ -1,15 +1,16 @@
-import React, { useMemo } from 'react'
+import { IImages, ITmdbVideosResult, queryArgs } from '@/types/movie-types'
 import { Tabs } from '@mantine/core'
+import React, { useMemo } from 'react'
 import { BsFillCameraVideoFill, BsImages } from 'react-icons/bs'
-import { IImages, IVideoResult } from '@/types/movie-types'
 import { MovieBackdropImages, MoviePosters } from './MovieImages'
 import MovieVideos from './MovieVideos'
+import { useVideos } from '@/api/hooks'
 
 interface MovieTabsProps {
 	images?: IImages
 	ytsMovieTitle: string
-	videos: IVideoResult
 	ytsImages: string[]
+	queryArgs: queryArgs
 }
 
 const tabData = [
@@ -22,7 +23,8 @@ const tabData = [
 	},
 ]
 
-const MovieTabs: React.FC<MovieTabsProps> = ({ images, ytsMovieTitle, videos, ytsImages }) => {
+const MovieTabs: React.FC<MovieTabsProps> = ({ queryArgs, images, ytsMovieTitle, ytsImages }) => {
+	const videos = useVideos(queryArgs)
 	const tabPanels = useMemo(() => {
 		return tabData.map(tab => {
 			let component
@@ -32,7 +34,7 @@ const MovieTabs: React.FC<MovieTabsProps> = ({ images, ytsMovieTitle, videos, yt
 			} else if (tab.value === 'posters') {
 				component = <MoviePosters posters={images?.posters} title={ytsMovieTitle} />
 			} else if (tab.value === 'videos') {
-				component = <MovieVideos title={ytsMovieTitle} videos={videos?.results} />
+				component = <MovieVideos title={ytsMovieTitle} videos={videos.data} isLoading={videos.isLoading} />
 			}
 
 			return { value: tab.value, component }
@@ -43,7 +45,7 @@ const MovieTabs: React.FC<MovieTabsProps> = ({ images, ytsMovieTitle, videos, yt
 		<Tabs defaultValue="backdrops" mt="sm" styles={{ tabsList: { border: 0, marginBottom: '.5rem' } }}>
 			<Tabs.List>
 				{tabData.map((tab, index) => (
-					<Tabs.Tab key={index} value={tab.value} icon={tab.icon}>
+					<Tabs.Tab key={index} value={tab.value} icon={tab.icon} className="text-xs md:text-base">
 						{tab.label}
 					</Tabs.Tab>
 				))}

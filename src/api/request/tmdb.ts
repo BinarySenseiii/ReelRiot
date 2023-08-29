@@ -1,12 +1,13 @@
-import {
-	ICredits,
-	IImages,
-	IMovie,
-	IReviewResult,
-	IVideos,
-} from '@/types/movie-types'
+import { ICredits, IImages, IMovie, IReviewResult, ITmdbMovieResult, IVideos } from '@/types/movie-types'
 import { getTmdbData } from '../client'
-import { TmdbMovieDetails, movieMetaDataEndpoint } from '../config'
+import {
+	CREDITS_ENDPOINT,
+	IMAGES_ENDPOINT,
+	REVIEW_ENDPOINT,
+	TmdbMovieDetails,
+	VIDEOS_ENDPOINT,
+	movieMetaDataEndpoint,
+} from '../config'
 
 export interface IMovieResponse {
 	status: string
@@ -15,40 +16,18 @@ export interface IMovieResponse {
 	}
 }
 
-interface QueryDefinition<T> {
-	endpoint: string
-	fetcherFunc: (imdbCode: string) => Promise<T>
-}
-
-const createQuery = <T>(endpoint: string): QueryDefinition<T> => {
-	return {
-		endpoint,
-		fetcherFunc: (imdbCode: string) =>
-			getTmdbData<T>(movieMetaDataEndpoint(imdbCode, endpoint), {
-				params: {
-					api_key: process.env.NEXT_PUBLIC_API_KEY,
-				},
-			}),
-	}
+const IMDB_PARAMS = {
+	params: {
+		external_source: 'imdb_id',
+	},
 }
 
 const tmdbRequest = {
-	getMovieDetails: <T>(imdbCode: string) =>
-		getTmdbData<T>(TmdbMovieDetails(imdbCode), {
-			params: {
-				api_key: process.env.NEXT_PUBLIC_API_KEY,
-				external_source: 'imdb_id',
-			},
-		}),
-
-	queries: [
-		createQuery<ICredits>('credits'),
-		createQuery<IImages>('images?&append_to_response=images'),
-		createQuery<IVideos>('videos'),
-		createQuery<IReviewResult>('reviews'),
-	],
+	getMovieDetails: (imdbCode: string) => getTmdbData<ITmdbMovieResult>(TmdbMovieDetails(imdbCode), IMDB_PARAMS),
+	getMovieCredits: (imdbCode: string) => getTmdbData<ICredits>(movieMetaDataEndpoint(imdbCode, CREDITS_ENDPOINT)),
+	getMovieImages: (imdbCode: string) => getTmdbData<IImages>(movieMetaDataEndpoint(imdbCode, IMAGES_ENDPOINT)),
+	getMovieVideos: (imdbCode: string) => getTmdbData<IVideos>(movieMetaDataEndpoint(imdbCode, VIDEOS_ENDPOINT)),
+	getMovieReviews: (imdbCode: string) => getTmdbData<IReviewResult>(movieMetaDataEndpoint(imdbCode, REVIEW_ENDPOINT)),
 }
 
 export default tmdbRequest
-
-export interface IQueriesResult {}

@@ -5,7 +5,7 @@ const roboto = Roboto({
 	subsets: ['latin'],
 	weight: ['700', '900'],
 })
-const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500'] })
+export const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500'] })
 
 const overRideFonts: MantineThemeOverride = {
 	fontFamily: poppins.style.fontFamily,

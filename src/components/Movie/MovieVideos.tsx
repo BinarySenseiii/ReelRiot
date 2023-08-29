@@ -1,38 +1,53 @@
-import { IVideo } from '@/types/movie-types'
-import { Anchor, AspectRatio, Group, Text } from '@mantine/core'
+import { ITmdbVideosResult } from '@/types/movie-types'
+import { Carousel } from '@mantine/carousel'
+import { Anchor, AspectRatio, Group, Skeleton, Text } from '@mantine/core'
 import React from 'react'
 import { BiLinkExternal } from 'react-icons/bi'
 import ReactPlayer from 'react-player/youtube'
+import Carousal from '../Carousal'
 
 interface MovieVideosProps {
-	videos: IVideo[]
+	videos: ITmdbVideosResult[] | undefined
 	title: string
+	isLoading: boolean
 }
 
-const MovieVideos: React.FC<MovieVideosProps> = ({ videos, title }) => {
+const MovieVideos: React.FC<MovieVideosProps> = ({ videos, title, isLoading }) => {
 	return (
 		<>
-			{videos && videos.length > 0 ? (
-				<div className="grid grid-cols-auto-fit-video gap-4">
+			{isLoading ? (
+				<Carousal>
+					{Array(10)
+						.fill(null)
+						.map((_, index) => (
+							<Carousel.Slide key={index}>
+								<AspectRatio ratio={16 / 9}>
+									<Skeleton visible />
+								</AspectRatio>
+							</Carousel.Slide>
+						))}
+				</Carousal>
+			) : videos && videos.length > 0 ? (
+				<Carousal>
 					{videos.map((video, i) => (
-						<AspectRatio key={video.id} ratio={16 / 9}>
-							<ReactPlayer
-								url={`https://www.youtube.com/watch?v=${video.key}`}
-								width="100%"
-								height="100%"
-								light
-								controls
-							/>
-						</AspectRatio>
+						<Carousel.Slide key={video.id}>
+							<AspectRatio ratio={16 / 9}>
+								<ReactPlayer
+									url={`https://www.youtube.com/watch?v=${video.key}`}
+									width="100%"
+									height="100%"
+									light
+									controls
+								/>
+							</AspectRatio>
+						</Carousel.Slide>
 					))}
-				</div>
+				</Carousal>
 			) : (
 				<div>
 					<Text>No Videos available for {title}</Text>
 					<Anchor
-						href={`https://www.youtube.com/results?search_query=${encodeURIComponent(
-							title,
-						)}`}
+						href={`https://www.youtube.com/results?search_query=${encodeURIComponent(title)}`}
 						target="_blank"
 						className="inline-block items-center gap-1 mt-2"
 					>
