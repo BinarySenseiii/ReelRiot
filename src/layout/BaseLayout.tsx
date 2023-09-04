@@ -1,10 +1,10 @@
 import ScrollToTop from '@/components/ScrollToTop'
 import Meta from '@/components/Seo'
-import React, {ReactNode} from 'react'
+import React, { ReactNode } from 'react'
 import NextNProgress from 'nextjs-progressbar'
-import {Box, createStyles} from '@mantine/core'
-import {Footer} from './Footer'
-import {Navigation} from './Navigation'
+import { Box, createStyles } from '@mantine/core'
+import { Footer } from './Footer'
+import { Navigation } from './Navigation'
 
 type BaseLayoutProps = {
 	children: ReactNode
@@ -22,8 +22,8 @@ const useBaseLayoutStyles = createStyles(() => ({
 	},
 }))
 
-const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
-	const {classes} = useBaseLayoutStyles()
+const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
+	const { classes } = useBaseLayoutStyles()
 	return (
 		<React.Fragment>
 			<Meta />

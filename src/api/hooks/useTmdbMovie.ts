@@ -1,4 +1,3 @@
-import { ITmdbMovieResult } from '@/types/movie-types'
 import { useQuery } from '@tanstack/react-query'
 import ms from 'ms'
 import { TMDB_MOVIE_CACHE_KEY } from '../query-keys'

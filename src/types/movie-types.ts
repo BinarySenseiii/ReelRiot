@@ -7,6 +7,35 @@ export interface IFilter {
 	label: string
 }
 
+export type MovieGenre =
+	| 'all'
+	| 'action'
+	| 'adventure'
+	| 'animation'
+	| 'biography'
+	| 'comedy'
+	| 'crime'
+	| 'documentary'
+	| 'drama'
+	| 'family'
+	| 'fantasy'
+	| 'film-noir'
+	| 'game-show'
+	| 'history'
+	| 'horror'
+	| 'music'
+	| 'musical'
+	| 'mystery'
+	| 'news'
+	| 'reality-tv'
+	| 'romance'
+	| 'sci-fi'
+	| 'sport'
+	| 'talk-show'
+	| 'thriller'
+	| 'war'
+	| 'western'
+
 export interface IFilterOption {
 	id: number
 	label: string

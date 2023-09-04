@@ -5,7 +5,7 @@ import { QueryKey } from '@/types/context/query-type'
 import { IFilterOption } from '@/types/movie-types'
 import { Box, Button, Select, TextInput } from '@mantine/core'
 import { getHotkeyHandler } from '@mantine/hooks'
-import React, { Dispatch, SetStateAction, useRef } from 'react'
+import React, { useRef } from 'react'
 
 const FilteringMovies: React.FC<{
 	isLoading: boolean

@@ -12,10 +12,7 @@ const NavLink: React.FC<NavLinkProps> = ({ link, label, onClose }) => {
 	const router = useRouter()
 	const { classes, cx } = useStyles()
 
-	const routeNavigateHandle = (
-		evt: React.MouseEvent<HTMLAnchorElement>,
-		route: string,
-	) => {
+	const routeNavigateHandle = (evt: React.MouseEvent<HTMLAnchorElement>, route: string) => {
 		evt.preventDefault()
 		router.push(route)
 		onClose()

@@ -1,18 +1,15 @@
+import { MovieGenre } from '../movie-types'
+
 export type QueryType = {
 	quality?: string
-	genre?: string
+	genre?: MovieGenre
 	minimum_rating?: string
 	sort_by?: string
 	query_term?: string
 	page?: number
 }
 
-export type QueryKey =
-	| 'quality'
-	| 'genre'
-	| 'minimum_rating'
-	| 'sort_by'
-	| 'query_term'
+export type QueryKey = 'quality' | 'genre' | 'minimum_rating' | 'sort_by' | 'query_term'
 
 export interface QueryActionType {
 	query: string
