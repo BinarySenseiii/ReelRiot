@@ -16,6 +16,7 @@ type MovieProps = {
 	isSuggestionList?: boolean
 	withContent?: boolean
 	withMinimalContent?: boolean
+	aspect?: number
 }
 
 const ContentWrapper = ({
@@ -28,7 +29,13 @@ const ContentWrapper = ({
 	label?: string
 }) => (withContent ? <Fragment>{children}</Fragment> : <CustomTooltip label={label ?? ''}>{children}</CustomTooltip>)
 
-const Movie: React.FC<MovieProps> = ({ movie, isSuggestionList, withContent = true, withMinimalContent = false }) => {
+const Movie: React.FC<MovieProps> = ({
+	movie,
+	isSuggestionList,
+	withContent = true,
+	aspect = 4 / 5,
+	withMinimalContent = false,
+}) => {
 	const {
 		classes: { root },
 	} = useMovieStyles()
@@ -46,6 +53,7 @@ const Movie: React.FC<MovieProps> = ({ movie, isSuggestionList, withContent = tr
 				<CustomImage
 					posterSrc={isSuggestionList ? movie.medium_cover_image : movie.large_cover_image}
 					title={movie.title_english}
+					aspect={aspect}
 				/>
 
 				{withContent && (
@@ -78,13 +86,13 @@ const Movie: React.FC<MovieProps> = ({ movie, isSuggestionList, withContent = tr
 							)}
 						</Group>
 
-						<Text lineClamp={2} fz="xs" color="dimmed">
-							{movie.description_full.length > 10
-								? movie.description_full
-								: "We're currently in the process of preparing a comprehensive description for this movie Stay Tuned"}
-						</Text>
 						{!withMinimalContent && (
 							<>
+								<Text lineClamp={2} fz="xs" color="dimmed">
+									{movie.description_full.length > 10
+										? movie.description_full
+										: "We're currently in the process of preparing a comprehensive description for this movie Stay Tuned"}
+								</Text>
 								<div className="flex gap-2">
 									<Link href={REDIRECT_URL} as={REDIRECT_URL} className="w-full no-underline">
 										<Button

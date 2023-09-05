@@ -11,6 +11,11 @@ interface CarouselType {
 	withIndicatorStyles?: boolean
 	withBreakpoints?: boolean
 	withControls?: boolean
+	breakpoints?: {
+		maxWidth: string
+		slideSize: string
+		slideGap?: number
+	}[]
 }
 
 const Carousal: React.FC<CarouselType> = ({
@@ -19,19 +24,13 @@ const Carousal: React.FC<CarouselType> = ({
 	delay = 2000,
 	withIndicators = false,
 	withIndicatorStyles = false,
-	withBreakpoints = true,
 	withControls = false,
+	breakpoints = [
+		{ maxWidth: 'md', slideSize: '50%' },
+		{ maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
+	],
 }) => {
 	const autoplay = useRef(Autoplay({ delay, stopOnInteraction: false }))
-
-	const additonalProps = {
-		breakpoints: [
-			{ maxWidth: 'md', slideSize: '50%' },
-			{ maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
-		],
-	}
-
-	const withPoints = withBreakpoints && additonalProps
 
 	return (
 		<Carousel
@@ -70,7 +69,7 @@ const Carousal: React.FC<CarouselType> = ({
 					  }
 					: {},
 			})}
-			{...withPoints}
+			breakpoints={breakpoints}
 		>
 			{children}
 		</Carousel>

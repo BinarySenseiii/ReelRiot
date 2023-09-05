@@ -17,12 +17,20 @@ const MovieByGenre: React.FC<MovieByGenreProps> = ({ title, genre }) => {
 	const { data: result, isLoading } = useMovies({ genre, page: 1, quality: '2160p' })
 	return (
 		<Stack>
-			<Text fw={500} fz="lg">
+			<Text fw={500} fz="xl">
 				{title}
 			</Text>
-			<Carousal slideSize="20%" withControls={true} delay={ms('5s')}>
+			<Carousal
+				slideSize="25%"
+				delay={ms('2s')}
+				breakpoints={[
+					{ maxWidth: 'md', slideSize: '33.33%' },
+					{ maxWidth: 'sm', slideSize: '50%', slideGap: 10 },
+				]}
+				key={Math.random()}
+			>
 				{isLoading
-					? dummyList.map((_, index) => (
+					? dummyList().map((_, index) => (
 							<Carousel.Slide key={index}>
 								<AspectRatio ratio={4 / 5}>
 									<Skeleton visible h="100%" w="100%" />
@@ -31,7 +39,7 @@ const MovieByGenre: React.FC<MovieByGenreProps> = ({ title, genre }) => {
 					  ))
 					: result?.data.movies.map(movie => (
 							<Carousel.Slide key={movie.id}>
-								<Movie movie={movie} withMinimalContent={true} />
+								<Movie movie={movie} withContent={false} />
 							</Carousel.Slide>
 					  ))}
 			</Carousal>

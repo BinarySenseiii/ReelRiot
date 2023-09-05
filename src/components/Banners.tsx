@@ -6,13 +6,14 @@ import ms from 'ms'
 
 const Banners = () => {
 	return (
-		<div className="min-h-screen relative ">
+		<div className="md:min-h-screen relative ">
 			<Carousal
 				withBreakpoints={false}
 				slideSize="100%"
 				delay={ms('30s')}
 				withIndicators={true}
 				withIndicatorStyles={true}
+				breakpoints={[]}
 			>
 				{banners.map(movie => (
 					<Carousel.Slide key={movie.id}>

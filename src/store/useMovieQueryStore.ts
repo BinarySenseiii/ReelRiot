@@ -19,6 +19,8 @@ const useMovieQueryStore = create<iMovieQuery>(set => ({
 				}
 			}),
 
+		resetState: () => set(state => (state.query = {})),
+
 		onPaginationChange: (pageNumber: number) =>
 			set(state => ({
 				query: { ...state.query, page: pageNumber },
@@ -28,4 +30,4 @@ const useMovieQueryStore = create<iMovieQuery>(set => ({
 
 export const useMovieQuery = () => useMovieQueryStore(state => state.query)
 export const useMovieQueryActions = () => useMovieQueryStore(state => state.actions)
-export const dummyList = Array(MOVIES_LIMIT).fill(null)
+export const dummyList = (limit: number = MOVIES_LIMIT) => Array(limit).fill(null)
