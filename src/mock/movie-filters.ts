@@ -38,6 +38,11 @@ export const movieGenres = [
 	{ value: 'western', label: 'Western' },
 ]
 
+export const movieGenresWithHash = movieGenres.map(genre => ({
+	value: genre.value,
+	label: `#${genre.label}`,
+}))
+
 export const movieRatings = [
 	{ value: '0', label: 'All' },
 	{ value: '9', label: '9+' },

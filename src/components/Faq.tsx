@@ -26,7 +26,6 @@ export default function Faq() {
 				<Accordion.Item className={classes.item} value="reset-password">
 					<Accordion.Control>How can I reset my password?</Accordion.Control>
 					<Accordion.Panel>
-						{/* Replace this placeholder content with the actual answer */}
 						Your password can be reset by visiting the "Forgot Password" page and following the instructions provided
 						there.
 					</Accordion.Panel>
