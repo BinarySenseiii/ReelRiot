@@ -12,9 +12,8 @@ const QuickBrowse = ({ value, setValue }: { value: MovieGenre; setValue: Dispatc
 			<Stack className="w-full">
 				<Stack spacing="xs">
 					<Title order={4}>Discover Exciting Movies</Title>
-					<Text color="dimmed">
-						Take your time to browse through our curated collection and find the perfect movie for your next movie
-						night. Grab some popcorn, sit back, and immerse yourself in the world of cinema.
+					<Text color="dimmed" maw={768}>
+						Take your time to browse through our curated collection and find the perfect movie for your next movie night
 					</Text>
 				</Stack>
 				<ScrollArea offsetScrollbars>

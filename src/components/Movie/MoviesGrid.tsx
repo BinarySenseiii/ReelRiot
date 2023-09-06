@@ -1,7 +1,7 @@
 import { useMovies } from '@/api/hooks'
 import { dummyList } from '@/store/useMovieQueryStore'
 import { MovieGenre } from '@/types/movie-types'
-import { AspectRatio, LoadingOverlay, Paper, SimpleGrid, Skeleton, Stack, Text, Title } from '@mantine/core'
+import { AspectRatio, Paper, SimpleGrid, Skeleton, Stack, Text, Title } from '@mantine/core'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 import Movie from './Movie'
@@ -11,6 +11,9 @@ interface MovieByGenreProps {
 	moviesLimit?: number
 	setIsDisabled?: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+// sir u have any work for me ??? some minor changes on isuit then i'll check with sir cris for nft connect
+
 const MoviesGrid: React.FC<MovieByGenreProps> = ({ genre, withCtx = true, moviesLimit = 10, setIsDisabled }) => {
 	const { data: result, isLoading } = useMovies({
 		genre,
@@ -36,7 +39,6 @@ const MoviesGrid: React.FC<MovieByGenreProps> = ({ genre, withCtx = true, movies
 			]}
 			pos="relative"
 		>
-			<LoadingOverlay visible={isLoading} overlayBlur={2} />
 			{withCtx && (
 				<Paper className="col-span-2" shadow="md" p="lg" bg="dark.6">
 					<Stack justify="space-between" h="100%">
