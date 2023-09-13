@@ -8,6 +8,7 @@ import { menuLinks } from '@/mock'
 import Logo from '../Logo'
 import NavLink from './NavLink'
 import { useRouter } from 'next/router'
+import AuthBtn from '@/components/AuthBtn'
 
 const Navigation: React.FC = () => {
 	const [opened, { toggle, close }] = useDisclosure(false)
@@ -29,9 +30,15 @@ const Navigation: React.FC = () => {
 
 						<Group spacing={5} className={classes.links}>
 							{items}
-							<Button size="xs">Login / Sign Up</Button>
+							<AuthBtn />
 						</Group>
-						<Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" aria-label="toggle menu" />
+						<Burger
+							opened={opened}
+							onClick={toggle}
+							className={classes.burger}
+							size="sm"
+							aria-label="toggle menu"
+						/>
 					</Box>
 				</Container>
 			</Header>
@@ -39,9 +46,7 @@ const Navigation: React.FC = () => {
 				{styles => (
 					<Paper className={classes.dropdown} style={styles}>
 						{items}
-						<Button size="xs" mb="sm" mx={16}>
-							Login / Sign Up
-						</Button>
+						<AuthBtn mb="sm" mx={16} />
 					</Paper>
 				)}
 			</Transition>

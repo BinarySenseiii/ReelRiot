@@ -22,7 +22,10 @@ const Cast: React.FC<CastProps> = ({ name, imageUrl }) => {
 
 	return (
 		<CustomTooltip label={name}>
-			<Anchor href={`https://www.imdb.com/find?q=${encodeURIComponent(name)}&ref_=nv_sr_sm`} target="_blank">
+			<Anchor
+				href={`https://www.imdb.com/find?q=${encodeURIComponent(name)}&ref_=nv_sr_sm`}
+				target="_blank"
+			>
 				<NextImage
 					src={imgSrc || NOT_FOUND_URL}
 					alt={`${name} not found`}
@@ -58,9 +61,15 @@ const MovieCast: React.FC<MovieCastProps> = ({ isTmdbMovie, ytsCast, tmdbCast, i
 									.fill(null)
 									.map((_, i) => <Skeleton key={i} visible height={90} width={90} />)
 							: tmdbCast?.map(cast => (
-									<Cast key={cast.id} name={cast.original_name} imageUrl={getCastImage(cast.profile_path || '')} />
+									<Cast
+										key={cast.id}
+										name={cast.original_name}
+										imageUrl={getCastImage(cast.profile_path || '')}
+									/>
 							  ))
-						: ytsCast?.map(cast => <Cast key={cast.imdb_code} name={cast.name} imageUrl={cast.url_small_image} />)}
+						: ytsCast?.map(cast => (
+								<Cast key={cast.imdb_code} name={cast.name} imageUrl={cast.url_small_image} />
+						  ))}
 				</Flex>
 			</ScrollArea>
 		</Stack>

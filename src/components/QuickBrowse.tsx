@@ -5,7 +5,13 @@ import { MoviesGrid } from './Movie'
 import { Container } from './ui'
 import { MovieGenre } from '@/types/movie-types'
 
-const QuickBrowse = ({ value, setValue }: { value: MovieGenre; setValue: Dispatch<SetStateAction<MovieGenre>> }) => {
+const QuickBrowse = ({
+	value,
+	setValue,
+}: {
+	value: MovieGenre
+	setValue: Dispatch<SetStateAction<MovieGenre>>
+}) => {
 	const [isDisabled, setIsDisabled] = useState(false)
 	return (
 		<Container pt={{ base: 20, md: 40 }} mb="40px" className="w-full">
@@ -13,7 +19,8 @@ const QuickBrowse = ({ value, setValue }: { value: MovieGenre; setValue: Dispatc
 				<Stack spacing="xs">
 					<Title order={4}>Discover Exciting Movies</Title>
 					<Text color="dimmed" maw={768}>
-						Take your time to browse through our curated collection and find the perfect movie for your next movie night
+						Take your time to browse through our curated collection and find the perfect movie
+						for your next movie night
 					</Text>
 				</Stack>
 				<ScrollArea offsetScrollbars>
@@ -36,7 +43,12 @@ const QuickBrowse = ({ value, setValue }: { value: MovieGenre; setValue: Dispatc
 					/>
 				</ScrollArea>
 
-				<MoviesGrid genre={value} withCtx={false} moviesLimit={12} setIsDisabled={setIsDisabled} />
+				<MoviesGrid
+					genre={value}
+					withCtx={false}
+					moviesLimit={12}
+					setIsDisabled={setIsDisabled}
+				/>
 			</Stack>
 		</Container>
 	)

@@ -55,7 +55,12 @@ const FilteringMovies: React.FC<{
 						rightSection: 'right-6',
 					}}
 					rightSection={
-						<Button compact loaderPosition="center" onClick={onQuerySubmit} loading={isLoading}>
+						<Button
+							compact
+							loaderPosition="center"
+							onClick={onQuerySubmit}
+							loading={isLoading}
+						>
 							SEARCH
 						</Button>
 					}
