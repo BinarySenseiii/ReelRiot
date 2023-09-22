@@ -10,7 +10,9 @@ const useMovieQueryStore = create<iMovieQuery>(set => ({
 	actions: {
 		onQueryChange: ({ query, key, isQueryTerm, page = 1 }) =>
 			set(state => {
-				const updatedQuery = isQueryTerm ? { [key]: query, page } : { ...state.query, [key]: query, page }
+				const updatedQuery = isQueryTerm
+					? { [key]: query, page }
+					: { ...state.query, [key]: query, page }
 
 				if (!isQueryTerm) delete updatedQuery.query_term
 
