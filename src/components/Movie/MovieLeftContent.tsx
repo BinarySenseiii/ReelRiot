@@ -9,16 +9,24 @@ interface MovieLeftContentProps {
 	imdb_code: string | undefined
 }
 
-const MovieLeftContent: React.FC<MovieLeftContentProps> = ({ title, posterSrc, imdb_code }) => {
+const MovieLeftContent: React.FC<MovieLeftContentProps> = ({
+	title,
+	posterSrc,
+	imdb_code,
+}) => {
 	return (
 		<Grid.Col md={3} pos={{ md: 'sticky' }} top={15} maw={500}>
 			<CustomImage posterSrc={posterSrc} title={title} />
 			<Stack mt="md" className="hidden md:flex">
-				<Button fullWidth leftIcon={<BsFillBookmarkFill />}>
+				{/* <Button fullWidth leftIcon={<BsFillBookmarkFill />}>
 					Bookmark
-				</Button>
+				</Button> */}
 
-				<Anchor href={` https://www.imdb.com/title/${imdb_code}`} target="_blank" className="w-full hover:no-underline">
+				<Anchor
+					href={` https://www.imdb.com/title/${imdb_code}`}
+					target="_blank"
+					className="w-full hover:no-underline"
+				>
 					<Button fullWidth variant="white" color="dark">
 						View Details On IMDB
 					</Button>
