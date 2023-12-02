@@ -1,24 +1,12 @@
-import {
-	Badge,
-	Button,
-	Group,
-	Rating,
-	Stack,
-	Text,
-	Title,
-	rem,
-} from '@mantine/core'
+import { Badge, Group, Rating, Stack, Text, Title } from '@mantine/core'
 import React, { Fragment, ReactNode } from 'react'
 
 import { IMovie } from '@/types/movie-types'
 import { checkQuality } from '@/utils'
 import Link from 'next/link'
-import { BiHeart } from 'react-icons/bi'
 import CustomImage from '../CustomImage'
-import useMovieStyles from './movieSyles'
-import { useRouter } from 'next/router'
 import { CustomTooltip } from '../ui'
-import { useMediaQuery } from '@mantine/hooks'
+import useMovieStyles from './movieSyles'
 
 type MovieProps = {
 	movie: IMovie
@@ -53,8 +41,6 @@ const Movie: React.FC<MovieProps> = ({
 	const {
 		classes: { root },
 	} = useMovieStyles()
-	const router = useRouter()
-	const matches = useMediaQuery(`(max-width: ${rem('640px')})`)
 
 	const REDIRECT_URL = `/movie/${movie.slug}?id=${movie.imdb_code}`
 
