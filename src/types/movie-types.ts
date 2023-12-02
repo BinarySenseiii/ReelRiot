@@ -248,3 +248,12 @@ export type queryArgs = {
 	imdbCode: string
 	isTmdbMovie: boolean
 }
+
+export interface FReview {
+	avatar: string
+	email: string
+	id: string
+	name: string
+	content: string
+	created_at: string
+}

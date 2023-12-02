@@ -9,8 +9,7 @@ export const options = {
 	headers: { 'content-type': 'application/json' },
 }
 
-const createInstance = (baseURL: string, options?: {}) =>
-	axios.create({ baseURL, ...options })
+const createInstance = (baseURL: string, options?: {}) => axios.create({ baseURL, ...options })
 
 export const request = {
 	yts: createInstance(YTS_API_BASEURL, options),
@@ -18,11 +17,8 @@ export const request = {
 }
 
 export const requestActions = {
-	get: <T>(
-		instance: AxiosInstance,
-		url: string,
-		config: AxiosRequestConfig = {},
-	) => instance.get<T>(url, config).then(responseBody),
+	get: <T>(instance: AxiosInstance, url: string, config: AxiosRequestConfig = {}) =>
+		instance.get<T>(url, config).then(responseBody),
 
 	post: <T>(instance: AxiosInstance, url: string, body: {}) =>
 		instance.post<T>(url, body).then(responseBody),

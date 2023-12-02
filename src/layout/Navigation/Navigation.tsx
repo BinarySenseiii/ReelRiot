@@ -1,4 +1,12 @@
-import { Box, Burger, Button, Group, Header, Paper, Transition } from '@mantine/core'
+import {
+	Box,
+	Burger,
+	Button,
+	Group,
+	Header,
+	Paper,
+	Transition,
+} from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import React from 'react'
 import { HEADER_HEIGHT, useStyles } from './Navigation.styled'
@@ -15,14 +23,18 @@ const Navigation: React.FC = () => {
 	const { pathname } = useRouter()
 	const { classes } = useStyles()
 
-	const items = menuLinks.map(link => <NavLink key={link.label} onClose={close} {...link} />)
+	const items = menuLinks.map(link => (
+		<NavLink key={link.label} onClose={close} {...link} />
+	))
 
 	return (
 		<div className="relative">
 			<Header
 				height={HEADER_HEIGHT}
 				mb={120}
-				className={`${classes.root} ${pathname.includes('slug') ? 'static' : 'fixed'}`}
+				className={`${classes.root} ${
+					pathname.includes('slug') ? 'static' : 'fixed'
+				}`}
 			>
 				<Container>
 					<Box className={classes.header}>

@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { signInWithPopup, signOut } from 'firebase/auth'
 import toast from 'react-hot-toast'
 import { BiLogOut } from 'react-icons/bi'
+import Image from 'next/image'
 
 const AuthBtn = ({ ...props }) => {
 	const [value, loading, error] = useAuthState(auth)
@@ -33,12 +34,32 @@ const AuthBtn = ({ ...props }) => {
 		}
 	}
 
+	console.log(value?.photoURL)
+
 	return loading ? (
 		<Loader variant="oval" size="sm" />
 	) : value ? (
-		<Menu trigger="hover" withArrow withinPortal zIndex={999} position="bottom-end">
+		<Menu
+			trigger="hover"
+			withArrow
+			withinPortal
+			zIndex={999}
+			position="bottom-end"
+		>
 			<Menu.Target>
-				<Avatar size="md" radius="xl" src={value.photoURL} alt={`${value.displayName} not found`} />
+				{/* <Avatar
+					size="md"
+					radius="xl"
+					src={value.photoURL}
+				/> */}
+
+				<Image
+					src={value?.photoURL ?? ''}
+					alt={`${value.displayName} profile not found`}
+					height={30}
+					width={30}
+					className="rounded-full"
+				/>
 			</Menu.Target>
 			<Menu.Dropdown>
 				<Menu.Item disabled>
@@ -55,7 +76,13 @@ const AuthBtn = ({ ...props }) => {
 			</Menu.Dropdown>
 		</Menu>
 	) : (
-		<Button size="xs" {...props} loading={loading} loaderPosition="center" onClick={onSignInHandle}>
+		<Button
+			size="xs"
+			{...props}
+			loading={loading}
+			loaderPosition="center"
+			onClick={onSignInHandle}
+		>
 			Login / Sign Up
 		</Button>
 	)

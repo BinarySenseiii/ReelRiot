@@ -19,6 +19,10 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'otoa-website.s3.us-east-2.amazonaws.com',
 			},
+			{
+				protocol: 'https',
+				hostname: 'lh3.googleusercontent.com',
+			},
 		],
 	},
 }

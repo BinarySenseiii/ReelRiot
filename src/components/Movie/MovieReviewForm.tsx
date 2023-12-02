@@ -1,16 +1,26 @@
-import { Button, SimpleGrid, Stack, Text, TextInput, Textarea, Title } from '@mantine/core'
+import {
+	Button,
+	SimpleGrid,
+	Stack,
+	Text,
+	TextInput,
+	Textarea,
+	Title,
+} from '@mantine/core'
 import { useEffect, useMemo, useState } from 'react'
 
 import { ReviewSchema, ReviewSchemaType } from '@/schemas'
 import { auth, db } from '@/services/firebase'
 import { useForm, zodResolver } from '@mantine/form'
 import { addDoc, collection } from 'firebase/firestore'
+import { useRouter } from 'next/router'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { toast } from 'react-hot-toast'
 
 const MovieReviewForm = () => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [user] = useAuthState(auth)
+	const { query, reload } = useRouter()
 
 	const initialValues = useMemo<ReviewSchemaType>(
 		() => ({
@@ -34,18 +44,19 @@ const MovieReviewForm = () => {
 	const onSubmitHandle = async (values: ReviewSchemaType) => {
 		setIsLoading(true)
 		try {
-			await addDoc(collection(db, 'reviews'), {
+			await addDoc(collection(db, `${query.id}`), {
 				name: values.name,
 				email: values.email,
-				review: values.review,
+				content: values.review,
 				avatar: user?.photoURL ?? '',
+				created_at: Date.now(),
 			})
 
 			form.setValues(initialValues)
 			toast.success('Review submitted successfully')
-		} catch (error) {
-			console.error('Error adding review: ', error)
-			toast.error('An error occurred while submitting the review')
+			reload()
+		} catch (error: any) {
+			toast.error(error.message)
 		} finally {
 			setIsLoading(false)
 		}
@@ -56,8 +67,8 @@ const MovieReviewForm = () => {
 			<Stack spacing="xs">
 				<Title order={2}>Share Your Review </Title>
 				<Text color="gray" fz="sm">
-					We value your opinion! Help other viewers by sharing your thoughts about the movie. Your
-					review will be appreciated.
+					We value your opinion! Help other viewers by sharing your thoughts
+					about the movie. Your review will be appreciated.
 				</Text>
 			</Stack>
 
