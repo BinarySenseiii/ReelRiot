@@ -41,7 +41,7 @@ A beautiful client for YTS website which also provides built-in torrent & subtit
 
 - Node, recommended `20.x`
 - npm, recommended `10.5.0`
-- Make sure u have installed vpn recommended one: [https://protonvpn.com/](https://protonvpn.com/)
+- Make sure u have installed vpn recommended one: [https://protonvpn.com/](https://protonvpn.com/) after installation connect with usa .. as yts api banned on some countries
 - For downloading movies u need torrent Client:
   [https://www.qbittorrent.org/](https://www.qbittorrent.org/)
 - Visual Studio Code [https://code.visualstudio.com/](https://code.visualstudio.com/)
